@@ -5,12 +5,15 @@ public class Hero : Unit
 {
     public static Hero instance;
 
+    public AudioSource moveSound;
+
     void Awake() {
         instance = this;
     }
 
     public override void MoveTo(Cell cell) {
         base.MoveTo(cell);
+        moveSound.Play();
         CheckAttack();
     }
 

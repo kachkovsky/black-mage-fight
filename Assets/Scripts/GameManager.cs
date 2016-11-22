@@ -23,6 +23,18 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    void Start() {
+        NewGame();
+    }
+
+    public void NewGame() {
+        Hero.instance.health = 100;
+        BlackMage.instance.health = 100;
+        Hero.instance.MoveTo(Board.instance.cells.Rand());
+        BlackMage.instance.MoveTo(Board.instance.cells.Rand());
+        Hero.instance.CheckAttack();
+    }
+
     void OnDestroy() {
         FileManager.SaveToFile(gameState, GAMESTATE_FILE);
         Debug.LogFormat("Destroy");
