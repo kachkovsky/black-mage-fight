@@ -9,7 +9,16 @@ public class SliderWithValue : MonoBehaviour
     public Text valueText;
     public string formatString;
 
-    void Update() {
+    void OnEnable() {
+        slider.onValueChanged.AddListener(ChangeValue);
+        ChangeValue(slider.value);
+    }
+
+    void OnDisable() {
+        slider.onValueChanged.RemoveListener(ChangeValue);
+    }
+
+    void ChangeValue(float value) {
         valueText.text = string.Format(formatString, slider.value);
     }
 }
