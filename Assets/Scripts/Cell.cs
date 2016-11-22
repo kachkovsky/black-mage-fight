@@ -30,11 +30,11 @@ public class Cell : MonoBehaviour {
 
     [ContextMenu("Move Hero Here")]
     public void MoveHeroHere() {
-        Hero.instance.MoveTo(this);
+        FindObjectOfType<Hero>().MoveTo(this);
     }
     [ContextMenu("Move Black Mage Here")]
     public void MoveBlackMageHere() {
-        BlackMage.instance.MoveTo(this);
+        FindObjectOfType<BlackMage>().MoveTo(this);
     }
 
 
