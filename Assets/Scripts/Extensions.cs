@@ -134,6 +134,10 @@ public static class Extensions
         transform.localRotation = Quaternion.identity;
     }
 
+    public static T Rand<T>(this T[,] matrix) {
+        return matrix[UnityEngine.Random.Range(0, matrix.GetLength(0)), UnityEngine.Random.Range(0, matrix.GetLength(1))];
+    }
+
     public static string ExtToString(this Transform t) {
         return String.Format("{{position = {0}, rotation = {1}, lossyScale = {2}}}", t.position.ExtToString(), t.rotation, t.lossyScale.ExtToString());
     }

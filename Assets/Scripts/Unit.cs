@@ -5,7 +5,7 @@ public class Unit : MonoBehaviour
 {
     public Cell position;
 
-    public void MoveTo(Cell cell) {
+    public virtual void MoveTo(Cell cell) {
         if (cell == null) {
             return;
         }

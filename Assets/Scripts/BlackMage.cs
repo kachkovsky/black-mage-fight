@@ -8,4 +8,12 @@ public class BlackMage : Unit
     void Awake() {
         instance = this;
     }
+
+    public void Hit() {
+    }
+
+    public void Blink() {
+        Board.instance.cells.Rand().MoveHere(this);
+        Hero.instance.CheckAttack();
+    }
 }
