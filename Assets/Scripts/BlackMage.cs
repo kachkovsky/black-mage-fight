@@ -2,9 +2,9 @@
 using System.Collections;
 
 [ExecuteInEditMode]
-public class Hero : Unit
+public class BlackMage : Unit
 {
-    public static Hero instance;
+    public static BlackMage instance;
 
     void Awake() {
         instance = this;

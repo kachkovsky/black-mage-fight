@@ -28,10 +28,19 @@ public class Cell : MonoBehaviour {
         }
     }
 
-    [ContextMenu("MoveHere")]
+    [ContextMenu("Move Hero Here")]
     public void MoveHeroHere() {
-        Hero.instance.transform.SetParent(transform, worldPositionStays: false);
-        Hero.instance.transform.localPosition = new Vector3(0, 0, -1);
+        Hero.instance.MoveTo(this);
+    }
+    [ContextMenu("Move Black Mage Here")]
+    public void MoveBlackMageHere() {
+        BlackMage.instance.MoveTo(this);
+    }
+
+
+    public void MoveHere(Unit unit) {
+        unit.transform.position = transform.position;
+        unit.position = this;
     }
 
     public Cell Right() {

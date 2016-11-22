@@ -25,7 +25,7 @@ public class Controls : MonoBehaviour {
     }
 
     void Update() {
-        var heroPosition = Hero.instance.Position();
+        var heroPosition = Hero.instance.position;
         if (Input.GetButtonDown("Up")) {
             Hero.instance.MoveTo(heroPosition.Up());
         }
