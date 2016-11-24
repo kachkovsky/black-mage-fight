@@ -41,8 +41,7 @@ public class Cell : MonoBehaviour {
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
 
-
-    public void MoveHere(Unit unit) {
+    public void MoveHere(Figure unit) {
         unit.transform.position = transform.position;
         unit.position = this;
     }

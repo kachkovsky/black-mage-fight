@@ -30,6 +30,16 @@ public class Board : MonoBehaviour {
         return null;
     }
 
+    public Cell RandomEmptyCell() {
+        for (int i = 0; i < 1000; i++) {
+            var c = cells.Rand();
+            if (!FindObjectsOfType<Figure>().Any(f => f.position == c)) {
+                return c;
+            }
+        }
+        return null;
+    }
+
     [ContextMenu("Generate")]
     public void Generate() {
         transform.Children().ForEach(c => DestroyImmediate(c.gameObject));

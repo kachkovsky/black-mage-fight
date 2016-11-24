@@ -15,9 +15,4 @@ public class BlackMage : Unit
         hitSound.time = 0.25f;
         hitSound.Play();
     }
-
-    public void Blink() {
-        Board.instance.cells.Rand().MoveHere(this);
-        Hero.instance.CheckAttack();
-    }
 }

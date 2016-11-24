@@ -28,10 +28,9 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NewGame() {
-        Hero.instance.health = 100;
-        BlackMage.instance.health = 100;
-        Hero.instance.MoveTo(Board.instance.cells.Rand());
-        BlackMage.instance.MoveTo(Board.instance.cells.Rand());
+        FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
+        FindObjectsOfType<Figure>().ForEach(f => f.Blink());
+
         Hero.instance.CheckAttack();
     }
 

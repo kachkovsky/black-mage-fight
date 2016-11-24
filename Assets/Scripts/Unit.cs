@@ -1,15 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Unit : MonoBehaviour
+public class Unit : Figure
 {
-    public Cell position;
     public int health;
+    public int maxHealth;
 
-    public virtual void MoveTo(Cell cell) {
-        if (cell == null) {
-            return;
-        }
-        cell.MoveHere(this);
+    public bool Dead() {
+        return health <= 0;
+    }
+
+    public void Reborn() {
+        health = maxHealth;
+    }
+
+    public void Hit(int damage) {
+        health -= damage;
+    }
+
+    public void Heal(int heal) {
+        health += heal;
+        health = Mathf.Clamp(health, 0, maxHealth);
     }
 }

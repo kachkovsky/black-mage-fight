@@ -11,5 +11,6 @@ public class HealthSlider : MonoBehaviour
 
     void Update() {
         slider.value = unit.health;
+        slider.maxValue = unit.maxHealth;
     }
 }

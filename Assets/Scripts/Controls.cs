@@ -24,7 +24,11 @@ public class Controls : MonoBehaviour {
         }
     }
 
-    void Update() {
+    void Moves() {
+        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+            return;
+        }
+
         var heroPosition = Hero.instance.position;
         if (Input.GetButtonDown("Up")) {
             Hero.instance.MoveTo(heroPosition.Up());
@@ -37,6 +41,13 @@ public class Controls : MonoBehaviour {
         }
         if (Input.GetButtonDown("Right")) {
             Hero.instance.MoveTo(heroPosition.Right());
+        }
+    }
+
+    void Update() {
+        Moves();
+        if (Input.GetKeyDown(KeyCode.R)) {
+            GameManager.instance.NewGame();
         }
     }
 }
