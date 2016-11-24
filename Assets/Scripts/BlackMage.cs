@@ -11,7 +11,7 @@ public class BlackMage : Unit
     }
 
     public void Hit() {
-        health -= 1;
+        base.Hit(2);
         hitSound.time = 0.25f;
         hitSound.Play();
     }
