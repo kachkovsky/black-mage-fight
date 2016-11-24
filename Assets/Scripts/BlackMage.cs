@@ -15,4 +15,9 @@ public class BlackMage : Unit
         hitSound.time = 0.25f;
         hitSound.Play();
     }
+
+    public override void Pick(Hero hero) {
+        Hit();
+        Blink();
+    }
 }

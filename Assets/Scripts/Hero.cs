@@ -15,15 +15,14 @@ public class Hero : Unit
     public override void MoveTo(Cell cell) {
         base.MoveTo(cell);
         moveSound.Play();
-        CheckAttack();
-        CheckHeart();
+        CheckCollisions();
         Hit(1);
     }
 
-    public void CheckHeart() {
-        foreach (Heart h in FindObjectsOfType<Heart>()) {
-            if (h.position == position) {
-                h.Pick(this);
+    public void CheckCollisions() {
+        foreach (Figure f in FindObjectsOfType<Figure>()) {
+            if (f.position == position) {
+                f.Pick(this);
             }
         }
     }

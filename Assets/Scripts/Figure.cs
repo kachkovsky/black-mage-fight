@@ -20,4 +20,7 @@ public class Figure : MonoBehaviour
     public void Blink() {
         Board.instance.RandomEmptyCell().MoveHere(this);
     }
+
+    public virtual void Pick(Hero hero) {
+    }
 }
