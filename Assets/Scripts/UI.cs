@@ -16,7 +16,6 @@ public class UI : MonoBehaviour {
     void Start() {
         CloseMenu();
 #if UNITY_EDITOR
-        intro.SetActive(true);
 #else
         intro.SetActive(true);
 #endif
