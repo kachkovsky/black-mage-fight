@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
+#endif
 
 public class Cell : MonoBehaviour {
     public int x, y;
@@ -30,6 +33,7 @@ public class Cell : MonoBehaviour {
         }
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Move Hero Here")]
     public void MoveHeroHere() {
         FindObjectOfType<Hero>().MoveTo(this);
@@ -40,6 +44,7 @@ public class Cell : MonoBehaviour {
         FindObjectOfType<BlackMage>().MoveTo(this);
         EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
     }
+#endif
 
     public void MoveHere(Figure unit) {
         unit.transform.position = transform.position;
