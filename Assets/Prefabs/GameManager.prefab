@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11413848}
   - 114: {fileID: 11432750}
   m_Layer: 0
-  m_Name: Game
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,6 +40,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a56ef556432d54f8ddf61bcf2974f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartPrefab: {fileID: 119034, guid: d5258117b8d717e4e8bc3ec17624e75a, type: 2}
+  portalPrefab: {fileID: 113092, guid: 43c95325f97b5a84aa11713f2b5a6314, type: 2}
+  portalMaterials:
+  - {fileID: 2100000, guid: 01d3e4654dfb18b42a44c3b383fbbfea, type: 2}
+  - {fileID: 2100000, guid: 1893c5930263bb54f864a81a0111f1e2, type: 2}
+  - {fileID: 2100000, guid: 400b50366f4adfd4fb1ed4527abef622, type: 2}
 --- !u!114 &11432750
 MonoBehaviour:
   m_ObjectHideFlags: 1

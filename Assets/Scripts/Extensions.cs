@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UI;
 
 public static class Extensions
 {
@@ -225,5 +226,9 @@ public static class Extensions
 
     public static int Modulo(int x, int y) {
         return (x % y + y) % y;
+    }
+
+    public static int Int(this Slider slider) {
+        return (int)(slider.value);
     }
 }

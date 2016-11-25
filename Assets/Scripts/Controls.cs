@@ -47,7 +47,7 @@ public class Controls : MonoBehaviour {
     void Update() {
         Moves();
         if (Input.GetKeyDown(KeyCode.R)) {
-            GameManager.instance.NewGame();
+            GameManager.instance.Restart();
         }
     }
 }
