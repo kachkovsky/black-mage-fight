@@ -15,7 +15,7 @@ public static class Extensions
         return list[modulo(index, list.Count)];
     }
 
-    public static T cyclicNext<T>(this List<T> list, T element, int delta) {
+    public static T cyclicNext<T>(this List<T> list, T element, int delta = 1) {
         return list.cyclic(list.IndexOf(element) + delta);
     }
 
