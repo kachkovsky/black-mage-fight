@@ -18,7 +18,10 @@ public class SoundControls : MonoBehaviour
         mixer.SetFloat("MusicVolume", musicToggle.isOn ? 0 : -80);
     }
 
-    void Update() {
-
+    void Start() {
+#if UNITY_EDITOR
+        musicToggle.isOn = false;
+        MuteMusic(true);
+#endif
     }
 }
