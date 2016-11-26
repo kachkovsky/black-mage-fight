@@ -14,6 +14,9 @@ public class Hero : Unit
 
     public override void MoveTo(Cell cell) {
         base.MoveTo(cell);
+        if (cell == null) {
+            return;
+        }
         moveSound.Play();
         CheckCollisions();
         Hit(1);
