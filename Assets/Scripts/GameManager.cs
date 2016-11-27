@@ -51,47 +51,53 @@ public class GameManager : MonoBehaviour {
 
     public void CreateArrowSetter() {
         var arrowSetter = Instantiate(arrowSetterPrefab).GetComponent<ArrowSetter>();
-        arrowSetter.periodic.period = 2;
+        arrowSetter.periodic.period = 2; 
+        for (int i = 0; i < 30; i++) {
+            arrowSetter.SetArrow();
+        }
     }
 
     public void Level1() {
-        NewGame(40, 100, 0, 3, 3, CreateHeartStopper);
+        NewGame(new GameStartConfig(40, 100, 0, 3, 3, CreateHeartStopper));
     }
 
     public void Level2() {
-        NewGame(40, 100, 1, 3, 3, CreateHeartStopper);
+        NewGame(new GameStartConfig(40, 100, 1, 3, 3, CreateHeartStopper));
     }
 
     public void Level3() {
-        NewGame(50, 100, 3, 3, 3, CreateHeartStopper);
+        NewGame(new GameStartConfig(50, 100, 3, 3, 3, CreateHeartStopper));
     }
 
     public void Level4() {
-        NewGame(50, 10, 0, 1, 1, CreateBombSetter);
+        NewGame(new GameStartConfig(50, 10, 0, 1, 1, CreateBombSetter));
     }
 
     public void Level5() {
-        NewGame(50, 100, 0, 1, 1, CreateArrowSetter);
+        NewGame(new GameStartConfig(50, 100, 0, 1, 1, CreateArrowSetter));
     }
 
-    public void NewGame(int blackMageHealth, int heroHealth, int teleports, int heartCount, int heartHeal, Action create) {
-        teleports = Mathf.Clamp(teleports, 0, 3);
-        heartCount = Mathf.Clamp(heartCount, 0, 3);
+    GameStartConfig lastConfig;
+
+    public void NewGame(GameStartConfig config) {
+        this.lastConfig = config;
+        config.teleports = Mathf.Clamp(config.teleports, 0, 3);
+        config.heartCount = Mathf.Clamp(config.heartCount, 0, 3);
         FindObjectsOfType<Token>().ForEach(x => {
             if (x != Hero.instance && x != BlackMage.instance) {
                 Destroy(x.gameObject);
             }
         });
         BlackMage.instance.hitDamage = 1;
-        BlackMage.instance.maxHealth = blackMageHealth;
-        Hero.instance.maxHealth = heroHealth;
+        BlackMage.instance.maxHealth = config.blackMageHealth;
+        Hero.instance.maxHealth = config.heroHealth;
 
-        for (int i = 0; i < heartCount; i++) {
+        for (int i = 0; i < config.heartCount; i++) {
             var heartObject = Instantiate(heartPrefab);
             var heart = heartObject.GetComponent<Heart>();
-            heart.heal = heartHeal;
+            heart.heal = config.heartHeal;
         }
-        for (int i = 0; i < teleports; i++) {
+        for (int i = 0; i < config.teleports; i++) {
             for (int j = 0; j < 2; j++) {
                 var portalObject = Instantiate(portalPrefab);
                 var portal = portalObject.GetComponent<Portal>();
@@ -100,9 +106,9 @@ public class GameManager : MonoBehaviour {
                 spriteRenderer.sharedMaterial = portalMaterials[i];
             }
         }
-        create();
-
-        Restart();
+        config.extraCreations();
+        FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
+        FindObjectsOfType<Figure>().ForEach(f => f.Blink()); 
     }
 
     public void HeroMoved(Hero hero) {
@@ -110,17 +116,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart() {
-        FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
-        FindObjectsOfType<Figure>().ForEach(f => f.Blink()); 
-        FindObjectsOfType<Bomb>().ForEach(x => {
-            Destroy(x.gameObject);
-        });
-        FindObjectsOfType<Arrow>().ForEach(x => {
-            Destroy(x.gameObject);
-        });
-        FindObjectsOfType<BombSetter>().ForEach(x => {
-            x.periodic.phase = 0;
-        });
+        NewGame(lastConfig);
     }
 
     void OnDestroy() {

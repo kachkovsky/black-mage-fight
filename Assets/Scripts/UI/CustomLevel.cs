@@ -12,12 +12,13 @@ public class CustomLevel : MonoBehaviour
 
     public void Play() {
         GameManager.instance.NewGame(
+            new GameStartConfig(
             enemyHealth.Int(),
             heroHealth.Int(),
             teleports.Int(),
             hearts.Int(),
             heartHeal.Int(),
             GameManager.instance.CreateHeartStopper
-        );
+        ));
     }
 }
