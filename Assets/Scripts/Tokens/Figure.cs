@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Figure : MonoBehaviour
+public class Figure : Token
 {
     public Cell position;
 

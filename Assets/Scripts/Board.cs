@@ -4,7 +4,7 @@ using System.Linq;
 
 [ExecuteInEditMode]
 public class Board : MonoBehaviour {
-    const int N = 8;
+    public const int N = 8;
 
     public static Board instance;
 

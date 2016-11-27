@@ -231,4 +231,12 @@ public static class Extensions
     public static int Int(this Slider slider) {
         return (int)(slider.value);
     }
+
+    public static float Direction(this Vector2 vector) {
+        return Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
+    }
+
+    public static T Rnd<T>(this List<T> collection) {
+        return collection[UnityEngine.Random.Range(0, collection.Count)];
+    }
 }
