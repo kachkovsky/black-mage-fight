@@ -51,10 +51,10 @@ public class GameManager : MonoBehaviour {
 
     public void CreateArrowSetter() {
         var arrowSetter = Instantiate(arrowSetterPrefab).GetComponent<ArrowSetter>();
-        arrowSetter.periodic.period = 2; 
-        for (int i = 0; i < 30; i++) {
-            arrowSetter.SetArrow();
-        }
+        arrowSetter.periodic.period = 3;
+        arrowSetter = Instantiate(arrowSetterPrefab).GetComponent<ArrowSetter>();
+        arrowSetter.periodic.period = 3;
+        arrowSetter.periodic.phase = 1;
     }
 
     public void Level1() {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Level5() {
-        NewGame(new GameStartConfig(50, 100, 0, 1, 1, CreateArrowSetter));
+        NewGame(new GameStartConfig(50, 25, 0, 1, 1, CreateArrowSetter));
     }
 
     GameStartConfig lastConfig;

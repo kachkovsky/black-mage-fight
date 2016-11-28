@@ -71,7 +71,7 @@ MonoBehaviour:
   position:
     a: {fileID: 0}
     b: {fileID: 0}
-  damage: 10
+  damage: 3
 --- !u!212 &21228634
 SpriteRenderer:
   m_ObjectHideFlags: 1
