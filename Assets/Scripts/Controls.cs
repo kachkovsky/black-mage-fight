@@ -42,6 +42,10 @@ public class Controls : MonoBehaviour {
         if (Input.GetButtonDown("Right")) {
             Hero.instance.MoveTo(heroPosition.Right());
         }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            FindObjectsOfType<Figure>().ForEach(f => f.Blink());
+            Hero.instance.Hit(5);
+        }
     }
 
     void Update() {

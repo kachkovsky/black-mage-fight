@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class Heart : Figure
 {
@@ -7,6 +8,6 @@ public class Heart : Figure
 
     public override void Pick(Hero hero) {
         hero.Heal(heal);
-        Blink();
+        Locator.Locate(this);
     }
 }

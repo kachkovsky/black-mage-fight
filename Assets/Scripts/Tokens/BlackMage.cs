@@ -20,6 +20,6 @@ public class BlackMage : Unit
 
     public override void Pick(Hero hero) {
         Hit();
-        Blink();
+        Locator.Locate(this);
     }
 }

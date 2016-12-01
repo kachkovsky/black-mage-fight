@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public GameObject heartStopperPrefab;
     public GameObject bombSetterPrefab;
     public GameObject arrowSetterPrefab;
+    public GameObject locatorPrefab;
 
     public event Action<Hero> onHeroMove = (h) => { };
 
@@ -36,7 +37,19 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        Level5();
+        Level1();
+    }
+    bool firstUpdate = true;
+    void CheckFirstUpdate() {
+        if (!firstUpdate) {
+            return;
+        }
+        firstUpdate = false;
+        Restart();
+    }
+
+    void Update() {
+        CheckFirstUpdate();
     }
 
     public void CreateHeartStopper() {
@@ -80,6 +93,7 @@ public class GameManager : MonoBehaviour {
     GameStartConfig lastConfig;
 
     public void NewGame(GameStartConfig config) {
+        //UnityEngine.Random.seed = 42;
         this.lastConfig = config;
         config.teleports = Mathf.Clamp(config.teleports, 0, 3);
         config.heartCount = Mathf.Clamp(config.heartCount, 0, 3);
@@ -107,8 +121,11 @@ public class GameManager : MonoBehaviour {
             }
         }
         config.extraCreations();
+        Instantiate(locatorPrefab);
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
-        FindObjectsOfType<Figure>().ForEach(f => f.Blink()); 
+
+        FindObjectsOfType<Figure>().ForEach(f => f.position = null); 
+        FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 
     public void HeroMoved(Hero hero) {
