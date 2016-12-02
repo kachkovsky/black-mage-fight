@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour {
     public GameObject bombSetterPrefab;
     public GameObject arrowSetterPrefab;
     public GameObject locatorPrefab;
+    public GameObject skullSetterPrefab;
+    public GameObject candlePrefab;
 
     public event Action<Hero> onHeroMove = (h) => { };
 
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        Level1();
+        Level6();
     }
     bool firstUpdate = true;
     void CheckFirstUpdate() {
@@ -70,6 +72,11 @@ public class GameManager : MonoBehaviour {
         arrowSetter.periodic.phase = 1;
     }
 
+    public void CreateSkullSetter() {
+        var skullSetter = Instantiate(skullSetterPrefab).GetComponent<SkullSetter>();
+        skullSetter.periodic.period = 1;
+    }
+
     public void Level1() {
         NewGame(new GameStartConfig(40, 100, 0, 3, 3, CreateHeartStopper));
     }
@@ -88,6 +95,10 @@ public class GameManager : MonoBehaviour {
 
     public void Level5() {
         NewGame(new GameStartConfig(50, 25, 0, 1, 1, CreateArrowSetter));
+    }
+
+    public void Level6() {
+        NewGame(new GameStartConfig(60, 100, 0, 0, 1, CreateSkullSetter));
     }
 
     GameStartConfig lastConfig;
@@ -121,10 +132,13 @@ public class GameManager : MonoBehaviour {
             }
         }
         config.extraCreations();
-        Instantiate(locatorPrefab);
+        //Instantiate(locatorPrefab);
+        for (int i = 0; i < 5; i++) {
+            //Instantiate(candlePrefab);
+        }
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
 
-        FindObjectsOfType<Figure>().ForEach(f => f.position = null); 
+        FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null)); 
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 

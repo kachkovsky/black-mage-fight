@@ -11,9 +11,12 @@ public class Portal : Figure
         other = FindObjectsOfType<Portal>().Where(p => p.id == this.id && p != this).First();
     }
 
-    public override void Pick(Hero hero) {
-        other.position.MoveHere(hero);
-        Blink();
-        other.Blink();
+    public override void Collide(Figure f) {
+        var hero = f as Hero;
+        if (hero != null) {
+            other.Position.MoveHere(hero);
+            Blink();
+            other.Blink();
+        }
     }
 }

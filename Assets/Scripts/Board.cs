@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using System;
 
 [ExecuteInEditMode]
 public class Board : MonoBehaviour {
@@ -30,10 +31,11 @@ public class Board : MonoBehaviour {
         return null;
     }
 
-    public Cell RandomEmptyCell() {
+    public Cell RandomEmptyCell(Func<Figure, bool> occupies = null) {
+        occupies = occupies ?? (f => f.Occupies());
         for (int i = 0; i < 1000; i++) {
             var c = cells.Rand();
-            if (!FindObjectsOfType<Figure>().Any(f => f.position == c)) {
+            if (!FindObjectsOfType<Figure>().Any(f => f.Position == c && occupies(f))) {
                 return c;
             }
         }

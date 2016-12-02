@@ -18,8 +18,10 @@ public class BlackMage : Unit
         hitSound.Play();
     }
 
-    public override void Pick(Hero hero) {
-        Hit();
-        Locator.Locate(this);
+    public override void Collide(Figure f) {
+        if (f is Hero) {
+            Hit();
+            Locator.Locate(this);
+        }
     }
 }

@@ -29,7 +29,7 @@ public class Controls : MonoBehaviour {
             return;
         }
 
-        var heroPosition = Hero.instance.position;
+        var heroPosition = Hero.instance.Position;
         if (Input.GetButtonDown("Up")) {
             Hero.instance.MoveTo(heroPosition.Up());
         }

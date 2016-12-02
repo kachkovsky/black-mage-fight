@@ -47,6 +47,8 @@ MonoBehaviour:
   bombSetterPrefab: {fileID: 196000, guid: 3c96ee2ced242ec438236bc6f9e6e14f, type: 2}
   arrowSetterPrefab: {fileID: 114012, guid: 7935a345763863c40b5eee2fd0cbf3f9, type: 2}
   locatorPrefab: {fileID: 121304, guid: debbe399726bf4746b7817eb49056134, type: 2}
+  skullSetterPrefab: {fileID: 130306, guid: 05860a5fdf4cc034a8c227668ef11d1e, type: 2}
+  candlePrefab: {fileID: 100554, guid: a6b6874e3f9924c4e8eea8051f61c1af, type: 2}
   portalMaterials:
   - {fileID: 2100000, guid: 01d3e4654dfb18b42a44c3b383fbbfea, type: 2}
   - {fileID: 2100000, guid: 1893c5930263bb54f864a81a0111f1e2, type: 2}

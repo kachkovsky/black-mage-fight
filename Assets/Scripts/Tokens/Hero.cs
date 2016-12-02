@@ -14,7 +14,7 @@ public class Hero : Unit
     }
 
     public override void MoveTo(Cell cell) {
-        var oldPosition = position;
+        var oldPosition = Position;
         base.MoveTo(cell);
         if (cell == null) {
             return;
@@ -25,29 +25,13 @@ public class Hero : Unit
     }
 
     public void CheckCollisions(Cell oldPosition) {
-        foreach (Figure f in FindObjectsOfType<Figure>()) {
-            if (f.position == position) {
-                f.Pick(this);
-            }
-        } 
         foreach (Edge e in FindObjectsOfType<Edge>()) {
-            if (e.position.a == oldPosition && e.position.b == position) {
+            if (e.position.a == oldPosition && e.position.b == Position) {
                 e.Pick(this);
             }
-            if (e.position.a == position && e.position.b == oldPosition) {
+            if (e.position.a == Position && e.position.b == oldPosition) {
                 e.ReversePick(this);
             }
         }
-    }
-
-    public void CheckAttack() {
-        if (BlackMage.instance.position == position) {
-            Attack();
-        }
-    }
-
-    private void Attack() {
-        BlackMage.instance.Hit();
-        BlackMage.instance.Blink();
     }
 }

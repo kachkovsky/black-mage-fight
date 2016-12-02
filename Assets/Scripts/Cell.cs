@@ -4,10 +4,13 @@ using System.Collections;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using System.Collections.Generic;
 #endif
 
 public class Cell : MonoBehaviour {
     public int x, y;
+
+    public List<Figure> figures = new List<Figure>();
 
     MeshRenderer meshRenderer;
 
@@ -46,9 +49,13 @@ public class Cell : MonoBehaviour {
     }
 #endif
 
-    public void MoveHere(Figure unit) {
-        unit.transform.position = transform.position;
-        unit.position = this;
+    public void MoveHere(Figure f) {
+        figures.ForEach(f2 => {
+            f2.Collide(f);
+            f.Collide(f2);
+        });
+        f.transform.position = transform.position;
+        f.SetPosition(this);
     }
 
     public Cell Right() {

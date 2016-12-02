@@ -5,12 +5,14 @@ using System.Linq;
 
 public class Locator : Figure
 {
-    public override void Pick(Hero hero) {
-        Blink();
+    public override void Collide(Figure f) {
+        if (f is Hero) {
+            Blink();
+        }
     }
 
     void LocateHere(Figure figure) {
-        position.MoveHere(figure);
+        Position.MoveHere(figure);
         Blink();
     }
 

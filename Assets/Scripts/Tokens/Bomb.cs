@@ -30,8 +30,10 @@ public class Bomb : Figure
         }
     }
 
-    public override void Pick(Hero hero) {
-        gameObject.SetActive(false);
-        Destroy(gameObject);
+    public override void Collide(Figure f) {
+        if (f is Hero) {
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 }
