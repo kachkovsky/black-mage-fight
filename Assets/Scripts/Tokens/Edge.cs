@@ -37,10 +37,10 @@ public class Edge : Token
         transform.eulerAngles = Vector3.forward * (position.b.transform.position - position.a.transform.position).xy().Direction();
     }
 
-    public virtual void Pick(Hero hero) {
+    public virtual void Pick(Unit hero) {
     }
 
-    public virtual void ReversePick(Hero hero) {
+    public virtual void ReversePick(Unit hero) {
     }
 
     void Check(HashSet<Position> positions, Cell a, Cell b) {

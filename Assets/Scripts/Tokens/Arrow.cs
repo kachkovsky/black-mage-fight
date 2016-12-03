@@ -5,11 +5,11 @@ public class Arrow : Edge
 {
     public int damage;
 
-    public override void Pick(Hero hero) {
+    public override void Pick(Unit hero) {
         Destroy(gameObject);
     }
 
-    public override void ReversePick(Hero hero) {
+    public override void ReversePick(Unit hero) {
         hero.Hit(damage);
         Destroy(gameObject);
     }

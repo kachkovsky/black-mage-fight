@@ -21,8 +21,9 @@ public class GameManager : MonoBehaviour {
     public GameObject locatorPrefab;
     public GameObject skullSetterPrefab;
     public GameObject candlePrefab;
+    public GameObject gambochkaPrefab;
 
-    public event Action<Hero> onHeroMove = (h) => { };
+    public event Action<Unit> onHeroMove = (h) => { };
 
     public List<Material> portalMaterials;
 
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        Level6();
+        Level1();
     }
     bool firstUpdate = true;
     void CheckFirstUpdate() {
@@ -98,7 +99,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Level6() {
-        NewGame(new GameStartConfig(60, 100, 0, 0, 1, CreateSkullSetter));
+        NewGame(new GameStartConfig(50, 20, 0, 0, 1, CreateSkullSetter));
     }
 
     GameStartConfig lastConfig;
@@ -133,16 +134,19 @@ public class GameManager : MonoBehaviour {
         }
         config.extraCreations();
         //Instantiate(locatorPrefab);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
             //Instantiate(candlePrefab);
         }
+        Instantiate(gambochkaPrefab);
+
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
 
         FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null)); 
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
+        Controls.instance.activeUnit = Hero.instance;
     }
 
-    public void HeroMoved(Hero hero) {
+    public void HeroMoved(Unit hero) {
         onHeroMove(hero);
     }
 

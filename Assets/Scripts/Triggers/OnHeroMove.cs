@@ -7,7 +7,7 @@ public class OnHeroMove : Trigger
         GameManager.instance.onHeroMove += HeroMoved;
     }
 
-    private void HeroMoved(Hero hero) {
+    private void HeroMoved(Unit hero) {
         Run();
     }
 

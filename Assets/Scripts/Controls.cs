@@ -8,6 +8,8 @@ public class Controls : MonoBehaviour {
     public Cell hovered;
     public Cell selected;
 
+    public Unit activeUnit;
+
     void Awake() {
         instance = this;
     }
@@ -29,22 +31,18 @@ public class Controls : MonoBehaviour {
             return;
         }
 
-        var heroPosition = Hero.instance.Position;
+        var heroPosition = activeUnit.Position;
         if (Input.GetButtonDown("Up")) {
-            Hero.instance.MoveTo(heroPosition.Up());
+            activeUnit.MoveTo(heroPosition.Up());
         }
         if (Input.GetButtonDown("Down")) {
-            Hero.instance.MoveTo(heroPosition.Down());
+            activeUnit.MoveTo(heroPosition.Down());
         }
         if (Input.GetButtonDown("Left")) {
-            Hero.instance.MoveTo(heroPosition.Left());
+            activeUnit.MoveTo(heroPosition.Left());
         }
         if (Input.GetButtonDown("Right")) {
-            Hero.instance.MoveTo(heroPosition.Right());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
-            FindObjectsOfType<Figure>().ForEach(f => f.Blink());
-            Hero.instance.Hit(5);
+            activeUnit.MoveTo(heroPosition.Right());
         }
     }
 
