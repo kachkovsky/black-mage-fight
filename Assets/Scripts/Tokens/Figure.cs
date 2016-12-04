@@ -44,9 +44,7 @@ public class Figure : Token
     }
 
     protected virtual void OnDestroy() {
-        Debug.LogFormat("OnDestroy {0}", transform.Path());
         if (position != null) {
-            Debug.LogFormat("position.figures.Remove {0}", transform.Path());
             position.figures.Remove(this);
         }
     }

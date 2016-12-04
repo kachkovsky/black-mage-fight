@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour {
     public GameObject skullSetterPrefab;
     public GameObject candlePrefab;
     public GameObject gambochkaPrefab;
+    public GameObject chaoticPortal;
 
     public event Action<Unit> onHeroMove = (h) => { };
 
@@ -138,6 +139,9 @@ public class GameManager : MonoBehaviour {
             //Instantiate(candlePrefab);
         }
         //Instantiate(gambochkaPrefab);
+        for (int i = 0; i < 5; i++) {
+            //Instantiate(chaoticPortal);
+        }
 
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
 
@@ -156,6 +160,5 @@ public class GameManager : MonoBehaviour {
 
     void OnDestroy() {
         FileManager.SaveToFile(gameState, GAMESTATE_FILE);
-        Debug.LogFormat("Destroy");
     }
 }

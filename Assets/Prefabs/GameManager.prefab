@@ -50,6 +50,7 @@ MonoBehaviour:
   skullSetterPrefab: {fileID: 130306, guid: 05860a5fdf4cc034a8c227668ef11d1e, type: 2}
   candlePrefab: {fileID: 100554, guid: a6b6874e3f9924c4e8eea8051f61c1af, type: 2}
   gambochkaPrefab: {fileID: 136534, guid: 8b8c0bbc631a7c44c9797a1e8911f465, type: 2}
+  chaoticPortal: {fileID: 152040, guid: 7c4265a8a5fef19428fe3dc9ac8fc7bc, type: 2}
   portalMaterials:
   - {fileID: 2100000, guid: 01d3e4654dfb18b42a44c3b383fbbfea, type: 2}
   - {fileID: 2100000, guid: 1893c5930263bb54f864a81a0111f1e2, type: 2}
