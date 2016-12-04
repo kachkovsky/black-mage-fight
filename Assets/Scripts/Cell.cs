@@ -50,12 +50,12 @@ public class Cell : MonoBehaviour {
 #endif
 
     public void MoveHere(Figure f) {
+        f.transform.position = transform.position;
+        f.SetPosition(this); 
         figures.ForEach(f2 => {
             f2.Collide(f);
             f.Collide(f2);
         });
-        f.transform.position = transform.position;
-        f.SetPosition(this);
     }
 
     public Cell Right() {

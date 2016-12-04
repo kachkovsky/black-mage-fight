@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 20; i++) {
             //Instantiate(candlePrefab);
         }
-        Instantiate(gambochkaPrefab);
+        //Instantiate(gambochkaPrefab);
 
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
 

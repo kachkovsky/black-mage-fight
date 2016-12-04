@@ -3,18 +3,23 @@ using System.Collections;
 using System.Linq;
 using System;
 
-public class Gambochka : Unit
+public class Gambochka : PlayerUnit
 {
     public static Gambochka instance;
 
-    public AudioSource moveSound;
-
-    void Awake() {
+    protected override void Awake() {
+        base.Awake();
         instance = this;
     }
 
     void Start() {
         GameManager.instance.onHeroMove += OnHeroMove;
+        GameObject.Find("Gambochka Status").GetComponentInChildren<HealthSlider>().unit = this;
+    }
+
+    protected override void OnDestroy() {
+        base.OnDestroy();
+        GameManager.instance.onHeroMove -= OnHeroMove;
     }
 
     void OnHeroMove(Unit hero) {
@@ -25,25 +30,11 @@ public class Gambochka : Unit
         }
     }
 
-    public override void MoveTo(Cell cell) {
-        var oldPosition = Position;
-        base.MoveTo(cell);
-        if (cell == null) {
-            return;
-        }
-        moveSound.Play();
-        CheckCollisions(oldPosition);
-        GameManager.instance.HeroMoved(this);
-    }
-
-    public void CheckCollisions(Cell oldPosition) {
-        foreach (Edge e in FindObjectsOfType<Edge>()) {
-            if (e.position.a == oldPosition && e.position.b == Position) {
-                e.Pick(this);
-            }
-            if (e.position.a == Position && e.position.b == oldPosition) {
-                e.ReversePick(this);
-            }
+    public override void Collide(Figure f) {
+        base.Collide(f);
+        if (f is BlackMage) {
+            Hit(5);
+            Blink();
         }
     }
 }
