@@ -14,6 +14,8 @@ public class Board : MonoBehaviour {
     public GameObject[] rows;
     public Cell[,] cells;
 
+    public bool toroid = false;
+
     void Awake() {
         instance = this;
         cells = new Cell[N,N];
@@ -25,6 +27,10 @@ public class Board : MonoBehaviour {
     }
 
     public Cell GetCell(int x, int y) {
+        if (toroid) {
+            x = x.modulo(N);
+            y = y.modulo(N);
+        }
         if (Inside(x, y)) {
             return cells[x, y];
         }

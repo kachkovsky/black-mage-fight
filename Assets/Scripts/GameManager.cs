@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
     public GameObject candlePrefab;
     public GameObject gambochkaPrefab;
     public GameObject chaoticPortal;
+    public Damage damage;
 
     public event Action<Unit> onHeroMove = (h) => { };
 
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour {
         //UnityEngine.Random.seed = 42;
         this.lastConfig = config;
         config.teleports = Mathf.Clamp(config.teleports, 0, 3);
-        config.heartCount = Mathf.Clamp(config.heartCount, 0, 3);
+        config.heartCount = Mathf.Clamp(config.heartCount, 0, 7);
         FindObjectsOfType<Token>().ForEach(x => {
             if (x != Hero.instance && x != BlackMage.instance) {
                 Destroy(x.gameObject);
@@ -144,6 +145,9 @@ public class GameManager : MonoBehaviour {
         }
 
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
+
+        //Hero.instance.Hit(50);
+        BlackMage.instance.ResetDamageTokens();
 
         FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null)); 
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());

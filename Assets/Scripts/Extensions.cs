@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public static class Extensions
 {
-    public static int modulo(int x, int y) {
+    public static int modulo(this int x, int y) {
         return (x % y + y) % y;
     }
 
