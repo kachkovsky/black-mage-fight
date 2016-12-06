@@ -42,8 +42,9 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        Level1();
+        Level4();
     }
+
     bool firstUpdate = true;
     void CheckFirstUpdate() {
         if (!firstUpdate) {
@@ -63,7 +64,8 @@ public class GameManager : MonoBehaviour {
 
     public void CreateBombSetter() {
         var bombSetter = Instantiate(bombSetterPrefab).GetComponent<BombSetter>();
-        bombSetter.periodic.period = 3;
+        bombSetter.periodic.period = 7;
+        bombSetter.periodic.runPhases.Add(3);
         bombSetter.timer = 13;
     }
 
@@ -147,7 +149,7 @@ public class GameManager : MonoBehaviour {
         FindObjectsOfType<Unit>().ForEach(u => u.Reborn());
 
         //Hero.instance.Hit(50);
-        BlackMage.instance.ResetDamageTokens();
+        //BlackMage.instance.ResetDamageTokens();
 
         FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null)); 
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());

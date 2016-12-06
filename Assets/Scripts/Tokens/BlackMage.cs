@@ -38,7 +38,8 @@ public class BlackMage : Unit
 
     public override void Collide(Figure f) {
         if (f is Hero) {
-            HitWithDamageTokens();
+            //HitWithDamageTokens();
+            Hit();
             Locator.Locate(this);
         }
     }
