@@ -10,7 +10,7 @@ public class Heart : Figure
         var hero = f as PlayerUnit;
         if (hero != null) {
             hero.Heal(heal);
-            Locator.Locate(this);
+            Relocate();
         }
     }
 }

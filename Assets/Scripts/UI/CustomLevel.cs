@@ -11,14 +11,14 @@ public class CustomLevel : MonoBehaviour
     public Slider heartHeal;
 
     public void Play() {
-        GameManager.instance.NewGame(
-            new GameStartConfig(
-            enemyHealth.Int(),
-            heroHealth.Int(),
-            teleports.Int(),
-            hearts.Int(),
-            heartHeal.Int(),
-            GameManager.instance.CreateHeartStopper
-        ));
+        //GameManager.instance.NewGame(
+        //    new BasicGameStartConfig(
+        //    enemyHealth.Int(),
+        //    heroHealth.Int(),
+        //    teleports.Int(),
+        //    hearts.Int(),
+        //    heartHeal.Int(),
+        //    GameManager.instance.CreateHeartStopper
+        //));
     }
 }

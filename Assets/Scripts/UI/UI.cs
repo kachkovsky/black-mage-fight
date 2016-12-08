@@ -9,6 +9,10 @@ public class UI : MonoBehaviour {
     public GameObject intro;
     public AudioSource battleMusic;
 
+    public HealthSlider heroHealthSlider;
+    public HealthSlider blackMageHealthSlider;
+    public HealthSlider gambochkaHealthSlider;
+
     void Awake() {
         instance = this;
     }
@@ -53,5 +57,11 @@ public class UI : MonoBehaviour {
     public void NewGame() {
         newGame.SetActive(true);
         customLevel.SetActive(false);
+    }
+
+    public void UpdateHUD() {
+        heroHealthSlider.unit = Hero.instance;
+        blackMageHealthSlider.unit = BlackMage.instance;
+        gambochkaHealthSlider.unit = Gambochka.instance;
     }
 }

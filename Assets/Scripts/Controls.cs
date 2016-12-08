@@ -31,6 +31,10 @@ public class Controls : MonoBehaviour {
             return;
         }
 
+        if (activeUnit == null) {
+            return;
+        }
+
         var heroPosition = activeUnit.Position;
         if (Input.GetButtonDown("Up")) {
             activeUnit.MoveTo(heroPosition.Up());

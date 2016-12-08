@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System;
+using UnityEditor;
 
 [ExecuteInEditMode]
 public class Board : MonoBehaviour {
@@ -71,5 +72,18 @@ public class Board : MonoBehaviour {
             }
         }
         Camera.main.transform.position = cells[N / 2, N / 2].transform.position + Vector3.back * 10f;
+    }
+
+    [ContextMenu("Restore")]
+    public void Restore() {
+        FindObjectsOfType<Cell>().ForEach(c => {
+            c.figures = FindObjectsOfType<Figure>().Where(f => f.Position == c && f.gameObject.activeInHierarchy).ToList();
+            if (!EditorApplication.isPlaying) {
+                EditorUtility.SetDirty(c);
+            }
+        });
+        if (!EditorApplication.isPlaying) {
+            UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();
+        }
     }
 }

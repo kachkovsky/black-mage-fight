@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
     public GameObject chaoticPortal;
     public Damage damage;
 
+    GameObject lastLevel;
+    GameObject currentLevel;
+
     public event Action<Unit> onHeroMove = (h) => { };
 
     public List<Material> portalMaterials;
@@ -42,20 +45,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        Level4();
-    }
-
-    bool firstUpdate = true;
-    void CheckFirstUpdate() {
-        if (!firstUpdate) {
-            return;
-        }
-        firstUpdate = false;
-        Restart();
-    }
-
-    void Update() {
-        CheckFirstUpdate();
+        NewGame(Levels.instance.level1);
     }
 
     public void CreateHeartStopper() {
@@ -82,42 +72,46 @@ public class GameManager : MonoBehaviour {
         skullSetter.periodic.period = 1;
     }
 
-    public void Level1() {
-        NewGame(new GameStartConfig(40, 100, 0, 3, 3, CreateHeartStopper));
+    //public void Level1() {
+    //    NewGame(new BasicGameStartConfig(40, 100, 0, 3, 3, CreateHeartStopper));
+    //}
+
+    //public void Level2() {
+    //    NewGame(new BasicGameStartConfig(40, 100, 1, 3, 3, CreateHeartStopper));
+    //}
+
+    //public void Level3() {
+    //    NewGame(new BasicGameStartConfig(50, 100, 3, 3, 3, CreateHeartStopper));
+    //}
+
+    //public void Level4() {
+    //    NewGame(new BasicGameStartConfig(50, 10, 0, 1, 1, CreateBombSetter));
+    //}
+
+    //public void Level5() {
+    //    NewGame(new BasicGameStartConfig(50, 25, 0, 1, 1, CreateArrowSetter));
+    //}
+
+    //public void Level6() {
+    //    NewGame(new BasicGameStartConfig(50, 20, 0, 0, 1, CreateSkullSetter));
+    //}
+
+    public void Clear() {
+        FindObjectsOfType<Token>().ForEach(x => {
+            x.gameObject.SetActive(false);
+            Destroy(x.gameObject);
+        });
+        if (currentLevel != null) {
+            currentLevel.SetActive(false);
+            Destroy(currentLevel);
+        }
     }
 
-    public void Level2() {
-        NewGame(new GameStartConfig(40, 100, 1, 3, 3, CreateHeartStopper));
-    }
-
-    public void Level3() {
-        NewGame(new GameStartConfig(50, 100, 3, 3, 3, CreateHeartStopper));
-    }
-
-    public void Level4() {
-        NewGame(new GameStartConfig(50, 10, 0, 1, 1, CreateBombSetter));
-    }
-
-    public void Level5() {
-        NewGame(new GameStartConfig(50, 25, 0, 1, 1, CreateArrowSetter));
-    }
-
-    public void Level6() {
-        NewGame(new GameStartConfig(50, 20, 0, 0, 1, CreateSkullSetter));
-    }
-
-    GameStartConfig lastConfig;
-
-    public void NewGame(GameStartConfig config) {
+    public void NewBasicGame(BasicGameStartConfig config) {    
         //UnityEngine.Random.seed = 42;
-        this.lastConfig = config;
         config.teleports = Mathf.Clamp(config.teleports, 0, 3);
         config.heartCount = Mathf.Clamp(config.heartCount, 0, 7);
-        FindObjectsOfType<Token>().ForEach(x => {
-            if (x != Hero.instance && x != BlackMage.instance) {
-                Destroy(x.gameObject);
-            }
-        });
+        Clear();
         BlackMage.instance.hitDamage = 1;
         BlackMage.instance.maxHealth = config.blackMageHealth;
         Hero.instance.maxHealth = config.heroHealth;
@@ -151,9 +145,33 @@ public class GameManager : MonoBehaviour {
         //Hero.instance.Hit(50);
         //BlackMage.instance.ResetDamageTokens();
 
-        FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null)); 
+        FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null));
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
         Controls.instance.activeUnit = Hero.instance;
+    }
+
+    public void ResetPositions() {
+        FindObjectsOfType<Figure>().ForEach(f => f.SetPosition(null));
+        FindObjectsOfType<Figure>().ForEach(f => f.Blink());
+    }
+
+    public void NewGame(GameObject level) {
+        lastLevel = level;
+        Clear();
+        currentLevel = Instantiate(level);
+        currentLevel.SetActive(true);
+        Controls.instance.activeUnit = Hero.instance;
+        UI.instance.UpdateHUD();
+
+        FindObjectsOfType<Figure>().ForEach(f => {
+            if (f.Position == null) {
+                f.Blink();
+            }
+        });
+
+        Board.instance.Restore();
+
+        FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
     }
 
     public void HeroMoved(Unit hero) {
@@ -161,7 +179,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart() {
-        NewGame(lastConfig);
+        NewGame(lastLevel);
     }
 
     void OnDestroy() {

@@ -11,6 +11,9 @@ public class HeartStopper : Token
     }
 
     private void HeroMoved(Unit hero) {
+        if (!gameObject.activeInHierarchy) {
+            return;
+        }
         hero.Hit(damage);
     }
 

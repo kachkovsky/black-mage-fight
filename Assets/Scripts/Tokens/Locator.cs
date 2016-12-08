@@ -11,17 +11,8 @@ public class Locator : Figure
         }
     }
 
-    void LocateHere(Figure figure) {
+    public void LocateHere(Figure figure) {
         Position.MoveHere(figure);
         Blink();
-    }
-
-    public static void Locate(Figure figure) {
-        var locators = FindObjectsOfType<Locator>().ToList();
-        if (locators.Count == 0) {
-            figure.Blink();
-        } else {
-            locators.Rnd().LocateHere(figure);
-        }
     }
 }

@@ -6,7 +6,7 @@ public abstract class Trigger : MonoBehaviour
 {
     public UnityEvent effect;
 
-    protected virtual void Run() {
+    public virtual void Run() {
         effect.Invoke();
     }
 }

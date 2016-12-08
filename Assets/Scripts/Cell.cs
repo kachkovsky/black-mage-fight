@@ -7,16 +7,15 @@ using UnityEditor.SceneManagement;
 using System.Collections.Generic;
 #endif
 
+[ExecuteInEditMode]
 public class Cell : MonoBehaviour {
     public int x, y;
 
     public List<Figure> figures = new List<Figure>();
 
-    MeshRenderer meshRenderer;
+    public MeshRenderer meshRenderer;
 
-    public Material baseMaterial;
-    public Material highlightMaterial;
-    public Material selectedMaterial;
+    Color baseColor;
 
     public void Init() {
         meshRenderer = GetComponent<MeshRenderer>();
@@ -24,16 +23,15 @@ public class Cell : MonoBehaviour {
 
     void Awake() {
         Init();
+        baseColor = meshRenderer.sharedMaterial.color;
     }
 
-    void Update() {
-        if (Controls.instance.selected == this) {
-            meshRenderer.material = selectedMaterial;
-        } else if (Controls.instance.hovered == this) {
-            meshRenderer.material = highlightMaterial;
-        } else {
-            meshRenderer.material = baseMaterial;
-        }
+    public void ChangeColor(Color c) {
+        meshRenderer.material.color = c;
+    }
+
+    public void RestoreColor() { 
+        meshRenderer.material.color = baseColor;
     }
 
 #if UNITY_EDITOR

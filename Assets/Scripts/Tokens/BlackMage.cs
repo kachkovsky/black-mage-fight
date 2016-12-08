@@ -40,7 +40,7 @@ public class BlackMage : Unit
         if (f is Hero) {
             //HitWithDamageTokens();
             Hit();
-            Locator.Locate(this);
+            Relocate();
         }
     }
 }
