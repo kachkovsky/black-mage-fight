@@ -30,6 +30,8 @@ public class Skull : Figure
         if (hero != null) {
             hero.Hit(damage);
         }
-        Destroy(gameObject);
+        if (f != this) {
+            Destroy(gameObject);
+        }
     }
 }
