@@ -26,6 +26,19 @@ public class Controls : MonoBehaviour {
         }
     }
 
+    public void Up() {
+        activeUnit.MoveTo(activeUnit.Position.Up());
+    }
+    public void Down() {
+        activeUnit.MoveTo(activeUnit.Position.Down());
+    }
+    public void Left() {
+        activeUnit.MoveTo(activeUnit.Position.Left());
+    }
+    public void Right() {
+        activeUnit.MoveTo(activeUnit.Position.Right());
+    }
+
     void Moves() {
         if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
             return;
@@ -35,18 +48,17 @@ public class Controls : MonoBehaviour {
             return;
         }
 
-        var heroPosition = activeUnit.Position;
         if (Input.GetButtonDown("Up")) {
-            activeUnit.MoveTo(heroPosition.Up());
+            Up();
         }
         if (Input.GetButtonDown("Down")) {
-            activeUnit.MoveTo(heroPosition.Down());
+            Down();
         }
         if (Input.GetButtonDown("Left")) {
-            activeUnit.MoveTo(heroPosition.Left());
+            Left();
         }
         if (Input.GetButtonDown("Right")) {
-            activeUnit.MoveTo(heroPosition.Right());
+            Right();
         }
     }
 

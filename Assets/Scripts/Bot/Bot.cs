@@ -15,6 +15,11 @@ public class Bot : MonoBehaviour
     const int S = N * N;
 
     public int indexToLook;
+    public int stepCount = 1;
+
+    public bool on = false;
+
+    public Cell target;
 
     double[] ClearMatrix() {
         return new double[S / 4 * S * S * S * 4]; // hero, blackMage/1st heart, blackMage/2nd heart, blackMage/3rd heart, blackMageIndex
@@ -164,6 +169,13 @@ public class Bot : MonoBehaviour
         return result;
     }
 
+    [ContextMenu("Multistep")]
+    public void MultiStep() {
+        for (int i = 0; i < stepCount; i++) {
+            Step();
+        }
+    }
+
     [ContextMenu("Step")]
     public void Step() {
         double[] b = ClearMatrix();
@@ -259,13 +271,30 @@ public class Bot : MonoBehaviour
                 bestDecision = decision;
             }
         }
-        var target = bonuses[bestDecision].cell;
+        target = bonuses[bestDecision].cell;
         Debug.LogFormat("Result: {0:0.####}, goto ({1}, {2})", best, target.x, target.y);
+    }
+
+    public void Move() {
+        PrintResult();
+        if (target.x > Hero.instance.Position.x) {
+            Controls.instance.Down();
+        } else if (target.x < Hero.instance.Position.x) {
+            Controls.instance.Up();
+        } else if (target.y > Hero.instance.Position.y) {
+            Controls.instance.Right();
+        } else if (target.y < Hero.instance.Position.y) {
+            Controls.instance.Left();
+        } else {
+        }
     }
 
     public void Update() {
         if (Input.GetKeyDown(KeyCode.V)) {
             PrintResult();
+        }
+        if (on) {
+            Move();
         }
     }
 }
