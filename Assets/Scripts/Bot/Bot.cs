@@ -6,8 +6,8 @@ using System;
 
 public class Bot : MonoBehaviour
 {
-    [HideInInspector]
-    public double[] a = null;
+    bool inited = false;
+    double[] a = null;
 
     const int N = 8;
     const int N1 = N - 1;
@@ -23,6 +23,7 @@ public class Bot : MonoBehaviour
     [ContextMenu("Generate")]
     public void Generate() {
         a = ClearMatrix();
+        inited = true;
     }
 
     void swap(ref int a, ref int b) {
@@ -154,6 +155,9 @@ public class Bot : MonoBehaviour
 
     [ContextMenu("PrintResult")]
     public void PrintResult() {
+        if (!inited) {
+            Generate();
+        }
         int heroX = Hero.instance.Position.x;
         int heroY = Hero.instance.Position.y;
         var bonuses = FindObjectsOfType<Heart>().Select(h => new Bonus(h.Position.x, h.Position.y, false, h.Position)).ToList();
