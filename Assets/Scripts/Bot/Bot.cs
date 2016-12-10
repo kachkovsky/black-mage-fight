@@ -6,13 +6,15 @@ using System;
 
 public class Bot : MonoBehaviour
 {
-    bool inited = false;
     double[] a = null;
+    int step = 0;
 
     const int N = 8;
     const int N1 = N - 1;
     const int N2 = N / 2;
     const int S = N * N;
+
+    public int indexToLook;
 
     double[] ClearMatrix() {
         return new double[S / 4 * S * S * S * 4]; // hero, blackMage/1st heart, blackMage/2nd heart, blackMage/3rd heart, blackMageIndex
@@ -20,18 +22,81 @@ public class Bot : MonoBehaviour
         // blackMageIndex = 0..3 (a,b,c,d)
     }
 
+    void Awake() {
+        Load();
+    }
+
     [ContextMenu("Generate")]
     public void Generate() {
         a = ClearMatrix();
-        inited = true;
+        PrintInfo();
     }
 
+    [ContextMenu("Save")]
+    public void Save() {
+        FileManager.SaveToFile(a, "botData.dat");
+        Debug.LogFormat("a saved");
+        PrintInfo();
+    }
+
+    [ContextMenu("Load")]
+    public void Load() {
+        a = FileManager.LoadFromFile<double[]>("botData.dat");
+        Debug.LogFormat("a loaded");
+        PrintInfo();
+    }
+
+    [ContextMenu("Print a info")]
+    public void PrintInfo() {
+        Debug.LogFormat("a hash = {0}", Hash());
+        int cnt = 0;
+        int cntZero = 0;
+        for (int i = 0; i < (1 << 24); i++) {
+            if (!double.IsNaN(a[i])) {
+                ++cnt;
+            }
+            if (Math.Abs(a[i]) < 0.001) {
+                ++cntZero;
+            }
+        }
+        Debug.LogFormat("numbers in a: {0}", cnt);
+        Debug.LogFormat("zeroes in a: {0}", cntZero);
+    }
+
+    [ContextMenu("Look at index")]
+    public void LookAtIndex() {
+        Debug.LogFormat("a[{0}] = {1:0.####}", indexToLook, a[indexToLook]);
+    }
+
+    [ContextMenu("Test")]
+    public void Test() {
+        int x = 5;
+        int y = 7;
+        swap(ref x, ref y);
+        Debug.LogFormat("x = {0}, y = {1}", x, y);
+    }
+
+    public int Hash() {
+        int hash = 0;
+        for (int i = 0; i < (1 << 24); i++) {
+            hash = hash * 31 + a[i].GetHashCode();
+        }
+        return hash;
+    }
+
+
     void swap(ref int a, ref int b) {
-        a ^= b ^= a ^= b;
+        a ^= b;
+        b ^= a;
+        a ^= b;
     }
 
     // desicion = 0..3 (a,b,c,d)
-    double GetResult(int heroX, int heroY, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, int blackMageIndex, int decision) {
+    double GetResult(int heroX, int heroY, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, int blackMageIndex, int decision, bool debug = false) {
+        if (debug) {
+            Debug.LogFormat("GetResult(heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, dx = {8}, dy = {9}, blackMageIndex = {10}, decision = {11}",
+                heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision);
+        }
         double result = 0;
         if (decision == blackMageIndex) {
             result += 2.5;
@@ -41,15 +106,15 @@ public class Bot : MonoBehaviour
         int targetX = -1, targetY = -1;
         if (decision == 0) {
             targetX = ax; targetY = ay;
-            ax = dx; ay = dy; if (blackMageIndex == 4) blackMageIndex = 0;
+            ax = dx; ay = dy; if (blackMageIndex == 3) blackMageIndex = 0;
         }
         if (decision == 1) {
             targetX = bx; targetY = by;
-            bx = dx; by = dy; if (blackMageIndex == 4) blackMageIndex = 1;
+            bx = dx; by = dy; if (blackMageIndex == 3) blackMageIndex = 1;
         }
         if (decision == 2) {
             targetX = cx; targetY = cy;
-            cx = dx; cy = dy; if (blackMageIndex == 4) blackMageIndex = 2;
+            cx = dx; cy = dy; if (blackMageIndex == 3) blackMageIndex = 2;
         }
         if (decision == 3) {
             targetX = dx; targetY = dy;
@@ -72,22 +137,29 @@ public class Bot : MonoBehaviour
         if (bx < ax || bx == ax && by <= ay) {
             swap(ref ax, ref bx);
             swap(ref ay, ref by);
-            if (blackMageIndex == 0) blackMageIndex = 1;
-            if (blackMageIndex == 1) blackMageIndex = 0;
+            if (blackMageIndex == 0) blackMageIndex = 1; 
+            else if (blackMageIndex == 1) blackMageIndex = 0;
         }
         if (cx < bx || cx == bx && cy <= by) {
             swap(ref bx, ref cx);
             swap(ref by, ref cy);
             if (blackMageIndex == 1) blackMageIndex = 2;
-            if (blackMageIndex == 2) blackMageIndex = 1;
+            else if (blackMageIndex == 2) blackMageIndex = 1;
         }
         if (bx < ax || bx == ax && by <= ay) {
             swap(ref ax, ref bx);
             swap(ref ay, ref by);
             if (blackMageIndex == 0) blackMageIndex = 1;
-            if (blackMageIndex == 1) blackMageIndex = 0;
+            else if (blackMageIndex == 1) blackMageIndex = 0;
         }
         int index = heroX | (heroY << 2) | (ax << 4) | (ay << 7) | (bx << 10) | (by << 13) | (cx << 16) | (cy << 19) | (blackMageIndex << 22);
+        if (debug) {
+            Debug.LogFormat("heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, blackMageIndex = {8}", heroX, heroY, ax, ay, bx, by, cx, cy, blackMageIndex);
+            Debug.LogFormat("index = {0}", index);
+        }
+        if (debug) {
+            Debug.LogFormat("a[index] = {0:0.####}", a[index]);
+        }
         result += a[index];
         return result;
     }
@@ -95,6 +167,9 @@ public class Bot : MonoBehaviour
     [ContextMenu("Step")]
     public void Step() {
         double[] b = ClearMatrix();
+        for (int i = 0; i < (1 << 24); i++) {
+            b[i] = double.NaN;
+        }
         for (int heroX = 0; heroX < N2; heroX++) {
             for (int heroY = heroX; heroY < N2; heroY++) {
                 for (int ax = 0; ax < N; ax++) {
@@ -140,7 +215,7 @@ public class Bot : MonoBehaviour
                                                 }
                                             }
                                             int index = heroX | (heroY << 2) | (ax << 4) | (ay << 7) | (bx << 10) | (by << 13) | (cx << 16) | (cy << 19) | (blackMageIndex << 22);
-                                            b[index] = result;
+                                            b[index] = result / cnt;
                                         }
                                     }
                                 }
@@ -151,13 +226,13 @@ public class Bot : MonoBehaviour
             }
         }
         a = b;
+        ++step;
+        Debug.LogFormat("Step {0} complete", step);
+        Save();
     }
 
     [ContextMenu("PrintResult")]
     public void PrintResult() {
-        if (!inited) {
-            Generate();
-        }
         int heroX = Hero.instance.Position.x;
         int heroY = Hero.instance.Position.y;
         var bonuses = FindObjectsOfType<Heart>().Select(h => new Bonus(h.Position.x, h.Position.y, false, h.Position)).ToList();
@@ -176,14 +251,16 @@ public class Bot : MonoBehaviour
         double best = double.NegativeInfinity;
         int bestDecision = -1;
         for (int decision = 0; decision < 4; decision++) {
-            double cand = GetResult(heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision);
+            var targetCand = bonuses[decision].cell;
+            double cand = GetResult(heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision, debug: true);
+            Debug.LogFormat("Candidate: {0:0.####}, goto ({1}, {2})", cand, targetCand.x, targetCand.y);
             if (cand > best) {
                 best = cand;
                 bestDecision = decision;
             }
         }
         var target = bonuses[bestDecision].cell;
-        Debug.LogFormat("Result: {0}, goto ({1}, {2})", best, target.x, target.y);
+        Debug.LogFormat("Result: {0:0.####}, goto ({1}, {2})", best, target.x, target.y);
     }
 
     public void Update() {
