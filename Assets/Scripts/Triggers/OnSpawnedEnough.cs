@@ -8,7 +8,7 @@ public class OnSpawnedEnough : Trigger
     public int requiredAmount;
 
     public void Check() {
-        if (spawner.Spawns().Count >= requiredAmount) {
+        if (spawner.spawnedObjects.Where(gameObject => gameObject.activeInHierarchy).Count() >= requiredAmount) {
             Run();
         }
     }

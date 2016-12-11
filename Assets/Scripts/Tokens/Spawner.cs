@@ -8,6 +8,8 @@ public class Spawner : Token
 {
     public GameObject sample;
 
+    public List<GameObject> spawnedObjects;
+
     public void Start() {
         sample.SetActive(false);
     }
@@ -15,11 +17,8 @@ public class Spawner : Token
     public void Spawn() {
         var spawn = Instantiate(sample);
         spawn.SetActive(true);
+        spawnedObjects.Add(spawn);
         spawn.AddComponent<SpawnedBy>().spawner = this;
         spawn.GetComponentsInChildren<OnSpawn>().ForEach(onSpawn => onSpawn.Run());
-    }
-
-    public List<GameObject> Spawns() {
-        return FindObjectsOfType<SpawnedBy>().Where(sb => sb.spawner == this).Select(sb => sb.gameObject).ToList();
     }
 }
