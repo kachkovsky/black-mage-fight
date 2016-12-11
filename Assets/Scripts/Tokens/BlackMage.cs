@@ -17,6 +17,9 @@ public class BlackMage : Unit
         Hit(hitDamage);
         hitSound.time = 0.25f;
         hitSound.Play();
+        if (health < 1) {
+            GameManager.instance.Win();
+        }
     }
 
     public void ResetDamageTokens() {

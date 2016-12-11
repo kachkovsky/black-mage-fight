@@ -14,10 +14,14 @@ public class Bot : MonoBehaviour
     const int N2 = N / 2;
     const int S = N * N;
 
+    public double blackMageCost = 2.5;
+    public double distanceFromCenterCost = 1e-9;
+
     public int indexToLook;
     public int stepCount = 1;
 
     public bool on = false;
+    public bool logging = true;
 
     public Cell target;
 
@@ -34,7 +38,7 @@ public class Bot : MonoBehaviour
     [ContextMenu("Generate")]
     public void Generate() {
         a = ClearMatrix();
-        PrintInfo();
+        Save();
     }
 
     [ContextMenu("Save")]
@@ -104,7 +108,7 @@ public class Bot : MonoBehaviour
         }
         double result = 0;
         if (decision == blackMageIndex) {
-            result += 2.5;
+            result += blackMageCost;
         } else {
             result += 3;
         }
@@ -127,6 +131,7 @@ public class Bot : MonoBehaviour
         result -= Math.Abs(heroX - targetX) + Math.Abs(heroY - targetY);
         heroX = targetX;
         heroY = targetY;
+        result -= distanceFromCenterCost * (Math.Abs(3.5 - heroX) + Math.Abs(3.5 - heroY));
         if (heroX >= 4) {
             heroX = N1 - heroX; ax = N1 - ax; bx = N1 - bx; cx = N1 - cx;
         }
@@ -171,13 +176,22 @@ public class Bot : MonoBehaviour
 
     [ContextMenu("Multistep")]
     public void MultiStep() {
+        StartCoroutine(SyncedMultiStep());
+    }
+
+    IEnumerator SyncedMultiStep() {
         for (int i = 0; i < stepCount; i++) {
-            Step();
+            yield return StartCoroutine(Step());
+            yield return new WaitForEndOfFrame();
         }
     }
 
     [ContextMenu("Step")]
-    public void Step() {
+    public void DoStep() {
+        StartCoroutine(Step());
+    }
+
+    public IEnumerator Step() {
         double[] b = ClearMatrix();
         for (int i = 0; i < (1 << 24); i++) {
             b[i] = double.NaN;
@@ -189,6 +203,8 @@ public class Bot : MonoBehaviour
                         if (ax == heroX && ay == heroY) {
                             continue;
                         }
+                        Debug.LogFormat("step = {4}, heroX = {0}, heroY = {1}, ax = {2}, ay = {3}", heroX, heroY, ax, ay, step);
+                        yield return new WaitForEndOfFrame();
                         for (int bx = 0; bx < N; bx++) {
                             for (int by = 0; by < N; by++) {
                                 if (bx < ax || bx == ax && by <= ay) {
@@ -264,18 +280,27 @@ public class Bot : MonoBehaviour
         int bestDecision = -1;
         for (int decision = 0; decision < 4; decision++) {
             var targetCand = bonuses[decision].cell;
-            double cand = GetResult(heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision, debug: true);
-            Debug.LogFormat("Candidate: {0:0.####}, goto ({1}, {2})", cand, targetCand.x, targetCand.y);
+            double cand = GetResult(heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision, debug: logging);
+            if (logging) {
+                Debug.LogFormat("Candidate: {0:0.####}, goto ({1}, {2})", cand, targetCand.x, targetCand.y);
+            }
             if (cand > best) {
                 best = cand;
                 bestDecision = decision;
             }
         }
         target = bonuses[bestDecision].cell;
-        Debug.LogFormat("Result: {0:0.####}, goto ({1}, {2})", best, target.x, target.y);
+        if (logging) {
+            Debug.LogFormat("Result: {0:0.####}, goto ({1}, {2})", best, target.x, target.y);
+        }
     }
 
     public void Move() {
+        if (Hero.instance.health < 1 || BlackMage.instance.health < 1) {
+            Controls.instance.Restart();
+            return;
+        }
+        blackMageCost = 1.0 * Hero.instance.health / BlackMage.instance.health;
         PrintResult();
         if (target.x > Hero.instance.Position.x) {
             Controls.instance.Down();
@@ -292,6 +317,9 @@ public class Bot : MonoBehaviour
     public void Update() {
         if (Input.GetKeyDown(KeyCode.V)) {
             PrintResult();
+        }
+        if (Input.GetKeyDown(KeyCode.M)) {
+            Move();
         }
         if (on) {
             Move();

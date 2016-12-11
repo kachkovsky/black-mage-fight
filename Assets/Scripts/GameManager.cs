@@ -32,6 +32,17 @@ public class GameManager : MonoBehaviour {
 
     public List<Material> portalMaterials;
 
+    public int wins;
+    public int losses;
+
+    public void Win() {
+        ++wins;
+    }
+
+    public void Lose() {
+        ++losses;
+    }
+
     void Awake() {
         instance = this;
         gameState = FileManager.LoadFromFile<GameState>(GAMESTATE_FILE);

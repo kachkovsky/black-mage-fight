@@ -11,4 +11,11 @@ public class Hero : PlayerUnit
         base.Awake();
         instance = this;
     }
+
+    public override void Hit(int damage) {
+        base.Hit(damage);
+        if (health < 1) {
+            GameManager.instance.Lose();
+        }
+    }
 }

@@ -44,7 +44,7 @@ public class Figure : Token
     }
 
     public void Blink() {
-        Debug.LogFormat("Blink {0}", transform.Path());
+        //Debug.LogFormat("Blink {0}", transform.Path());
         Board.instance.RandomEmptyCell().MoveHere(this);
     }
 

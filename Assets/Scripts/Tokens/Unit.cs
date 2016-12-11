@@ -14,7 +14,7 @@ public class Unit : Figure
         health = maxHealth;
     }
 
-    public void Hit(int damage) {
+    public virtual void Hit(int damage) {
         health -= damage;
     }
 

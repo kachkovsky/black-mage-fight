@@ -27,19 +27,6 @@ public class Controls : MonoBehaviour {
     }
 
     public void Up() {
-        activeUnit.MoveTo(activeUnit.Position.Up());
-    }
-    public void Down() {
-        activeUnit.MoveTo(activeUnit.Position.Down());
-    }
-    public void Left() {
-        activeUnit.MoveTo(activeUnit.Position.Left());
-    }
-    public void Right() {
-        activeUnit.MoveTo(activeUnit.Position.Right());
-    }
-
-    void Moves() {
         if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
             return;
         }
@@ -47,6 +34,47 @@ public class Controls : MonoBehaviour {
         if (activeUnit == null) {
             return;
         }
+        activeUnit.MoveTo(activeUnit.Position.Up());
+    }
+
+    public void Down() {
+        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+            return;
+        }
+
+        if (activeUnit == null) {
+            return;
+        }
+        activeUnit.MoveTo(activeUnit.Position.Down());
+    }
+
+    public void Left() {
+        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+            return;
+        }
+
+        if (activeUnit == null) {
+            return;
+        }
+        activeUnit.MoveTo(activeUnit.Position.Left());
+    }
+
+    public void Right() {
+        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+            return;
+        }
+
+        if (activeUnit == null) {
+            return;
+        }
+        activeUnit.MoveTo(activeUnit.Position.Right());
+    }
+
+    public void Restart() {
+        GameManager.instance.Restart();
+    }
+
+    void Update() {
 
         if (Input.GetButtonDown("Up")) {
             Up();
@@ -60,12 +88,8 @@ public class Controls : MonoBehaviour {
         if (Input.GetButtonDown("Right")) {
             Right();
         }
-    }
-
-    void Update() {
-        Moves();
         if (Input.GetKeyDown(KeyCode.R)) {
-            GameManager.instance.Restart();
+            Restart();
         }
     }
 }
