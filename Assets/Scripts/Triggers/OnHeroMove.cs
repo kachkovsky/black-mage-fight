@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.Events;
 
-public class OnHeroMove : Trigger
+public class OnHeroMove : MonoBehaviour
 {
+    public MoveEvent run;
+
     void Start() {
         GameManager.instance.onHeroMove += HeroMoved;
     }
 
-    private void HeroMoved(Unit hero) {
-        Run();
+    private void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
+        run.Invoke(hero, from, to, direction);
     }
 
     void OnDestroy() {

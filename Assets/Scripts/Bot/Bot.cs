@@ -303,13 +303,13 @@ public class Bot : MonoBehaviour
         blackMageCost = 1.0 * Hero.instance.health / BlackMage.instance.health;
         PrintResult();
         if (target.x > Hero.instance.Position.x) {
-            Controls.instance.Down();
+            Controls.instance.down.Press();
         } else if (target.x < Hero.instance.Position.x) {
-            Controls.instance.Up();
+            Controls.instance.up.Press();
         } else if (target.y > Hero.instance.Position.y) {
-            Controls.instance.Right();
+            Controls.instance.right.Press();
         } else if (target.y < Hero.instance.Position.y) {
-            Controls.instance.Left();
+            Controls.instance.left.Press();
         } else {
         }
     }

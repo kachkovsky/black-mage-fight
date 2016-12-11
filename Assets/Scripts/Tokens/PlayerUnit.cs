@@ -11,15 +11,15 @@ public class PlayerUnit : Unit
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override void MoveTo(Cell cell) {
+    public override bool MoveTo(IntVector2 direction) {
         var oldPosition = Position;
-        base.MoveTo(cell);
-        if (cell == null) {
-            return;
+        if (!base.MoveTo(direction)) {
+            return false;
         }
         moveSound.Play();
         CheckCollisions(oldPosition);
-        GameManager.instance.HeroMoved(this);
+        GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
+        return true;
     }
 
     public void CheckCollisions(Cell oldPosition) {

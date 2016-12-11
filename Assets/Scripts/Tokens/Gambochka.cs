@@ -22,7 +22,7 @@ public class Gambochka : PlayerUnit
         GameManager.instance.onHeroMove -= OnHeroMove;
     }
 
-    void OnHeroMove(Unit hero) {
+    void OnHeroMove(Unit hero, Cell from, Cell to, IntVector2 direction) {
         if (hero != this) {
             Controls.instance.activeUnit = this;
         } else {

@@ -34,19 +34,6 @@ public class Cell : MonoBehaviour {
         meshRenderer.material.color = baseColor;
     }
 
-#if UNITY_EDITOR
-    [ContextMenu("Move Hero Here")]
-    public void MoveHeroHere() {
-        FindObjectOfType<Hero>().MoveTo(this);
-        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-    }
-    [ContextMenu("Move Black Mage Here")]
-    public void MoveBlackMageHere() {
-        FindObjectOfType<BlackMage>().MoveTo(this);
-        EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
-    }
-#endif
-
     public void MoveHere(Figure f) {
         f.transform.position = transform.position;
         f.SetPosition(this); 
@@ -54,6 +41,10 @@ public class Cell : MonoBehaviour {
             f2.Collide(f);
             f.Collide(f2);
         });
+    }
+
+    public Cell ToDirection(IntVector2 direction) {
+        return Board.instance.GetCell(x + direction.x, y + direction.y);
     }
 
     public Cell Right() {

@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
     GameObject lastLevel;
     GameObject currentLevel;
 
-    public event Action<Unit> onHeroMove = (h) => { };
+    public event Action<Unit, Cell, Cell, IntVector2> onHeroMove = (h, a, b, d) => { };
 
     public List<Material> portalMaterials;
 
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        NewGame(Levels.instance.level1);
+        NewGame(Levels.instance.startLevel);
     }
 
     public void CreateHeartStopper() {
@@ -82,30 +82,6 @@ public class GameManager : MonoBehaviour {
         var skullSetter = Instantiate(skullSetterPrefab).GetComponent<SkullSetter>();
         skullSetter.periodic.period = 1;
     }
-
-    //public void Level1() {
-    //    NewGame(new BasicGameStartConfig(40, 100, 0, 3, 3, CreateHeartStopper));
-    //}
-
-    //public void Level2() {
-    //    NewGame(new BasicGameStartConfig(40, 100, 1, 3, 3, CreateHeartStopper));
-    //}
-
-    //public void Level3() {
-    //    NewGame(new BasicGameStartConfig(50, 100, 3, 3, 3, CreateHeartStopper));
-    //}
-
-    //public void Level4() {
-    //    NewGame(new BasicGameStartConfig(50, 10, 0, 1, 1, CreateBombSetter));
-    //}
-
-    //public void Level5() {
-    //    NewGame(new BasicGameStartConfig(50, 25, 0, 1, 1, CreateArrowSetter));
-    //}
-
-    //public void Level6() {
-    //    NewGame(new BasicGameStartConfig(50, 20, 0, 0, 1, CreateSkullSetter));
-    //}
 
     public void Clear() {
         FindObjectsOfType<Token>().ForEach(x => {
@@ -185,8 +161,8 @@ public class GameManager : MonoBehaviour {
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
     }
 
-    public void HeroMoved(Unit hero) {
-        onHeroMove(hero);
+    public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
+        onHeroMove(hero, from, to, direction);
     }
 
     public void Restart() {

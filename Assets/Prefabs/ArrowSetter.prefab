@@ -54,7 +54,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3590925dee05e9844b8eee5dcbe2ad4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect:
+  run:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11492182}
@@ -68,8 +68,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: MoveEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &11492182
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +98,7 @@ MonoBehaviour:
       PublicKeyToken=null
   period: 5
   phase: 0
+  runPhases: 00000000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

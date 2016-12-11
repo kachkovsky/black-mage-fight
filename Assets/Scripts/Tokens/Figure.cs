@@ -30,11 +30,13 @@ public class Figure : Token
         }
     }
 
-    public virtual void MoveTo(Cell cell) {
+    public virtual bool MoveTo(IntVector2 direction) {
+        var cell = position.ToDirection(direction);
         if (cell == null) {
-            return;
+            return false;
         }
         cell.MoveHere(this);
+        return true;
     }
 
     [ContextMenu("Place")]

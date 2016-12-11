@@ -10,7 +10,7 @@ public class HeartStopper : Token
         GameManager.instance.onHeroMove += HeroMoved;
     }
 
-    private void HeroMoved(Unit hero) {
+    private void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
         if (!gameObject.activeInHierarchy) {
             return;
         }

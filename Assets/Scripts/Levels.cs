@@ -14,6 +14,8 @@ public class Levels : MonoBehaviour {
     public GameObject level5;
     public GameObject level6;
 
+    public GameObject startLevel;
+
     void Awake() {
         instance = this;
     }
