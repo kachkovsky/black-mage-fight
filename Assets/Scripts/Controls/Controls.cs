@@ -49,5 +49,8 @@ public class Controls : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.R)) {
             Restart();
         }
+        if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
+            Cursor.visible = true;
+        }
     }
 }

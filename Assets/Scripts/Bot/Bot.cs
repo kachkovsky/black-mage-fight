@@ -102,10 +102,10 @@ public class Bot : MonoBehaviour
 
     // desicion = 0..3 (a,b,c,d)
     double GetResult(int heroX, int heroY, int ax, int ay, int bx, int by, int cx, int cy, int dx, int dy, int blackMageIndex, int decision, bool debug = false) {
-        if (debug) {
-            Debug.LogFormat("GetResult(heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, dx = {8}, dy = {9}, blackMageIndex = {10}, decision = {11}",
-                heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision);
-        }
+        //if (debug) {
+        //    Debug.LogFormat("GetResult(heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, dx = {8}, dy = {9}, blackMageIndex = {10}, decision = {11}",
+        //        heroX, heroY, ax, ay, bx, by, cx, cy, dx, dy, blackMageIndex, decision);
+        //}
         double result = 0;
         if (decision == blackMageIndex) {
             result += blackMageCost;
@@ -163,13 +163,13 @@ public class Bot : MonoBehaviour
             else if (blackMageIndex == 1) blackMageIndex = 0;
         }
         int index = heroX | (heroY << 2) | (ax << 4) | (ay << 7) | (bx << 10) | (by << 13) | (cx << 16) | (cy << 19) | (blackMageIndex << 22);
-        if (debug) {
-            Debug.LogFormat("heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, blackMageIndex = {8}", heroX, heroY, ax, ay, bx, by, cx, cy, blackMageIndex);
-            Debug.LogFormat("index = {0}", index);
-        }
-        if (debug) {
-            Debug.LogFormat("a[index] = {0:0.####}", a[index]);
-        }
+        //if (debug) {
+        //    Debug.LogFormat("heroX = {0}, heroY = {1}, ax = {2}, ay = {3}, bx = {4}, by = {5}, cx = {6}, cy = {7}, blackMageIndex = {8}", heroX, heroY, ax, ay, bx, by, cx, cy, blackMageIndex);
+        //    Debug.LogFormat("index = {0}", index);
+        //}
+        //if (debug) {
+        //    Debug.LogFormat("a[index] = {0:0.####}", a[index]);
+        //}
         result += a[index];
         return result;
     }

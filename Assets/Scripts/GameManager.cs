@@ -150,13 +150,14 @@ public class GameManager : MonoBehaviour {
         Controls.instance.activeUnit = Hero.instance;
         UI.instance.UpdateHUD();
 
+        Board.instance.Restore();
+
         FindObjectsOfType<Figure>().ForEach(f => {
             if (f.Position == null) {
                 f.Blink();
             }
         });
 
-        Board.instance.Restore();
 
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
     }

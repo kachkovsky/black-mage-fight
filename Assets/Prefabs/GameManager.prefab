@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 491198}
   - 114: {fileID: 11413848}
-  - 114: {fileID: 11432750}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -56,20 +55,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 01d3e4654dfb18b42a44c3b383fbbfea, type: 2}
   - {fileID: 2100000, guid: 1893c5930263bb54f864a81a0111f1e2, type: 2}
   - {fileID: 2100000, guid: 400b50366f4adfd4fb1ed4527abef622, type: 2}
---- !u!114 &11432750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 109696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76986d457fb08e3498a3bfef5da1d92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hovered: {fileID: 0}
-  selected: {fileID: 0}
-  activeUnit: {fileID: 0}
+  wins: 0
+  losses: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

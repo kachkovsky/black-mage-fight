@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Linq;
 using UnityEditor;
+using UnityEngine.Events;
 
 public class Figure : Token
 {
     [SerializeField]
     private Cell position;
+
+    public FigureEvent onCollide;
 
     public Cell Position {
         get { return position; }
@@ -65,6 +68,7 @@ public class Figure : Token
     }
 
     public virtual void Collide(Figure other) {
+        onCollide.Invoke(other);
     }
 
     public virtual bool Occupies() {

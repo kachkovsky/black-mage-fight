@@ -12,5 +12,6 @@ public class ArrowButton : Button {
             return;
         }
         Controls.instance.activeUnit.MoveTo(direction);
+        Cursor.visible = false;
     }
 }

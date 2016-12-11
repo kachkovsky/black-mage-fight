@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public struct IntVector2
@@ -33,5 +34,9 @@ public struct IntVector2
 
     public override int GetHashCode() {
         return x.GetHashCode() * 31 + y.GetHashCode();
+    }
+
+    public Vector2 xy() {
+        return new Vector2(x, y);
     }
 }
