@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class Periodic : Trigger
 {
@@ -9,10 +10,13 @@ public class Periodic : Trigger
     public int phase = 0;
     public List<int> runPhases = new List<int>(new int[] {0});
 
+    public UnityEvent tick;
+
     public void Tick() {
+        phase += 1;
         if (runPhases.Contains(phase % period)) {
             Run();
         } 
-        phase += 1;
+        tick.Invoke();
     }
 }
