@@ -32,7 +32,7 @@ public class Poison : Token
         ++spent;
         slider.maxValue = timeout;
         slider.value = spent;
-        if (spent > timeout) {
+        if (spent >= timeout) {
             hero.Hit(damage);
         }
         //FindObjectsOfType<Cell>().ForEach(cell => {
@@ -46,7 +46,7 @@ public class Poison : Token
     }
 
     public void Suppress() {
-        spent = 0;
+        spent = -1;
     }
 
     void OnDestroy() {
