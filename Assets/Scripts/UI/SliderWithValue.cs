@@ -19,6 +19,6 @@ public class SliderWithValue : MonoBehaviour
     }
 
     void ChangeValue(float value) {
-        valueText.text = string.Format(formatString, slider.value, slider.maxValue - slider.value);
+        valueText.text = string.Format(formatString, slider.value, slider.maxValue - slider.value, slider.maxValue);
     }
 }

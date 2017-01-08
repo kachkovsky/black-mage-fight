@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class Poison : Token
 {
-    public static Poison instance;
-
     public Slider slider;
 
     public int damage = 1;
@@ -13,10 +11,6 @@ public class Poison : Token
     public int spent = 0;
 
     public Color cellColor;
-
-    void Awake() {
-        instance = this;
-    }
 
     void Start() {
         GameManager.instance.onHeroMove += HeroMoved;
@@ -34,6 +28,7 @@ public class Poison : Token
         slider.value = spent;
         if (spent >= timeout) {
             hero.Hit(damage);
+            spent = 0;
         }
         //FindObjectsOfType<Cell>().ForEach(cell => {
         //    var extraDistance = Mathf.Abs(cell.x-hero.Position.x)+Mathf.Abs(cell.y - hero.Position.y) - (timeout-spent) - 1;

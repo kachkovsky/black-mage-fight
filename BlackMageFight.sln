@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{CFC53B06-779F-ABF8-B232-CC52969B56D7}") = "BlackMageFight", "Assembly-CSharp.csproj", "{0FD2D505-2D7D-3CA5-4F87-F7D5681B71C5}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackMageFight", "BlackMageFight.csproj", "{006F6853-5CA8-EFD1-BEB9-F33E28462D26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0FD2D505-2D7D-3CA5-4F87-F7D5681B71C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0FD2D505-2D7D-3CA5-4F87-F7D5681B71C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0FD2D505-2D7D-3CA5-4F87-F7D5681B71C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0FD2D505-2D7D-3CA5-4F87-F7D5681B71C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{006F6853-5CA8-EFD1-BEB9-F33E28462D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{006F6853-5CA8-EFD1-BEB9-F33E28462D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{006F6853-5CA8-EFD1-BEB9-F33E28462D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{006F6853-5CA8-EFD1-BEB9-F33E28462D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

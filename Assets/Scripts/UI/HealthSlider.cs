@@ -9,7 +9,9 @@ public class HealthSlider : MonoBehaviour
     public Slider slider;
 
     void Update() {
-        slider.value = unit.health;
-        slider.maxValue = unit.maxHealth;
+        if (unit != null) {
+            slider.value = unit.health;
+            slider.maxValue = unit.maxHealth;
+        }
     }
 }

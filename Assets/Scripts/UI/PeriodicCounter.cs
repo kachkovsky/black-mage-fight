@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class PeriodicCounter : MonoBehaviour
 {
     public Slider slider;
@@ -12,6 +11,7 @@ public class PeriodicCounter : MonoBehaviour
         slider.maxValue = 0;
         periodic.tick.AddListener(UpdateSlider);
         UpdateSlider();
+        slider.onValueChanged.Invoke(slider.value);
     }
 
     void UpdateSlider() {

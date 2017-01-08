@@ -14,9 +14,10 @@ public class Portal : Figure
     public override void Collide(Figure f) {
         var hero = f as Hero;
         if (hero != null) {
-            other.Position.MoveHere(hero);
+            var newHeroPosition = other.Position;
             Blink();
             other.Blink();
+            newHeroPosition.MoveHere(hero);
         }
     }
 }

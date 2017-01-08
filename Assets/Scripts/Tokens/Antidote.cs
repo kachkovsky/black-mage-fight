@@ -4,9 +4,11 @@ using System.Linq;
 
 public class Antidote : Figure
 {
+    public Poison poison;
+
     public override void Collide(Figure f) {
         if (f is Hero) {
-            Poison.instance.Suppress();
+            poison.Suppress();
             Relocate();
         }
     }

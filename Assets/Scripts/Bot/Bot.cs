@@ -14,8 +14,13 @@ public class Bot : MonoBehaviour
     const int N2 = N / 2;
     const int S = N * N;
 
+    public bool dynamicBlackMageCost = true;
+
     public double blackMageCost = 2.5;
+    public double heartCost = 3;
     public double distanceFromCenterCost = 1e-9;
+    public double distanceToBonusCost = 1;
+    public double randomCost = 0;
 
     public int indexToLook;
     public int stepCount = 1;
@@ -32,7 +37,7 @@ public class Bot : MonoBehaviour
     }
 
     void Awake() {
-        Load();
+        //Load();
     }
 
     [ContextMenu("Generate")]
@@ -110,7 +115,7 @@ public class Bot : MonoBehaviour
         if (decision == blackMageIndex) {
             result += blackMageCost;
         } else {
-            result += 3;
+            result += heartCost;
         }
         int targetX = -1, targetY = -1;
         if (decision == 0) {
@@ -128,7 +133,7 @@ public class Bot : MonoBehaviour
         if (decision == 3) {
             targetX = dx; targetY = dy;
         }
-        result -= Math.Abs(heroX - targetX) + Math.Abs(heroY - targetY);
+        result -= (Math.Abs(heroX - targetX) + Math.Abs(heroY - targetY)) * distanceToBonusCost;
         heroX = targetX;
         heroY = targetY;
         result -= distanceFromCenterCost * (Math.Abs(3.5 - heroX) + Math.Abs(3.5 - heroY));
@@ -171,6 +176,7 @@ public class Bot : MonoBehaviour
         //    Debug.LogFormat("a[index] = {0:0.####}", a[index]);
         //}
         result += a[index];
+        result += (ax+ay+bx+by+cx+cy+dx+dy+blackMageIndex+decision) % 4 * randomCost;
         return result;
     }
 
@@ -300,7 +306,9 @@ public class Bot : MonoBehaviour
             Controls.instance.Restart();
             return;
         }
-        blackMageCost = 1.0 * Hero.instance.health / BlackMage.instance.health;
+        if (dynamicBlackMageCost) {
+            blackMageCost = 1.0 * Hero.instance.health / BlackMage.instance.health;
+        }
         PrintResult();
         if (target.x > Hero.instance.Position.x) {
             Controls.instance.down.Press();
