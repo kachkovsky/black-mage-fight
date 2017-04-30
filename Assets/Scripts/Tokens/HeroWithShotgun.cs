@@ -24,7 +24,7 @@ public class HeroWithShotgun : Hero
         if (cell != null) { 
             if (cell.figures.FirstOrDefault() is Crate) {
                 Position.MoveHere(cell.figures.First());
-            }   
+            }      
             var oldPosition = Position;
             cell.MoveHere(this);
             moveSound.Play();
