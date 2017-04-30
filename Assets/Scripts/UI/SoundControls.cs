@@ -20,7 +20,7 @@ public class SoundControls : MonoBehaviour
 
     void Start() {
 #if UNITY_EDITOR
-        musicToggle.isOn = false;
+        //musicToggle.isOn = false;
         MuteMusic(true);
 #endif
     }
