@@ -12,7 +12,7 @@ public class HeroWithShotgun : Hero
         var next = cell;
         for (int i = 0; i < 100; i++) {
             next = cell.ToDirection(direction);
-            if (next != null && next.Figures.Count(f => f is BlackMage || f is Crate) == 0) {
+            if (next != null && next.Figures.Count(f => f is BlackMage || f is Crate || f is Barrel) == 0) {
                 cell = next;
             }
         }
@@ -53,7 +53,7 @@ public class HeroWithShotgun : Hero
         if (f is Hero) {
             (f as Hero).Hit(5);
         }
-        if (f is Crate) {
+        if (f is Barrel) {
             var cell = f.Position;
             f.gameObject.SetActive(false);
             Destroy(f.gameObject);
@@ -65,6 +65,10 @@ public class HeroWithShotgun : Hero
             Explosion(cell.ToDirection(new IntVector2(-1, 1)));
             Explosion(cell.ToDirection(new IntVector2(1, -1)));
             Explosion(cell.ToDirection(new IntVector2(-1, -1)));
+        }
+        if (f is Crate) {
+            f.gameObject.SetActive(false);
+            Destroy(f.gameObject);
         }
     }
 }
