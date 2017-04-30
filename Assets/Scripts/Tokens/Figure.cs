@@ -54,6 +54,11 @@ public class Figure : Token
     }
 
     public void Relocate() {
+        var blink = GetComponent<Blink>();
+        if (blink != null) {
+            blink.Run();
+            return;
+        }
         var locators = FindObjectsOfType<Locator>().ToList();
         if (locators.Count > 0) {
             locators.Rnd().LocateHere(this);

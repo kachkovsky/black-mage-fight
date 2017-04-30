@@ -12,7 +12,7 @@ public class HeroWithShotgun : Hero
         var next = cell;
         for (int i = 0; i < 100; i++) {
             next = cell.ToDirection(direction);
-            if (next != null && next.figures.Count == 0) {
+            if (next != null && next.Figures.Count(f => f is BlackMage || f is Crate) == 0) {
                 cell = next;
             }
         }
