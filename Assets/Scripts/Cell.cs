@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -12,6 +13,12 @@ public class Cell : MonoBehaviour {
     public int x, y;
 
     public List<Figure> figures = new List<Figure>();
+
+    public List<Figure> Figures {
+        get {
+            return figures.Where(f => f.gameObject.activeInHierarchy).ToList();
+        }
+    }
 
     public MeshRenderer meshRenderer;
 

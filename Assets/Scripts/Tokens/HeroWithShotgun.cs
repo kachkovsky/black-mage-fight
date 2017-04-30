@@ -16,7 +16,7 @@ public class HeroWithShotgun : Hero
                 cell = next;
             }
         }
-        if (next != null && next.figures[0] is BlackMage) {
+        if (next != null) {
             ShotgunHit(next.figures[0]);
             shotgunSound.Play();
         }
@@ -35,15 +35,36 @@ public class HeroWithShotgun : Hero
         }
     }
 
+    void Explosion(Cell cell) {
+        if (cell == null) {
+            return;
+        }
+        if (cell.Figures.Count > 0) {
+            ShotgunHit(cell.Figures.First());
+        }
+    }
+
     void ShotgunHit(Figure f) {
         if (f is BlackMage) {
             var bm = f as BlackMage;
             bm.Hit();
             bm.Relocate();
         }
+        if (f is Hero) {
+            (f as Hero).Hit(5);
+        }
         if (f is Crate) {
+            var cell = f.Position;
             f.gameObject.SetActive(false);
             Destroy(f.gameObject);
+            Explosion(cell.ToDirection(new IntVector2(1, 0)));
+            Explosion(cell.ToDirection(new IntVector2(-1, 0)));
+            Explosion(cell.ToDirection(new IntVector2(0, 1)));
+            Explosion(cell.ToDirection(new IntVector2(0, -1)));
+            Explosion(cell.ToDirection(new IntVector2(1, 1)));
+            Explosion(cell.ToDirection(new IntVector2(-1, 1)));
+            Explosion(cell.ToDirection(new IntVector2(1, -1)));
+            Explosion(cell.ToDirection(new IntVector2(-1, -1)));
         }
     }
 }
