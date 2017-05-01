@@ -61578,7 +61578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1780175991}
-  amount: 5
+  amount: 4
 --- !u!1 &905078041
 GameObject:
   m_ObjectHideFlags: 0
