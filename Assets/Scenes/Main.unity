@@ -49756,6 +49756,10 @@ Prefab:
       propertyPath: locator
       value: 
       objectReference: {fileID: 143381693}
+    - target: {fileID: 1204808054133752, guid: b49cf12e2205f4ad58234d38f3e10cbf, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b49cf12e2205f4ad58234d38f3e10cbf, type: 2}
   m_IsPrefabParent: 0
@@ -74688,7 +74692,7 @@ MonoBehaviour:
   level4: {fileID: 0}
   level5: {fileID: 0}
   level6: {fileID: 0}
-  startLevel: {fileID: 1783621586}
+  startLevel: {fileID: 1350672011}
 --- !u!1001 &1170299090
 Prefab:
   m_ObjectHideFlags: 0
@@ -84546,7 +84550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1350672012
 Transform:
   m_ObjectHideFlags: 0
