@@ -43,5 +43,8 @@ public class ChargingHero : Hero
             f.gameObject.SetActive(false);
             Destroy(f.gameObject);
         }
+        if (f is Heart) {
+            (f as Heart).Collide(Hero.instance);
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class HeartStopper : Token
 {
-    int damage = 1;
+    public int damage = 1;
 
     void Start() {
         GameManager.instance.onHeroMove += HeroMoved;
