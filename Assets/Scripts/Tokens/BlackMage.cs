@@ -40,6 +40,7 @@ public class BlackMage : Unit
     }
 
     public override void Collide(Figure f) {
+        base.Collide(f);
         if (f is Hero) {
             //HitWithDamageTokens();
             Hit();
