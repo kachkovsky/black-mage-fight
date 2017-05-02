@@ -73567,11 +73567,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11440544, guid: d19492e75c255034eb0426ba208bcb77, type: 2}
       propertyPath: health
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 11440544, guid: d19492e75c255034eb0426ba208bcb77, type: 2}
       propertyPath: maxHealth
-      value: 40
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 137894, guid: d19492e75c255034eb0426ba208bcb77, type: 2}
       propertyPath: m_IsActive
