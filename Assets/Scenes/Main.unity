@@ -3267,7 +3267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48945371}
   m_Layer: 0
-  m_Name: Illusions
+  m_Name: Illusions - balanced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
