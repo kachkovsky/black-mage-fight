@@ -6,7 +6,7 @@ using UnityEditor;
 
 [ExecuteInEditMode]
 public class Board : MonoBehaviour {
-    public const int N = 8;
+    public int n = 8;
 
     public static Board instance;
 
@@ -24,18 +24,18 @@ public class Board : MonoBehaviour {
 
     void Awake() {
         instance = this;
-        cells = new Cell[N,N];
+        cells = new Cell[n,n];
         FindObjectsOfType<Cell>().ToList().ForEach(cell => cells[cell.x, cell.y] = cell);
     }
 
     public bool Inside(int x, int y) {
-        return 0 <= x && x < N && 0 <= y && y < N;
+        return 0 <= x && x < n && 0 <= y && y < n;
     }
 
     public Cell GetCell(int x, int y) {
         if (toroid) {
-            x = x.modulo(N);
-            y = y.modulo(N);
+            x = x.modulo(n);
+            y = y.modulo(n);
         }
         if (Inside(x, y)) {
             return cells[x, y];
@@ -57,14 +57,14 @@ public class Board : MonoBehaviour {
     [ContextMenu("Generate")]
     public void Generate() {
         transform.Children().ForEach(c => DestroyImmediate(c.gameObject));
-        rows = new GameObject[N];
-        cells = new Cell[N,N];
-        for (int i = 0; i < N; i++) {
+        rows = new GameObject[n];
+        cells = new Cell[n,n];
+        for (int i = 0; i < n; i++) {
             var row = new GameObject(string.Format("Row {0}", i));
             row.transform.SetParent(transform, worldPositionStays: false);
             row.transform.localPosition = new Vector3(0, -i, 0);
             rows[i] = row;
-            for (int j = 0; j < N; j++) {
+            for (int j = 0; j < n; j++) {
                 var cellObject = GameObject.Instantiate(sample);
                 cellObject.name = string.Format("Cell {0} {1}", i, j);
                 cellObject.transform.SetParent(row.transform, worldPositionStays: false);
@@ -76,7 +76,7 @@ public class Board : MonoBehaviour {
                 cells[i, j] = cell;
             }
         }
-        Camera.main.transform.position = cells[N / 2, N / 2].transform.position + Vector3.back * 10f;
+        Camera.main.transform.position = cells[n / 2, n / 2].transform.position + Vector3.back * 10f;
     }
 
     [ContextMenu("Restore")]

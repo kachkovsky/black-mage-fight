@@ -34,7 +34,10 @@ public class Figure : Token
     }
 
     public virtual bool MoveTo(IntVector2 direction) {
-        var cell = position.ToDirection(direction);
+        var cell = Position.ToDirection(direction);
+        while (cell != null && cell.figures.Any(f => f is Ice)) {
+            cell = cell.ToDirection(direction);
+        }
         if (cell == null) {
             return false;
         }

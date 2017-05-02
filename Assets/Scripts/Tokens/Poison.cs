@@ -10,6 +10,8 @@ public class Poison : Token
     public int timeout = 10;
     public int spent = 0;
 
+    public bool dropOnDamage = true;
+
     public Color cellColor;
 
     void Start() {
@@ -28,7 +30,9 @@ public class Poison : Token
         slider.value = spent;
         if (spent >= timeout) {
             hero.Hit(damage);
-            spent = 0;
+            if (dropOnDamage) {
+                spent = 0;
+            }
         }
         //FindObjectsOfType<Cell>().ForEach(cell => {
         //    var extraDistance = Mathf.Abs(cell.x-hero.Position.x)+Mathf.Abs(cell.y - hero.Position.y) - (timeout-spent) - 1;

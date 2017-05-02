@@ -51,8 +51,8 @@ public class Edge : Token
 
     public void Blink() {
         HashSet<Position> positions = new HashSet<Position>();
-        for (int i = 0; i < Board.N; i++) {
-            for (int j = 0; j < Board.N; j++) {
+        for (int i = 0; i < Board.instance.n; i++) {
+            for (int j = 0; j < Board.instance.n; j++) {
                 var a = Board.instance.cells[i,j];
                 Check(positions, a, a.Right());
                 Check(positions, a, a.Down());
