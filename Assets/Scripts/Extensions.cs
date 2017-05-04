@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public static class Extensions
 {
+
     public static int modulo(this int x, int y) {
         return (x % y + y) % y;
     }
@@ -88,6 +89,14 @@ public static class Extensions
             float.IsNaN(x) ? v.x : x,
             float.IsNaN(y) ? v.y : y,
             float.IsNaN(z) ? v.z : z
+        );
+    }
+    public static Color Change(this Color c, float a = float.NaN, float r = float.NaN, float g = float.NaN, float b = float.NaN) {
+        return new Color(
+            float.IsNaN(r) ? c.r : r,
+            float.IsNaN(g) ? c.g : g,
+            float.IsNaN(b) ? c.b : b,
+            float.IsNaN(a) ? c.a : a
         );
     }
 

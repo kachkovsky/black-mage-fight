@@ -11,6 +11,8 @@ public class Figure : Token
 
     public FigureEvent onCollide;
 
+    public AudioSource swapSound;
+
     public Cell Position {
         get { return position; }
     }
@@ -33,7 +35,28 @@ public class Figure : Token
         }
     }
 
+    bool Swap(IntVector2 direction) {
+        var cell = Position.ToDirection(direction);
+        while (cell != null && !cell.figures.Any(f => f is Swapper)) {
+            cell = cell.ToDirection(direction);
+        }
+        if (cell != null) {
+            var s = cell.figures.First(f => f is Swapper);
+            var x = Position;
+            cell.MoveHere(this);
+            x.MoveHere(s);
+            if (swapSound != null) {
+                swapSound.Play();
+            }
+            return true;
+        }
+        return false;
+    }
+
     public virtual bool MoveTo(IntVector2 direction) {
+        if (Swap(direction)) {
+            return true;
+        }
         var cell = Position.ToDirection(direction);
         while (cell != null && cell.figures.Any(f => f is Ice)) {
             cell = cell.ToDirection(direction);

@@ -51,7 +51,7 @@ public class HeroWithShotgun : Hero
             bm.Relocate();
         }
         if (f is Hero) {
-            (f as Hero).Hit(5);
+            (f as Hero).Hit(10);
         }
         if (f is Barrel) {
             var cell = f.Position;

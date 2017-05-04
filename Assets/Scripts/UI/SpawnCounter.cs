@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
 
-[ExecuteInEditMode]
 public class SpawnCounter : MonoBehaviour
 {
     public Tilt tilt;
@@ -15,7 +14,7 @@ public class SpawnCounter : MonoBehaviour
         slider.value = spawner.spawnedObjects.Count(go => go.activeInHierarchy);
         slider.maxValue = maxValue;
         if (tilt != null) {
-            tilt.Switch(slider.value == slider.maxValue);
+            tilt.Switch((int)(spawner.spawnedObjects.Count(go => go.activeInHierarchy) + 1 - slider.maxValue));
         }
     }
 }
