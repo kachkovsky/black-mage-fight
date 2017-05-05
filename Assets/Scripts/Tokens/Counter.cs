@@ -11,6 +11,7 @@ public class Counter : Token
     public int maxValue = 0;
 
     public UnityEvent onMax;
+    public UnityEvent onIncrement;
 
     public void Start() {
         slider.maxValue = maxValue;
@@ -28,6 +29,7 @@ public class Counter : Token
             return;
         }
         value += 1;
+        onIncrement.Invoke();
         if (value == maxValue) {
             onMax.Invoke();
         }
@@ -45,5 +47,9 @@ public class Counter : Token
     public void Drop() {
         value = 0;
         UpdateSlider();
+    }
+
+    public void ShowCounter() {
+        UI.instance.ShowMessage(string.Format("{0}/{1}", value, maxValue));
     }
 }

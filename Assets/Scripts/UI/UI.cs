@@ -13,12 +13,16 @@ public class UI : MonoBehaviour {
     public HealthSlider blackMageHealthSlider;
     public HealthSlider gambochkaHealthSlider;
 
+    public GameObject floatMessage;
+    public Text floatMessageText;
+
     void Awake() {
         instance = this;
     }
 
     void Start() {
         CloseMenu();
+        floatMessage.SetActive(false);
 #if UNITY_EDITOR
 #else
         intro.SetActive(true);
@@ -63,5 +67,17 @@ public class UI : MonoBehaviour {
         heroHealthSlider.unit = Hero.instance;
         blackMageHealthSlider.unit = BlackMage.instance;
         gambochkaHealthSlider.unit = Gambochka.instance;
+    }
+
+    public void ShowMessage(string message) {
+        StopAllCoroutines();
+        StartCoroutine(ShowMessageForTime(message));
+    }
+
+    IEnumerator ShowMessageForTime(string message) {
+        floatMessage.SetActive(true);
+        floatMessageText.text = message;
+        yield return new WaitForSeconds(1);
+        floatMessage.SetActive(false);
     }
 }
