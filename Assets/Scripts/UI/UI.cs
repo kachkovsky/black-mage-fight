@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
+using System.Collections.Generic;
 
 public class UI : MonoBehaviour {
     public static UI instance;
@@ -20,7 +21,7 @@ public class UI : MonoBehaviour {
     public GameObject loseMessage;
     public GameObject winMessage;
 
-    public Blur blur;
+    public List<Blur> blur;
 
     void Awake() {
         instance = this;
@@ -71,17 +72,17 @@ public class UI : MonoBehaviour {
     }
 
     public void Win() {
-        blur.enabled = true;
+        blur.ForEach(b => b.enabled = true);
         winMessage.SetActive(true);
     }
 
     public void Lose() {
-        blur.enabled = true;
+        blur.ForEach(b => b.enabled = true);
         loseMessage.SetActive(true);
     }
 
     public void UpdateHUD() {
-        blur.enabled = false;
+        blur.ForEach(b => b.enabled = false);
         winMessage.SetActive(false);
         loseMessage.SetActive(false);
         heroHealthSlider.unit = Hero.instance;
