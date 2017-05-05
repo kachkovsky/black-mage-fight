@@ -46,7 +46,7 @@ public class Controls : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R)) {
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space)) {
             Restart();
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {

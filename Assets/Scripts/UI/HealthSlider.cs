@@ -12,6 +12,8 @@ public class HealthSlider : MonoBehaviour
         if (unit != null) {
             slider.value = unit.health;
             slider.maxValue = unit.maxHealth;
+        } else {
+            slider.value = 0;
         }
     }
 }

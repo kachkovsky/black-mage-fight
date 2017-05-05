@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityStandardAssets.ImageEffects;
 
 public class UI : MonoBehaviour {
     public static UI instance;
@@ -15,6 +16,11 @@ public class UI : MonoBehaviour {
 
     public GameObject floatMessage;
     public Text floatMessageText;
+
+    public GameObject loseMessage;
+    public GameObject winMessage;
+
+    public Blur blur;
 
     void Awake() {
         instance = this;
@@ -46,7 +52,7 @@ public class UI : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Escape();
         }
-        battleMusic.mute = newGame.activeSelf || intro.activeSelf || customLevel.activeSelf;
+        battleMusic.mute = newGame.activeSelf || intro.activeSelf || customLevel.activeSelf || GameManager.instance.GameOver();
     }
 
     public void CloseMenu() {
@@ -64,7 +70,20 @@ public class UI : MonoBehaviour {
         customLevel.SetActive(false);
     }
 
+    public void Win() {
+        blur.enabled = true;
+        winMessage.SetActive(true);
+    }
+
+    public void Lose() {
+        blur.enabled = true;
+        loseMessage.SetActive(true);
+    }
+
     public void UpdateHUD() {
+        blur.enabled = false;
+        winMessage.SetActive(false);
+        loseMessage.SetActive(false);
         heroHealthSlider.unit = Hero.instance;
         blackMageHealthSlider.unit = BlackMage.instance;
         gambochkaHealthSlider.unit = Gambochka.instance;

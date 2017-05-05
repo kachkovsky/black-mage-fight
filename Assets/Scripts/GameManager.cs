@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour {
     GameObject lastLevel;
     GameObject currentLevel;
 
+    public AudioSource loseSound;
+    public AudioSource winSound;
+
     public event Action<Unit, Cell, Cell, IntVector2> onHeroMove = (h, a, b, d) => { };
 
     public List<Material> portalMaterials;
@@ -37,10 +40,18 @@ public class GameManager : MonoBehaviour {
 
     public void Win() {
         ++wins;
+        this.TryPlay(winSound);
+        UI.instance.Win();
     }
 
     public void Lose() {
         ++losses;
+        this.TryPlay(loseSound);
+        UI.instance.Lose();
+    }
+
+    public bool GameOver() {
+        return Hero.instance.Dead() || BlackMage.instance.Dead();
     }
 
     void Awake() {

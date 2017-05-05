@@ -17,6 +17,7 @@ public class BlackMage : Unit
         hitSound.time = 0.25f;
         hitSound.Play();
         if (health < 1) {
+            Destroy(gameObject);
             GameManager.instance.Win();
         }
     }
