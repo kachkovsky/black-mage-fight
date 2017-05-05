@@ -13,8 +13,9 @@ public class SpawnCounter : MonoBehaviour
     void Update() {
         slider.value = spawner.spawnedObjects.Count(go => go.activeInHierarchy);
         slider.maxValue = maxValue;
+        int tiltLevel = Mathf.Clamp((int)(spawner.spawnedObjects.Count(go => go.activeInHierarchy) + 1 - slider.maxValue), 0, 1);
         if (tilt != null) {
-            tilt.Switch((int)(spawner.spawnedObjects.Count(go => go.activeInHierarchy) + 1 - slider.maxValue));
+            tilt.Switch(tiltLevel);
         }
     }
 }

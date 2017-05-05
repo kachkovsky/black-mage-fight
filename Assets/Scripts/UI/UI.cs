@@ -24,6 +24,7 @@ public class UI : MonoBehaviour {
         CloseMenu();
         floatMessage.SetActive(false);
 #if UNITY_EDITOR
+        //intro.SetActive(true);
 #else
         intro.SetActive(true);
 #endif
