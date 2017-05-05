@@ -3,6 +3,8 @@ using System.Collections;
 using System.Linq;
 using System;
 using UnityEditor;
+using System.Linq;
+using System.Collections.Generic;
 
 [ExecuteInEditMode]
 public class Board : MonoBehaviour {
@@ -15,6 +17,8 @@ public class Board : MonoBehaviour {
     public GameObject[] rows;
     public Cell[,] cells;
 
+    public List<Cell> cellsList;
+
     public bool toroid = false;
 
     public static IntVector2 up = new IntVector2(-1, 0);
@@ -25,7 +29,10 @@ public class Board : MonoBehaviour {
     void Awake() {
         instance = this;
         cells = new Cell[n,n];
-        FindObjectsOfType<Cell>().ToList().ForEach(cell => cells[cell.x, cell.y] = cell);
+        cellsList = FindObjectsOfType<Cell>().ToList();
+        cellsList.ForEach(cell => {
+            cells[cell.x, cell.y] = cell;
+        });
     }
 
     public bool Inside(int x, int y) {
@@ -45,13 +52,11 @@ public class Board : MonoBehaviour {
 
     public Cell RandomEmptyCell(Func<Figure, bool> occupies = null) {
         occupies = occupies ?? (f => f.Occupies());
-        for (int i = 0; i < 1000; i++) {
-            var c = cells.Rand();
-            if (!FindObjectsOfType<Figure>().Any(f => f.Position == c && occupies(f))) {
-                return c;
-            }
+        var emptyCells = cellsList.Where(c => !c.figures.Any(occupies)).ToList();
+        if (emptyCells.Count > 0) {
+            return emptyCells.ToList().Rnd();
         }
-        return null;
+        return cellsList.Rnd();
     }
 
     [ContextMenu("Generate")]

@@ -5,7 +5,6 @@ using System.Linq;
 public class BlackMage : Unit
 {
     public static BlackMage instance;
-    public AudioSource hitSound;
 
     public int hitDamage = 1;
 
@@ -37,14 +36,5 @@ public class BlackMage : Unit
             hitSound.Play();
         }
         ResetDamageTokens();
-    }
-
-    public override void Collide(Figure f) {
-        base.Collide(f);
-        if (f is Hero) {
-            //HitWithDamageTokens();
-            Hit();
-            Relocate();
-        }
     }
 }

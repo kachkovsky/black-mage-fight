@@ -248,4 +248,11 @@ public static class Extensions
     public static T Rnd<T>(this List<T> collection) {
         return collection[UnityEngine.Random.Range(0, collection.Count)];
     }
+
+    public static void TryPlay(this MonoBehaviour go, AudioSource audioSource) {
+        if (audioSource != null) {
+            Debug.LogFormat("Play {0}", audioSource);
+            audioSource.Play();
+        }
+    }
 }

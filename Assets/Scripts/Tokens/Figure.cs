@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using UnityEditor;
 using UnityEngine.Events;
+using System;
 
 public class Figure : Token
 {
@@ -53,7 +54,22 @@ public class Figure : Token
         return false;
     }
 
+    public virtual void OnSee(Figure other) {
+    }
+
+    public void See(IntVector2 direction) {
+        var cell = Position.ToDirection(direction);
+        while (cell != null && !cell.figures.Any(f => f is EvilEye)) {
+            cell = cell.ToDirection(direction);
+        }
+        if (cell != null) {
+            //cell.figures.First().GetComponent<OnSee>().Run();
+            cell.figures.First().OnSee(this);
+        }
+    }
+
     public virtual bool MoveTo(IntVector2 direction) {
+        See(direction);
         if (Swap(direction)) {
             return true;
         }
@@ -74,9 +90,9 @@ public class Figure : Token
         EditorUtility.SetDirty(this);
     }
 
-    public void Blink() {
+    public void Blink(Func<Figure, bool> occupies = null) {
         //Debug.LogFormat("Blink {0}", transform.Path());
-        Board.instance.RandomEmptyCell().MoveHere(this);
+        Board.instance.RandomEmptyCell(occupies).MoveHere(this);
     }
 
     public void Relocate() {

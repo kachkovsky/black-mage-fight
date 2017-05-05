@@ -28,6 +28,10 @@ public class Cell : MonoBehaviour {
         meshRenderer = GetComponent<MeshRenderer>();
     }
 
+    public int Distance(Cell other) {
+        return Mathf.Abs(x - other.x) + Mathf.Abs(y - other.y);
+    }
+
     void Awake() {
         Init();
         baseColor = meshRenderer.sharedMaterial.color;
