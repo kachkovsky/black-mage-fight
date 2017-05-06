@@ -5,7 +5,7 @@ public class ArrowButton : Button {
     public IntVector2 direction;
 
     public override void Press() {
-        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+        if (Hero.instance.Dead || BlackMage.instance.Dead) {
             return;
         }
         if (Controls.instance.activeUnit == null) {

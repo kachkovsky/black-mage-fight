@@ -11,8 +11,10 @@ public class Unit : Figure
     public int health;
     public int maxHealth;
 
-    public bool Dead() {
-        return health <= 0;
+    public bool Dead {
+        get {
+            return health <= 0;
+        }
     }
 
     public void Reborn() {

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public bool GameOver() {
-        return Hero.instance.Dead() || BlackMage.instance.Dead();
+        return Hero.instance.Dead || BlackMage.instance.Dead;
     }
 
     void Awake() {
@@ -183,5 +183,21 @@ public class GameManager : MonoBehaviour {
 
     void OnDestroy() {
         FileManager.SaveToFile(gameState, GAMESTATE_FILE);
+    }
+
+    bool LevelIsRunning() {
+        return Hero.instance != null && BlackMage.instance != null;
+    }
+
+    void Update() {
+        if (LevelIsRunning()) {
+            if (BlackMage.instance.Dead) {
+                Destroy(BlackMage.instance);
+                Win();
+            } else if (Hero.instance.Dead) {
+                Destroy(Hero.instance);
+                Lose();
+            }
+        }
     }
 }

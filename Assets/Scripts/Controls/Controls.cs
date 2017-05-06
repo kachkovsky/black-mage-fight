@@ -32,7 +32,7 @@ public class Controls : MonoBehaviour {
     }
 
     public void Move(IntVector2 direction) {
-        if (Hero.instance.Dead() || BlackMage.instance.Dead()) {
+        if (Hero.instance.Dead || BlackMage.instance.Dead) {
             return;
         }
         if (activeUnit == null) {

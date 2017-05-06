@@ -14,9 +14,5 @@ public class Hero : PlayerUnit
 
     public override void Hit(int damage) {
         base.Hit(damage);
-        if (health < 1) {
-            Destroy(gameObject);
-            GameManager.instance.Lose();
-        }
     }
 }
