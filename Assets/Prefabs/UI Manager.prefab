@@ -1611,7 +1611,6 @@ GameObject:
   - component: {fileID: 20570131292484580}
   - component: {fileID: 92259929715167362}
   - component: {fileID: 124188859038815170}
-  - component: {fileID: 81613589710418342}
   - component: {fileID: 114096384547258922}
   m_Layer: 0
   m_Name: UI Camera
@@ -3278,13 +3277,6 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
---- !u!81 &81613589710418342
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1507504459699872}
-  m_Enabled: 1
 --- !u!82 &82028178860408654
 AudioSource:
   m_ObjectHideFlags: 1
@@ -3434,7 +3426,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4731,7 +4723,6 @@ MonoBehaviour:
   loseMessage: {fileID: 1243338258815960}
   winMessage: {fileID: 1815077128959206}
   blur:
-  - {fileID: 114096384547258922}
   - {fileID: 0}
 --- !u!114 &114218451895673926
 MonoBehaviour:

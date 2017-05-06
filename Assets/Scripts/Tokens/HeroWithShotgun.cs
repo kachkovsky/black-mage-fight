@@ -7,6 +7,7 @@ using RSG;
 public class HeroWithShotgun : Hero
 {
     public AudioSource shotgunSound;
+    public AudioSource explosionSound;
 
     public GameObject bulletSample;
     public GameObject explosionSample;
@@ -98,6 +99,7 @@ public class HeroWithShotgun : Hero
             f.gameObject.SetActive(false);
             Destroy(f.gameObject);
             PlayExplosionAnimation(cell);
+            this.TryPlay(explosionSound);
             Explosion(cell.ToDirection(new IntVector2(1, 0)));
             Explosion(cell.ToDirection(new IntVector2(-1, 0)));
             Explosion(cell.ToDirection(new IntVector2(0, 1)));

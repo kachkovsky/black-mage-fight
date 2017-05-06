@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 8278088}
   - component: {fileID: 114904461197370792}
   - component: {fileID: 114946835779714424}
+  - component: {fileID: 114610199248347876}
   m_Layer: 0
   m_Name: BlackMage
   m_TagString: Untagged
@@ -511,6 +512,7 @@ Transform:
   m_Children:
   - {fileID: 440598}
   - {fileID: 483886}
+  - {fileID: 4584571624238170}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -571,11 +573,11 @@ AudioSource:
   m_GameObject: {fileID: 137894}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24356012, guid: 52a365a0aeb213b4dae5cfff3e161b4f,
+  OutputAudioMixerGroup: {fileID: 243988715238880656, guid: 52a365a0aeb213b4dae5cfff3e161b4f,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: c93d7c0cbf5551e4cb9a675361ef1e24, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.503
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -663,9 +665,11 @@ MonoBehaviour:
   swapSound: {fileID: 0}
   hitSound: {fileID: 8278088}
   injuredSound: {fileID: 0}
+  healSound: {fileID: 0}
   injuredDamage: 2
   health: 40
   maxHealth: 40
+  hitSoundLowHP: {fileID: 82756729802155150}
   hitDamage: 1
 --- !u!212 &21220944
 SpriteRenderer:
@@ -993,6 +997,130 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 137894}
   m_IsPrefabParent: 1
+--- !u!1 &1263102435342308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4584571624238170}
+  - component: {fileID: 82756729802155150}
+  m_Layer: 0
+  m_Name: Hit LowHP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4584571624238170
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263102435342308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 478200}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &82756729802155150
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1263102435342308}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 243988715238880656, guid: 52a365a0aeb213b4dae5cfff3e161b4f,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: d41cb9306a9b24981a5e79109a515e6b, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.503
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &114610199248347876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3460b821a1a9f499cc9883a1b555ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11440544}
+  locator: {fileID: 0}
+  ignoreSpawnedBy: []
 --- !u!114 &114904461197370792
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,6 +6,8 @@ public class BlackMage : Unit
 {
     public static BlackMage instance;
 
+    public AudioSource hitSoundLowHP;
+
     public int hitDamage = 1;
 
     void Awake() {
@@ -13,9 +15,13 @@ public class BlackMage : Unit
     }
 
     public void Hit() {
-        Hit(hitDamage);
-        hitSound.time = 0.25f;
-        hitSound.Play();
+        Hit(hitDamage, true);
+        if (health > 5) {
+            hitSound.time = 0.25f;
+            hitSound.Play();
+        } else if (health > 0) {
+            this.TryPlay(hitSoundLowHP);
+        }
     }
 
     public void ResetDamageTokens() {

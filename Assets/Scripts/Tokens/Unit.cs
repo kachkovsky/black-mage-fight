@@ -22,10 +22,12 @@ public class Unit : Figure
         health = maxHealth;
     }
 
-    public virtual void Hit(int damage) {
+    public virtual void Hit(int damage, bool silent = false) {
         health -= damage;
 
-        this.TryPlay(damage >= injuredDamage ? injuredSound : hitSound);
+        if (!silent) {
+            this.TryPlay(damage >= injuredDamage ? injuredSound : hitSound);
+        }
     }
 
     public void Heal(int heal) {

@@ -12,7 +12,7 @@ public class Hero : PlayerUnit
         instance = this;
     }
 
-    public override void Hit(int damage) {
+    public override void Hit(int damage, bool silent = false) {
         base.Hit(damage);
     }
 }

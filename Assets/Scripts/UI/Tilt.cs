@@ -18,4 +18,18 @@ public class Tilt : MonoBehaviour
         audioSource.mute = level == 0;
         audioSource.volume = 0.15f * level;
     }
+
+    public void Update() {
+        if (Hero.instance.health > Hero.instance.maxHealth * 20 / 100) {
+            Switch(0);
+        } else if (Hero.instance.health > Hero.instance.maxHealth * 10 / 100) {
+            Switch(1);
+        } else if (Hero.instance.health > Hero.instance.maxHealth * 5 / 100) {
+            Switch(2);
+        } else if (Hero.instance.health > 1) {
+            Switch(3);
+        } else {       
+            Switch(4);
+        }
+    }
 }
