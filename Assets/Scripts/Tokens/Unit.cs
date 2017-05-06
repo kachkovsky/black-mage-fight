@@ -5,6 +5,7 @@ public class Unit : Figure
 {
     public AudioSource hitSound;
     public AudioSource injuredSound;
+    public AudioSource healSound;
 
     public int injuredDamage = 2;
 
@@ -30,5 +31,6 @@ public class Unit : Figure
     public void Heal(int heal) {
         health += heal;
         health = Mathf.Clamp(health, 0, maxHealth);
+        this.TryPlay(healSound);
     }
 }

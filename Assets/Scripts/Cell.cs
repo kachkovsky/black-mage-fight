@@ -47,8 +47,9 @@ public class Cell : MonoBehaviour {
 
     public void MoveHere(Figure f) {
         f.transform.position = transform.position;
+        var figuresAtMoveTime = figures.Where(x => true).ToList();
         f.SetPosition(this); 
-        figures.ForEach(f2 => {
+        figuresAtMoveTime.ForEach(f2 => {
             f2.Collide(f);
             f.Collide(f2);
         });
