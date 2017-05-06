@@ -11,11 +11,19 @@ public class SoundControls : MonoBehaviour
     public Toggle soundsToggle;
     public Toggle musicToggle;
 
+    float soundsVolume;
+    float musicVolume;
+
+    void Awake() {
+        mixer.GetFloat("SoundsVolume", out soundsVolume);
+        mixer.GetFloat("MusicVolume", out musicVolume);
+    }
+
     public void MuteSounds(bool mute) {
-        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? 0 : -80);
+        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume : -80);
     }
     public void MuteMusic(bool mute) {
-        mixer.SetFloat("MusicVolume", musicToggle.isOn ? 0 : -80);
+        mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume : -80);
     }
 
     void Start() {

@@ -7,65 +7,28 @@ using System.Collections.Generic;
 using System.Linq;
 using RSG;
 
-public static class TimeManager
+public class TimeManager : MonoBehaviour
 {
-    static float timeCorrection = 0;
+    public static TimeManager instance;
 
-    public static bool isPaused = false; 
+    PromiseTimer promiseTimer = new PromiseTimer();
 
-    static PromiseTimer promiseTimer = new PromiseTimer();
+    float lastUpdateTime = 0;
 
-    /// <summary>
-    /// Occurs when game is paused: true - if pause switched on.
-    /// </summary>
-    public static event Action<bool> onPauseChanged=(bool b)=>{};
-
-    public static void Reset(){
-        promiseTimer = new PromiseTimer();
+    public static float Time() {
+        return UnityEngine.Time.time;
     }
 
-    public static void SetGameTime(float correctGameTime) {
-        timeCorrection = correctGameTime - Time.time;
+    public void Awake() {
+        instance = this;
     }
 
-    /// <summary>
-    /// Time in the game world since current game session start
-    /// </summary>
-    /// <returns>The time.</returns>
-    public static float GameTime()
-    {
-        return Time.time + timeCorrection;
-    }
-    
-    public static void Pause(){
-        isPaused = true;
-        onPauseChanged(true);
-        Time.timeScale = 0.0f;
-    }
-    
-    public static void Resume(){
-        isPaused = false;
-
-        Time.timeScale = 1.0f;
-        onPauseChanged(false);
-    }
-
-    public static void PauseOrResume() {
-        if (isPaused) {
-            Resume();
-        } else {
-            Pause();
-        }
-    }
-
-    static float lastUpdateTime = 0;
-
-    public static void UpdateTime() {
-        promiseTimer.Update(Time.time - lastUpdateTime);
-        lastUpdateTime = Time.time;
+    public void Update() {
+        promiseTimer.Update(Time() - lastUpdateTime);
+        lastUpdateTime = Time();
     }
 
     public static IPromise Wait(float seconds) {
-        return promiseTimer.WaitFor(seconds);
+        return instance.promiseTimer.WaitFor(seconds);
     }
 }

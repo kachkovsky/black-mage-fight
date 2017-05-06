@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine.Events;
 using System;
+using RSG;
 
 public class Figure : Token
 {
@@ -68,20 +69,20 @@ public class Figure : Token
         }
     }
 
-    public virtual bool MoveTo(IntVector2 direction) {
+    public virtual IPromise<bool> MoveTo(IntVector2 direction) {
         See(direction);
         if (Swap(direction)) {
-            return true;
+            return Promise<bool>.Resolved(true);
         }
         var cell = Position.ToDirection(direction);
         while (cell != null && cell.figures.Any(f => f is Ice)) {
             cell = cell.ToDirection(direction);
         }
         if (cell == null) {
-            return false;
+            return Promise.v(false);
         }
         cell.MoveHere(this);
-        return true;
+        return Promise.v(true);
     }
 
     [ContextMenu("Place")]

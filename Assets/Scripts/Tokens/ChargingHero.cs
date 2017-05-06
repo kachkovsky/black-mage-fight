@@ -2,10 +2,11 @@
 using System.Collections;
 using System.Linq;
 using System;
+using RSG;
 
 public class ChargingHero : Hero
 {
-    public override bool MoveTo(IntVector2 direction) {
+    public override IPromise<bool> MoveTo(IntVector2 direction) {
         var cell = Position;
         var next = cell;
         for (int i = 0; i < 100; i++) {
@@ -27,9 +28,9 @@ public class ChargingHero : Hero
             cell.MoveHere(this);
             moveSound.Play();
             GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
-            return true;
+            return Promise<bool>.Resolved(true);
         } else {
-            return false;
+            return Promise<bool>.Resolved(false);
         }
     }
 

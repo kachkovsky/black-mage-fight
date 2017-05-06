@@ -17,6 +17,8 @@ namespace RSG
 		/// </summary>
 		IPromise WithName(string name);
 
+        IPromise<T> Return<T>(T value);
+
 		/// <summary>
 		/// Completes the promise. 
 		/// onResolved is called on successful completion.
@@ -178,6 +180,22 @@ namespace RSG
 	/// </summary>
 	public class Promise : IPromise, IPendingPromise, IPromiseInfo
 	{
+        public static IPromise<T> v<T>(T value) {
+            return Promise<T>.Resolved(value);
+        }        
+
+        public static IPromise Do(Func<IPromise> action) {
+            return action();
+        }
+
+        public static IPromise<T> Do<T>(Func<IPromise<T>> action) {
+            return action();
+        }
+
+        public IPromise<T> Return<T>(T value) {
+            return Then(() => v(value));
+        }
+
 		/// <summary>
 		/// Set to true to enable tracking of promises.
 		/// </summary>

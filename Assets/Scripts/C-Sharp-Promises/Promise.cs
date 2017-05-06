@@ -12,6 +12,8 @@ namespace RSG
 	/// </summary>
 	public interface IPromise<PromisedT>
 	{
+        IPromise Untyped();
+
 		/// <summary>
 		/// Set the name of the promise, useful for debugging.
 		/// </summary>
@@ -160,6 +162,10 @@ namespace RSG
 		/// The exception when the promise is rejected.
 		/// </summary>
 		private Exception rejectionException;
+
+        public IPromise Untyped() {
+            return Then(x => Promise.Resolved());
+        }
 
 		/// <summary>
 		/// The value when the promises is resolved.

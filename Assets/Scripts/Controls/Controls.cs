@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using RSG;
+using System;
 
 public class Controls : MonoBehaviour {
     public static Controls instance;
@@ -31,6 +33,13 @@ public class Controls : MonoBehaviour {
         }
     }
 
+    IPromise commands = Promise.Resolved();
+
+    void Command(Func<IPromise> command) {
+        commands = commands.Then(command);
+        commands.Done();
+    }
+
     public void Move(IntVector2 direction) {
         if (Hero.instance.Dead || BlackMage.instance.Dead) {
             return;
@@ -38,7 +47,7 @@ public class Controls : MonoBehaviour {
         if (activeUnit == null) {
             return;
         }
-        activeUnit.MoveTo(direction);
+        Command(() => activeUnit.MoveTo(direction).Untyped());
     }
 
     public void Restart() {

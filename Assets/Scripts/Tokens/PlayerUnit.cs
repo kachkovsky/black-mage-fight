@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using RSG;
 
 public class PlayerUnit : Unit
 {
@@ -11,15 +12,16 @@ public class PlayerUnit : Unit
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
-    public override bool MoveTo(IntVector2 direction) {
+    public override IPromise<bool> MoveTo(IntVector2 direction) {
         var oldPosition = Position;
-        if (!base.MoveTo(direction)) {
-            return false;
-        }
-        moveSound.Play();
-        CheckCollisions(oldPosition);
-        GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
-        return true;
+        return base.MoveTo(direction).Then(moved => {
+            if (!moved) {
+                moveSound.Play();
+                CheckCollisions(oldPosition);
+                GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
+                return;
+            }
+        });
     }
 
     public void CheckCollisions(Cell oldPosition) {
@@ -38,6 +40,6 @@ public class PlayerUnit : Unit
     }
 
     void Update() {
-        spriteRenderer.material.ChangeAlpha(IsActiveUnit() ? 1 : 0.3f);
+        //spriteRenderer.material.ChangeAlpha(IsActiveUnit() ? 1 : 0.3f);
     }
 }
