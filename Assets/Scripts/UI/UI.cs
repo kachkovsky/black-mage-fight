@@ -9,6 +9,8 @@ public class UI : MonoBehaviour {
     public GameObject newGame;
     public GameObject customLevel;
     public GameObject intro;
+    public GameObject difficultySelector;
+    public GameObject profileSelector;
     public AudioSource battleMusic;
 
     public HealthSlider heroHealthSlider;
@@ -59,6 +61,8 @@ public class UI : MonoBehaviour {
     public void CloseMenu() {
         newGame.SetActive(false);
         customLevel.SetActive(false);
+        difficultySelector.SetActive(false);
+        profileSelector.SetActive(false);
     }
 
     public void CustomLevel() {

@@ -58,9 +58,7 @@ public class GameManager : MonoBehaviour {
         instance = this;
         gameState = FileManager.LoadFromFile<GameState>(GAMESTATE_FILE);
         if (gameState != null) {
-            if (gameState.history == null) {
-                gameState.history = new List<int[,]>();
-            }
+
         } else {
             gameState = new GameState();
         }
