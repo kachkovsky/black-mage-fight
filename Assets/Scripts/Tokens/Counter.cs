@@ -14,8 +14,7 @@ public class Counter : Token
     public UnityEvent onIncrement;
 
     public void Start() {
-        slider.maxValue = maxValue;
-        slider.value = value;
+        UpdateSlider();
         slider.onValueChanged.Invoke(0);
     }
 

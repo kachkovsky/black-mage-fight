@@ -32,8 +32,9 @@ Shader "Sprites/Recolor"
 		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
+			#pragma target 2.0
 			#pragma multi_compile _ PIXELSNAP_ON
-			#pragma shader_feature ETC1_EXTERNAL_ALPHA
+			#pragma multi_compile _ ETC1_EXTERNAL_ALPHA
 			#include "UnityCG.cginc"
 			
 			struct appdata_t
@@ -41,6 +42,7 @@ Shader "Sprites/Recolor"
 				float4 vertex   : POSITION;
 				float4 color    : COLOR;
 				float2 texcoord : TEXCOORD0;
+				UNITY_VERTEX_INPUT_INSTANCE_ID
 			};
 
 			struct v2f
@@ -48,20 +50,22 @@ Shader "Sprites/Recolor"
 				float4 vertex   : SV_POSITION;
 				fixed4 color    : COLOR;
 				float2 texcoord  : TEXCOORD0;
+				UNITY_VERTEX_OUTPUT_STEREO
 			};
-			
+
 			fixed4 _Red;
 			fixed4 _Green;
 			fixed4 _Blue;
 			fixed4 _Alpha;
 			fixed4 _Const;
-      
+
 			v2f vert(appdata_t IN)
 			{
 				v2f OUT;
-				OUT.vertex = mul(UNITY_MATRIX_MVP, IN.vertex);
+				UNITY_SETUP_INSTANCE_ID(IN);
+				UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(OUT);
+				OUT.vertex = UnityObjectToClipPos(IN.vertex);
 				OUT.texcoord = IN.texcoord;
-        fixed4 r = (0,0,0,1);
 				OUT.color = IN.color;
 				#ifdef PIXELSNAP_ON
 				OUT.vertex = UnityPixelSnap (OUT.vertex);
@@ -87,12 +91,12 @@ Shader "Sprites/Recolor"
 
 			fixed4 frag(v2f IN) : SV_Target
 			{
-				fixed4 d = SampleSpriteTexture (IN.texcoord) * IN.color;
+				fixed4 d = SampleSpriteTexture (IN.texcoord);
 				fixed4 c = (_Const-0.5) + d.r * (_Red-0.5) + d.g * (_Green-0.5) + d.b * (_Blue-0.5) + d.a * (_Alpha-0.5);
-        c = c * 2;
-        c.a *= d.a;
-        c.rgb *= c.a;
-				return c;
+		        c = c * 2;
+		        c.a *= d.a;
+		        c.rgb *= c.a;
+				return c * IN.color;
 			}
 		ENDCG
 		}

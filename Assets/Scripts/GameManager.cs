@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public bool GameOver() {
-        return Hero.instance.Dead || BlackMage.instance.Dead;
+        return !LevelIsRunning();
     }
 
     void Awake() {
@@ -190,10 +190,11 @@ public class GameManager : MonoBehaviour {
     void Update() {
         if (LevelIsRunning()) {
             if (BlackMage.instance.Dead) {
-                Destroy(BlackMage.instance);
+                Destroy(BlackMage.instance.gameObject);
                 Win();
             } else if (Hero.instance.Dead) {
-                Destroy(Hero.instance);
+                Debug.LogFormat("Destroying hero: {0}", Hero.instance.transform.Path());
+                Destroy(Hero.instance.gameObject);
                 Lose();
             }
         }
