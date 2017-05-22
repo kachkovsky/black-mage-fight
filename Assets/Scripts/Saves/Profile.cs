@@ -6,8 +6,8 @@ using System.Text;
 [Serializable]
 public class Profile
 {
-    public string name = "Анонимус";
-    public int difficulty = -1;
-    public int triesLeft = -1;
-    public int levelsCompleted = -1;
+    public string name = "";
+
+    public List<GameRun> completedRuns = new List<GameRun>();
+    public List<GameRun> currentRuns = new List<GameRun>();
 }

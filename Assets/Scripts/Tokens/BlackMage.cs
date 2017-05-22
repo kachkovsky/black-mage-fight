@@ -28,7 +28,7 @@ public class BlackMage : Unit
         Damage.damageTotal = 0;
         FindObjectsOfType<Damage>().ForEach(d => Destroy(d.gameObject));
         for (int i = 0; i < 3; i++) {
-            Instantiate<Damage>(GameManager.instance.damage).Blink();
+            //Instantiate<Damage>(GameManager.instance.damage).Blink();
         }
     }
 
