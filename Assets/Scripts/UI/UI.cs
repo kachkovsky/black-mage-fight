@@ -25,6 +25,9 @@ public class UI : MonoBehaviour {
     public GameObject loseMessage;
     public GameObject winMessage;
 
+
+    public GameObject volumes;
+
     public List<Blur> blur;
 
     void Awake() {
@@ -75,8 +78,15 @@ public class UI : MonoBehaviour {
         customLevel.SetActive(false);
         difficultySelector.SetActive(false);
         profileSelector.SetActive(false);
+
         profileName.SetActive(false);
         warning.SetActive(false);
+        volumes.SetActive(false);
+    }
+
+    public void Volumes() {
+        CloseMenu();
+        volumes.SetActive(true);
     }
 
     public void CustomLevel() {

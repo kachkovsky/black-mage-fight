@@ -10,6 +10,8 @@ public class SoundControls : MonoBehaviour
     public AudioMixerGroup music;
     public Toggle soundsToggle;
     public Toggle musicToggle;
+    public Slider soundsSlider;
+    public Slider musicSlider;
 
     float soundsVolume;
     float musicVolume;
@@ -17,19 +19,20 @@ public class SoundControls : MonoBehaviour
     void Awake() {
         mixer.GetFloat("SoundsVolume", out soundsVolume);
         mixer.GetFloat("MusicVolume", out musicVolume);
+        soundsSlider.value = PlayerPrefs.GetFloat("SoundsVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+
+        soundsToggle.isOn = PlayerPrefs.GetInt("Sounds", 1) == 1;
+        musicToggle.isOn = PlayerPrefs.GetInt("Music", 1) == 1;
+        Refresh();
     }
 
-    public void MuteSounds(bool mute) {
-        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume : -80);
-    }
-    public void MuteMusic(bool mute) {
-        mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume : -80);
-    }
-
-    void Start() {
-#if UNITY_EDITOR
-        //musicToggle.isOn = false;
-        MuteMusic(true);
-#endif
+    public void Refresh() {
+        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume * soundsSlider.value : -80);
+        mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume * musicSlider.value : -80);
+        PlayerPrefs.SetFloat("SoundsVolume", soundsSlider.value);
+        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
+        PlayerPrefs.SetInt("Sounds", soundsToggle.isOn ? 1 : 0);
+        PlayerPrefs.SetInt("Music", musicToggle.isOn ? 1 : 0);
     }
 }

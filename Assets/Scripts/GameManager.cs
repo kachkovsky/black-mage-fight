@@ -75,8 +75,7 @@ public class GameManager : MonoBehaviour {
         Load();
         UpdateState();
     }
-
-
+    
     public void Clear() {
         FindObjectsOfType<Token>().ForEach(x => {
             x.gameObject.SetActive(false);
