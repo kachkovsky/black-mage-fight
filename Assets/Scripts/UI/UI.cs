@@ -85,7 +85,7 @@ public class UI : MonoBehaviour {
     }
 
     public void Volumes() {
-        CloseMenu();
+        CloseAll();
         volumes.SetActive(true);
     }
 

@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour {
             UI.instance.AskName();
             return;
         }
-        if (gameState.CurrentProfile.difficulty == -1) {
+        if (gameState.CurrentProfile.currentRuns.Count == 0) {
             UI.instance.AskDifficulty();
             return;
         }

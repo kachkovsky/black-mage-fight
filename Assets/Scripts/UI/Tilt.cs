@@ -20,6 +20,9 @@ public class Tilt : MonoBehaviour
     }
 
     public void Update() {
+        if (Hero.instance == null) {
+            return;
+        }
         if (Hero.instance.health > Hero.instance.maxHealth * 20 / 100) {
             Switch(0);
         } else if (Hero.instance.health > Hero.instance.maxHealth * 10 / 100) {
