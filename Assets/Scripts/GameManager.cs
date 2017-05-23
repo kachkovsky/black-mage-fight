@@ -68,30 +68,6 @@ public class GameManager : MonoBehaviour {
         NewGame(Levels.instance.startLevel);
     }
 
-    public void CreateHeartStopper() {
-        Instantiate(heartStopperPrefab);
-    }
-
-    public void CreateBombSetter() {
-        var bombSetter = Instantiate(bombSetterPrefab).GetComponent<BombSetter>();
-        bombSetter.periodic.period = 7;
-        bombSetter.periodic.runPhases.Add(3);
-        bombSetter.timer = 13;
-    }
-
-    public void CreateArrowSetter() {
-        var arrowSetter = Instantiate(arrowSetterPrefab).GetComponent<ArrowSetter>();
-        arrowSetter.periodic.period = 3;
-        arrowSetter = Instantiate(arrowSetterPrefab).GetComponent<ArrowSetter>();
-        arrowSetter.periodic.period = 3;
-        arrowSetter.periodic.phase = 1;
-    }
-
-    public void CreateSkullSetter() {
-        var skullSetter = Instantiate(skullSetterPrefab).GetComponent<SkullSetter>();
-        skullSetter.periodic.period = 1;
-    }
-
     public void Clear() {
         FindObjectsOfType<Token>().ForEach(x => {
             x.gameObject.SetActive(false);
