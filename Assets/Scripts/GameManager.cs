@@ -69,6 +69,11 @@ public class GameManager : MonoBehaviour {
             UI.instance.AskDifficulty();
             return;
         }
+        ContinueGame(gameState.CurrentProfile.currentRuns.First());
+    }
+
+    void ContinueGame(GameRun run) {
+        RunLevel(GameLevels.instance.difficulties[run.difficulty].levels[run.levelsCompleted]);
     }
 
     void Start() {
@@ -92,7 +97,7 @@ public class GameManager : MonoBehaviour {
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 
-    public void NewGame(GameObject level) {
+    public void RunLevel(GameObject level) {
         lastLevel = level;
         Clear();
         currentLevel = Instantiate(level);
@@ -118,7 +123,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart() {
-        NewGame(lastLevel);
+        RunLevel(lastLevel);
     }
 
     public void Save() {

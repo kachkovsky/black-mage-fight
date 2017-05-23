@@ -15,6 +15,12 @@ public class GameState
         }
     }
 
+    public GameRun CurrentRun {
+        get {
+            return CurrentProfile.currentRuns.FirstOrDefault();
+        }
+    }
+
     public GameState() {
         for (int i = 0; i < 3; i++) {
             profiles.Add(new Profile());

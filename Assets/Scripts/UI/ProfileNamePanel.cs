@@ -19,7 +19,6 @@ public class ProfileNamePanel : MonoBehaviour
         GameManager.instance.gameState.CurrentProfile.name = GetName();
         GameManager.instance.Save();
         GameManager.instance.UpdateState();
-
     }
 
 }
