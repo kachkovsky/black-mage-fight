@@ -9,6 +9,10 @@ public class UI : MonoBehaviour {
     public GameObject newGame;
     public GameObject customLevel;
     public GameObject intro;
+    public GameObject difficultySelector;
+    public GameObject profileSelector;
+    public GameObject warning;
+    public GameObject profileName;
     public AudioSource battleMusic;
 
     public HealthSlider heroHealthSlider;
@@ -28,13 +32,22 @@ public class UI : MonoBehaviour {
     }
 
     void Start() {
-        CloseMenu();
-        floatMessage.SetActive(false);
+        CloseAll();
 #if UNITY_EDITOR
         //intro.SetActive(true);
 #else
         intro.SetActive(true);
 #endif
+    }
+
+    public void AskName() {
+        CloseAll();
+        profileName.SetActive(true);
+    }
+
+    public void AskDifficulty() {
+        CloseAll();
+        difficultySelector.SetActive(true);
     }
 
     void Escape() {
@@ -43,7 +56,7 @@ public class UI : MonoBehaviour {
             return;
         }
         if (newGame.activeSelf) {
-            CloseMenu();
+            CloseAll();
             return;
         } 
         NewGame();
@@ -56,9 +69,14 @@ public class UI : MonoBehaviour {
         battleMusic.mute = newGame.activeSelf || intro.activeSelf || customLevel.activeSelf || GameManager.instance.GameOver();
     }
 
-    public void CloseMenu() {
+    public void CloseAll() {
+        floatMessage.SetActive(false);
         newGame.SetActive(false);
         customLevel.SetActive(false);
+        difficultySelector.SetActive(false);
+        profileSelector.SetActive(false);
+        profileName.SetActive(false);
+        warning.SetActive(false);
     }
 
     public void CustomLevel() {

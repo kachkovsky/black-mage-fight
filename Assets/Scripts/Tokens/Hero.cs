@@ -10,6 +10,7 @@ public class Hero : PlayerUnit
     protected override void Awake() {
         base.Awake();
         instance = this;
+        Debug.LogFormat("Hero instance: {0}", transform.Path());
     }
 
     public override void Hit(int damage, bool silent = false) {

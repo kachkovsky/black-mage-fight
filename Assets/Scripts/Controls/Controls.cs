@@ -55,7 +55,10 @@ public class Controls : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftShift)) {
+            GameManager.instance.DropSaveFile();
+        }
+        if (Input.GetKeyDown(KeyCode.Space)) {
             Restart();
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
