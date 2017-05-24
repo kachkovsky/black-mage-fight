@@ -12,6 +12,7 @@ public class UI : MonoBehaviour {
     public DifficultySelectionPanel difficultySelector;
     public ProfileSelectionPanel profileSelector;
     public Warning warning;
+    public Warning soloWarning;
     public GameObject profileName;
     public AudioSource battleMusic;
 
@@ -55,7 +56,7 @@ public class UI : MonoBehaviour {
 
     public void AskDifficulty() {
         CloseAll();
-        difficultySelector.gameObject.SetActive(true);
+        difficultySelector.Show();
     }
 
     public void Escape() {
@@ -72,7 +73,7 @@ public class UI : MonoBehaviour {
     }
     
     void Update() {
-        battleMusic.mute = menu.gameObject.activeSelf || Intro.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
+        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
     }
 
     public void CloseAll() {
@@ -84,6 +85,7 @@ public class UI : MonoBehaviour {
 
         profileName.SetActive(false);
         warning.Hide();
+        soloWarning.Hide();
         volumes.SetActive(false);
     }
 
@@ -113,6 +115,10 @@ public class UI : MonoBehaviour {
 
     public IPromise Confirm(string text) {
         return warning.Show(text);
+    }
+
+    public IPromise SoloConfirm(string text) {
+        return soloWarning.Show(text);
     }
 
     public void ShowMessage(string message) {

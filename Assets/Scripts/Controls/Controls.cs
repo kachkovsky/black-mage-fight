@@ -44,7 +44,7 @@ public class Controls : MonoBehaviour {
         if (Hero.instance.Dead || BlackMage.instance.Dead) {
             return;
         }
-        if (Intro.active) {
+        if (Intermission.active) {
             return;
         }
         if (activeUnit == null) {

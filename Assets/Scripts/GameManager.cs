@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using RSG;
 
 public class GameManager : MonoBehaviour {
     const string GAMESTATE_FILE = "gamestate.dat";
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour {
     public AudioSource loseSound;
     public AudioSource winSound;
 
+    public Intermission ending;
+
     public event Action<Unit, Cell, Cell, IntVector2> onHeroMove = (h, a, b, d) => { };
 
     public List<Material> portalMaterials;
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour {
         this.TryPlay(winSound);
         UI.instance.Win();
         gameState.CurrentRun.levelsCompleted++;
+
+      
     }
 
     public void Lose() {
@@ -54,6 +59,7 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        ending.Hide();
     }
 
     public void Load() {
@@ -82,7 +88,19 @@ public class GameManager : MonoBehaviour {
     }
 
     void ContinueGame(GameRun run) {
+        if (run.levelsCompleted == GameLevels.instance.difficulties[run.difficulty].levels.Count) {
+            FinishGame(run);
+            return;
+        }
         RunLevel(GameLevels.instance.difficulties[run.difficulty].levels[run.levelsCompleted]);
+    }
+
+    void FinishGame(GameRun run) {
+        ending.Show().Then(() => {
+            gameState.CurrentProfile.completedRuns.Add(run);
+            gameState.CurrentProfile.currentRuns.Remove(run);
+            UpdateState();
+        });
     }
 
     void Start() {
@@ -125,7 +143,7 @@ public class GameManager : MonoBehaviour {
 
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
 
-        var intro = currentLevel.GetComponentInChildren<Intro>();
+        var intro = currentLevel.GetComponentsInChildren<Intermission>().FirstOrDefault(i => !i.ending);
         if (intro != null)
         {
             if (restarted) {
