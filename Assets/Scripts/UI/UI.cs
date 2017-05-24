@@ -9,7 +9,6 @@ public class UI : MonoBehaviour {
     public static UI instance;
     public MenuPanel menu;
     public GameObject customLevel;
-    public GameObject intro;
     public DifficultySelectionPanel difficultySelector;
     public ProfileSelectionPanel profileSelector;
     public Warning warning;
@@ -60,10 +59,6 @@ public class UI : MonoBehaviour {
     }
 
     public void Escape() {
-        if (intro.activeSelf) {
-            intro.SetActive(false);
-            return;
-        }
         if (menu.gameObject.activeSelf) {
             CloseAll();
             return;
@@ -77,7 +72,7 @@ public class UI : MonoBehaviour {
     }
     
     void Update() {
-        battleMusic.mute = menu.gameObject.activeSelf || intro.activeSelf || customLevel.activeSelf || GameManager.instance.GameOver();
+        battleMusic.mute = menu.gameObject.activeSelf || Intro.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
     }
 
     public void CloseAll() {

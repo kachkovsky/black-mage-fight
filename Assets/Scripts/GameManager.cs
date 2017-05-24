@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour {
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 
-    public void RunLevel(GameObject level) {
+    public void RunLevel(GameObject level, bool restarted = false) {
         lastLevel = level;
         Clear();
         currentLevel = Instantiate(level);
@@ -124,6 +124,16 @@ public class GameManager : MonoBehaviour {
         });
 
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
+
+        var intro = currentLevel.GetComponentInChildren<Intro>();
+        if (intro != null)
+        {
+            if (restarted) {
+                intro.Hide();
+            } else {
+                intro.Show();
+            }
+        } 
     }
 
     public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
@@ -131,7 +141,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void Restart() {
-        RunLevel(lastLevel);
+        RunLevel(lastLevel, restarted: true);
     }
 
     public void Save() {

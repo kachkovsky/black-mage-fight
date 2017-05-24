@@ -20,6 +20,9 @@ public class GameState
 
     public GameRun CurrentRun {
         get {
+            if (CurrentProfile == null) {
+                return null;
+            }
             return CurrentProfile.currentRuns.FirstOrDefault();
         }
     }
