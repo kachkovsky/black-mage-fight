@@ -11,5 +11,6 @@ public class GameLevels : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        transform.Children().ForEach(c => c.gameObject.SetActive(false));
     }
 }

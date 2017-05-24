@@ -114,7 +114,6 @@ public class GameManager : MonoBehaviour {
             }
         });
 
-
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
     }
 

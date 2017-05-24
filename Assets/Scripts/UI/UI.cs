@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityStandardAssets.ImageEffects;
 using System.Collections.Generic;
+using RSG;
 
 public class UI : MonoBehaviour {
     public static UI instance;
@@ -11,7 +12,7 @@ public class UI : MonoBehaviour {
     public GameObject intro;
     public GameObject difficultySelector;
     public GameObject profileSelector;
-    public GameObject warning;
+    public Warning warning;
     public GameObject profileName;
     public AudioSource battleMusic;
 
@@ -80,7 +81,7 @@ public class UI : MonoBehaviour {
         profileSelector.SetActive(false);
 
         profileName.SetActive(false);
-        warning.SetActive(false);
+        warning.Hide();
         volumes.SetActive(false);
     }
 
@@ -116,6 +117,10 @@ public class UI : MonoBehaviour {
         heroHealthSlider.unit = Hero.instance;
         blackMageHealthSlider.unit = BlackMage.instance;
         gambochkaHealthSlider.unit = Gambochka.instance;
+    }
+
+    public IPromise Confirm(string text) {
+        return warning.Show(text);
     }
 
     public void ShowMessage(string message) {
