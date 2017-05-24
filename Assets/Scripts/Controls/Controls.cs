@@ -64,5 +64,16 @@ public class Controls : MonoBehaviour {
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
             Cursor.visible = true;
         }
+        if (Input.GetKeyDown(KeyCode.F5)) {
+            Cheats.on ^= true;
+        }
+        if (Cheats.on) {
+            if (Input.GetKeyDown(KeyCode.W)) {
+                GameManager.instance.Win();
+            }
+            if (Input.GetKeyDown(KeyCode.L)) {
+                GameManager.instance.Lose();
+            }
+        }
     }
 }

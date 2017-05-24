@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour {
         return !LevelIsRunning();
     }
 
+    [ContextMenu("Drop Save")]
     public void DropSaveFile() {
         gameState = new GameState();
         Save();
@@ -58,12 +59,6 @@ public class GameManager : MonoBehaviour {
         } else {
             gameState = new GameState();
         }
-    }
-
-    [ContextMenu("Drop Save")]
-    public void DropSave() {
-        gameState = new GameState();
-        Save();
     }
 
     public void UpdateState() {
