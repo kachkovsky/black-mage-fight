@@ -29,15 +29,15 @@ public class GameManager : MonoBehaviour {
     public int losses;
 
     public void Win() {
+        Destroy(BlackMage.instance.gameObject);
         ++wins;
         this.TryPlay(winSound);
         UI.instance.Win();
         gameState.CurrentRun.levelsCompleted++;
-
-      
     }
 
     public void Lose() {
+        Destroy(Hero.instance.gameObject);
         ++losses;
         this.TryPlay(loseSound);
         UI.instance.Lose();
@@ -174,14 +174,20 @@ public class GameManager : MonoBehaviour {
         return Hero.instance != null && BlackMage.instance != null;
     }
 
+    public bool Won() {
+        return GameOver() && Hero.instance != null;
+    }
+
+    public bool Lost() {
+        return GameOver() && BlackMage.instance != null;
+    }
+
     void Update() {
         if (LevelIsRunning()) {
             if (BlackMage.instance.Dead) {
-                Destroy(BlackMage.instance.gameObject);
                 Win();
             } else if (Hero.instance.Dead) {
                 Debug.LogFormat("Destroying hero: {0}", Hero.instance.transform.Path());
-                Destroy(Hero.instance.gameObject);
                 Lose();
             }
         }
