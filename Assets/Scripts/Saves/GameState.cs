@@ -11,6 +11,9 @@ public class GameState
 
     public Profile CurrentProfile {
         get {
+            if (currentProfileIndex < 0 || currentProfileIndex >= profiles.Count) {
+                return null;
+            }
             return profiles[currentProfileIndex];
         }
     }

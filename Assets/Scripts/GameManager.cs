@@ -60,7 +60,17 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    [ContextMenu("Drop Save")]
+    public void DropSave() {
+        gameState = new GameState();
+        Save();
+    }
+
     public void UpdateState() {
+        if (GameManager.instance.gameState.CurrentProfile == null) {
+            UI.instance.ChooseProfile();
+            return;
+        }
         if (gameState.CurrentProfile.name == "") {
             UI.instance.AskName();
             return;

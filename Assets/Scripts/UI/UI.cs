@@ -11,7 +11,7 @@ public class UI : MonoBehaviour {
     public GameObject customLevel;
     public GameObject intro;
     public GameObject difficultySelector;
-    public GameObject profileSelector;
+    public ProfileSelectionPanel profileSelector;
     public Warning warning;
     public GameObject profileName;
     public AudioSource battleMusic;
@@ -42,6 +42,11 @@ public class UI : MonoBehaviour {
 #else
         intro.SetActive(true);
 #endif
+    }
+
+    public void ChooseProfile() {
+        CloseAll();
+        profileSelector.Show();
     }
 
     public void AskName() {
@@ -78,7 +83,7 @@ public class UI : MonoBehaviour {
         newGame.SetActive(false);
         customLevel.SetActive(false);
         difficultySelector.SetActive(false);
-        profileSelector.SetActive(false);
+        profileSelector.gameObject.SetActive(false);
 
         profileName.SetActive(false);
         warning.Hide();
