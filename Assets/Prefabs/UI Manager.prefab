@@ -1582,6 +1582,7 @@ GameObject:
   - component: {fileID: 222459647338021950}
   - component: {fileID: 114776577588052202}
   - component: {fileID: 114257013257538680}
+  - component: {fileID: 114840892350909500}
   m_Layer: 5
   m_Name: Difficulty Button (2)
   m_TagString: Untagged
@@ -2014,6 +2015,7 @@ GameObject:
   - component: {fileID: 222720952307509194}
   - component: {fileID: 114914459417063410}
   - component: {fileID: 114351238894038536}
+  - component: {fileID: 114813128981286150}
   m_Layer: 5
   m_Name: Difficulty Button (3)
   m_TagString: Untagged
@@ -2032,6 +2034,7 @@ GameObject:
   - component: {fileID: 222134804679660370}
   - component: {fileID: 114215150489363950}
   - component: {fileID: 114362431314296592}
+  - component: {fileID: 114553777814405350}
   m_Layer: 5
   m_Name: Difficulty Button (1)
   m_TagString: Untagged
@@ -3180,6 +3183,7 @@ GameObject:
   - component: {fileID: 222099215902259508}
   - component: {fileID: 114282507403365410}
   - component: {fileID: 114855042178621560}
+  - component: {fileID: 114221575392974518}
   m_Layer: 5
   m_Name: Difficulty Button (5)
   m_TagString: Untagged
@@ -4541,6 +4545,7 @@ GameObject:
   - component: {fileID: 222492123372020920}
   - component: {fileID: 114262134020764734}
   - component: {fileID: 114214083396118992}
+  - component: {fileID: 114063587737824916}
   m_Layer: 5
   m_Name: Difficulty Button (4)
   m_TagString: Untagged
@@ -4640,6 +4645,7 @@ GameObject:
   - component: {fileID: 222599643551833814}
   - component: {fileID: 114642395764504766}
   - component: {fileID: 114830175106135020}
+  - component: {fileID: 114160862399163508}
   m_Layer: 5
   m_Name: Difficulty Button
   m_TagString: Untagged
@@ -5514,6 +5520,18 @@ MonoBehaviour:
   m_PreferredHeight: 29.5
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
+--- !u!114 &114063587737824916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1943324561252122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114064927849135858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -6653,6 +6671,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114160862399163508
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1974144724044712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114168462936090124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -7151,6 +7181,18 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u0423 \u0421\u0422\u0420\u0410\u0425\u0410 \u0415\u0421\u0422\u042C \u0418\u041C\u042F"
+--- !u!114 &114221575392974518
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1661743554185540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114226210804841954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10586,6 +10628,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultName: {fileID: 114506335670741534}
   inputField: {fileID: 114852546490634418}
+--- !u!114 &114553777814405350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1404376725429492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114554375389163572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12953,6 +13007,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114813128981286150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401932732101524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114813367005527692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -13160,6 +13226,18 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
+--- !u!114 &114840892350909500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1331757202245272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e576653840543689e58903e42ac829, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
 --- !u!114 &114841661652814230
 MonoBehaviour:
   m_ObjectHideFlags: 1

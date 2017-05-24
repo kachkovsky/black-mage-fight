@@ -33,7 +33,6 @@ public class UI : MonoBehaviour {
 
     void Awake() {
         instance = this;
-        difficultySelector.Awake();
     }
 
     void Start() {

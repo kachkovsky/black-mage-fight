@@ -17,7 +17,7 @@ public class GameRun
     public int levelsCompleted = 0;
 
     public string Description() {
-        string result = string.Format("{0}\nПройдено: {1}", DifficultySelectionPanel.instance.difficultyButtons[difficulty].GetComponentInChildren<Text>().text, levelsCompleted);
+        string result = string.Format("{0}\nПройдено: {1}", GameLevels.instance.difficulties[difficulty].difficultyName, levelsCompleted);
         if (continuousRun) {
             result += "\n" + triesLeft;
         }

@@ -6,4 +6,7 @@ using System;
 
 public class Difficulty : MonoBehaviour {
     public List<GameObject> levels;
+
+    public string difficultyName;
+    public string description;
 }
