@@ -7,10 +7,10 @@ using RSG;
 
 public class UI : MonoBehaviour {
     public static UI instance;
-    public GameObject newGame;
+    public MenuPanel menu;
     public GameObject customLevel;
     public GameObject intro;
-    public GameObject difficultySelector;
+    public DifficultySelectionPanel difficultySelector;
     public ProfileSelectionPanel profileSelector;
     public Warning warning;
     public GameObject profileName;
@@ -33,6 +33,7 @@ public class UI : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        difficultySelector.Awake();
     }
 
     void Start() {
@@ -56,33 +57,35 @@ public class UI : MonoBehaviour {
 
     public void AskDifficulty() {
         CloseAll();
-        difficultySelector.SetActive(true);
+        difficultySelector.gameObject.SetActive(true);
     }
 
-    void Escape() {
+    public void Escape() {
         if (intro.activeSelf) {
             intro.SetActive(false);
             return;
         }
-        if (newGame.activeSelf) {
+        if (menu.gameObject.activeSelf) {
             CloseAll();
             return;
         } 
-        NewGame();
+        Menu();
+    }
+
+    public void Menu() {
+        CloseAll();
+        menu.Show();
     }
     
     void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            Escape();
-        }
-        battleMusic.mute = newGame.activeSelf || intro.activeSelf || customLevel.activeSelf || GameManager.instance.GameOver();
+        battleMusic.mute = menu.gameObject.activeSelf || intro.activeSelf || customLevel.activeSelf || GameManager.instance.GameOver();
     }
 
     public void CloseAll() {
         floatMessage.SetActive(false);
-        newGame.SetActive(false);
+        menu.gameObject.SetActive(false);
         customLevel.SetActive(false);
-        difficultySelector.SetActive(false);
+        difficultySelector.gameObject.SetActive(false);
         profileSelector.gameObject.SetActive(false);
 
         profileName.SetActive(false);
@@ -93,16 +96,6 @@ public class UI : MonoBehaviour {
     public void Volumes() {
         CloseAll();
         volumes.SetActive(true);
-    }
-
-    public void CustomLevel() {
-        newGame.SetActive(false);
-        customLevel.SetActive(true);
-    }
-
-    public void NewGame() {
-        newGame.SetActive(true);
-        customLevel.SetActive(false);
     }
 
     public void Win() {

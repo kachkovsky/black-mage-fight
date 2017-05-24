@@ -5759,7 +5759,7 @@ MonoBehaviour:
   panicMode: {fileID: 114134053102612154}
   randomized: {fileID: 114286570907564892}
   buildMode: {fileID: 114980936722478388}
-  diffcultyButtons:
+  difficultyButtons:
   - {fileID: 114830175106135020}
   - {fileID: 114362431314296592}
   - {fileID: 114257013257538680}
@@ -6936,10 +6936,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8f44433ac6230f40a95bb722a61e5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newGame: {fileID: 1166168285011966}
+  menu: {fileID: 114545411344501786}
   customLevel: {fileID: 1752236064741814}
   intro: {fileID: 1704554421494632}
-  difficultySelector: {fileID: 1357306985572802}
+  difficultySelector: {fileID: 114084823393811646}
   profileSelector: {fileID: 114596990730934484}
   warning: {fileID: 114301718711416304}
   profileName: {fileID: 1650986282606998}
@@ -10572,6 +10572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5af558d64ed884aaaab6f6cbe08314d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  profileDescription: {fileID: 114912045298919646}
 --- !u!114 &114546859117295216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -11000,13 +11001,6 @@ MonoBehaviour:
   - {fileID: 114281687292757680}
   - {fileID: 114356489236237300}
   - {fileID: 114928079014193464}
-  diffucultyButtons:
-  - {fileID: 114830175106135020}
-  - {fileID: 114362431314296592}
-  - {fileID: 114257013257538680}
-  - {fileID: 114855042178621560}
-  - {fileID: 114351238894038536}
-  - {fileID: 114214083396118992}
 --- !u!114 &114598255157989738
 MonoBehaviour:
   m_ObjectHideFlags: 1

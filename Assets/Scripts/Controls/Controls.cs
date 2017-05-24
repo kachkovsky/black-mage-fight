@@ -59,7 +59,7 @@ public class Controls : MonoBehaviour {
             GameManager.instance.DropSaveFile();
         }
         if (Input.GetKeyDown(KeyCode.Space)) {
-            Restart();
+            GameManager.instance.UpdateState();
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {
             Cursor.visible = true;
@@ -74,6 +74,9 @@ public class Controls : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.L)) {
                 GameManager.instance.Lose();
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            UI.instance.Escape();
         }
     }
 }

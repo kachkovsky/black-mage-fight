@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class MenuPanel : MonoBehaviour
 {   
+    public Text profileDescription;
+
     public void SwitchProfile() {
         GameManager.instance.gameState.currentProfileIndex = -1;
         GameManager.instance.Save();
@@ -27,5 +29,10 @@ public class MenuPanel : MonoBehaviour
             UnityEditor.EditorApplication.isPlaying = false;
             #endif
         });
+    }
+
+    public void Show() {
+        profileDescription.text = GameManager.instance.gameState.CurrentProfile.Description();
+        gameObject.SetActive(true);
     }
 }

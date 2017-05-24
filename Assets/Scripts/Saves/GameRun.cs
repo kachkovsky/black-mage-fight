@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine.UI;
 
 [Serializable]
 public class GameRun
@@ -14,4 +15,12 @@ public class GameRun
     public int difficulty = -1;
     public int triesLeft = 5;
     public int levelsCompleted = 0;
+
+    public string Description() {
+        string result = string.Format("{0}\nПройдено: {1}", DifficultySelectionPanel.instance.difficultyButtons[difficulty].GetComponentInChildren<Text>().text, levelsCompleted);
+        if (continuousRun) {
+            result += "\n" + triesLeft;
+        }
+        return result;
+    }
 }

@@ -29,12 +29,16 @@ public class GameManager : MonoBehaviour {
         ++wins;
         this.TryPlay(winSound);
         UI.instance.Win();
+        gameState.CurrentRun.levelsCompleted++;
     }
 
     public void Lose() {
         ++losses;
         this.TryPlay(loseSound);
         UI.instance.Lose();
+        if (gameState.CurrentRun.continuousRun) {
+            gameState.CurrentRun.triesLeft--;
+        }
     }
 
     public bool GameOver() {
