@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-[ExecuteInEditMode]
 public class HealthSlider : MonoBehaviour
 {
     public Unit unit;
