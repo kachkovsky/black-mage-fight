@@ -19,6 +19,12 @@ public class ProfileSelectionPanel : MonoBehaviour
 
 
     public void SelectProfile(int id) {
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            GameManager.instance.gameState.profiles[id] = new Profile();
+            GameManager.instance.Save();
+            GameManager.instance.UpdateState();
+            return;
+        }
         GameManager.instance.gameState.currentProfileIndex = id;
         GameManager.instance.Save();
         GameManager.instance.UpdateState();
