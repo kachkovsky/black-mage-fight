@@ -4,7 +4,8 @@ using UnityEngine.UI;
 
 public class Poison : Token
 {
-    public Slider slider;
+    public static Poison instance;
+    public static Poison secondInstance;
 
     public int damage = 1;
     public int timeout = 10;
@@ -12,13 +13,20 @@ public class Poison : Token
 
     public bool dropOnDamage = true;
 
+    public bool second = false;
+
     public Color cellColor;
+
+    void Awake() {
+        if (second) {
+            secondInstance = this;
+        } else {
+            instance = this;
+        }
+    }
 
     void Start() {
         GameManager.instance.onHeroMove += HeroMoved;
-        slider.maxValue = timeout;
-        slider.value = spent;
-        slider.onValueChanged.Invoke(0);
     }
 
     private void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
@@ -26,8 +34,6 @@ public class Poison : Token
             return;
         }
         ++spent;
-        slider.maxValue = timeout;
-        slider.value = spent;
         if (spent >= timeout) {
             hero.Hit(damage);
             if (dropOnDamage) {

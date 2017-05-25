@@ -131,7 +131,9 @@ public class GameManager : MonoBehaviour {
         currentLevel.SetActive(true);
         Controls.instance.activeUnit = Hero.instance;
         UI.instance.CloseAll();
-        UI.instance.UpdateHUD();
+        TimeManager.Wait(0).Then(() => {
+            UI.instance.UpdateHUD();
+        });
 
         Board.instance.Restore();
 

@@ -16,9 +16,15 @@ public class UI : MonoBehaviour {
     public GameObject profileName;
     public AudioSource battleMusic;
 
-    public HealthSlider heroHealthSlider;
-    public HealthSlider blackMageHealthSlider;
-    public HealthSlider gambochkaHealthSlider;
+    public GameObject heroHealth;
+    public GameObject blackMageHealth;
+    public GameObject statuesCounter;
+    public GameObject poisonCounter;
+    public GameObject secondPoisonCounter;
+    public GameObject bombCreationCounter;
+    public GameObject evilEyesCreationCounter;
+    public GameObject statuesCreationCounter;
+    public GameObject fireExtinguisherCounter;
 
     public GameObject floatMessage;
     public Text floatMessageText;
@@ -71,10 +77,6 @@ public class UI : MonoBehaviour {
         CloseAll();
         menu.Show();
     }
-    
-    void Update() {
-        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
-    }
 
     public void CloseAll() {
         floatMessage.SetActive(false);
@@ -108,9 +110,42 @@ public class UI : MonoBehaviour {
         blur.ForEach(b => b.enabled = false);
         winMessage.SetActive(false);
         loseMessage.SetActive(false);
-        heroHealthSlider.unit = Hero.instance;
-        blackMageHealthSlider.unit = BlackMage.instance;
-        gambochkaHealthSlider.unit = Gambochka.instance;
+
+        statuesCounter.SetActive(StatuesCounter.instance);
+        poisonCounter.SetActive(Poison.instance);
+        secondPoisonCounter.SetActive(Poison.secondInstance);
+        bombCreationCounter.SetActive(BombSetter.instance);
+        statuesCreationCounter.SetActive(StatueSetter.instance);
+        fireExtinguisherCounter.SetActive(false);
+        evilEyesCreationCounter.SetActive(false);
+    }
+
+    public void Update() {
+        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
+
+        if (Hero.instance != null) {
+            heroHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Hero.instance.health, Hero.instance.maxHealth);
+        }
+        if (BlackMage.instance != null) {
+            blackMageHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BlackMage.instance.health, BlackMage.instance.maxHealth);
+        }
+        if (BombSetter.instance) {
+            bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
+        }        
+        if (Poison.instance) {
+            poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.timeout-Poison.instance.spent, Poison.instance.timeout);
+        }     
+        if (Poison.secondInstance) {
+            secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.timeout-Poison.secondInstance.spent, Poison.secondInstance.timeout);
+        }
+        if (StatueSetter.instance) {
+            var text = statuesCreationCounter.GetComponentInChildren<Text>();
+            var counter = StatueSetter.instance.GetComponent<PeriodicCounter>();
+            text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
+        }    
+        if (StatuesCounter.instance) {
+            statuesCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", StatuesCounter.instance.counter.value, StatuesCounter.instance.max);
+        }    
     }
 
     public IPromise Confirm(string text) {
