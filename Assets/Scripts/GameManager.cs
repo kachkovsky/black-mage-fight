@@ -157,6 +157,9 @@ public class GameManager : MonoBehaviour {
                 return;
             }
             gameState.CurrentRun.triesLeft--;
+            if (gameState.CurrentRun.levelsCompleted == 0) {
+                gameState.CurrentRun.triesLeft = 4;
+            }
         }
         lastLevel = level;
         Clear();

@@ -112,7 +112,9 @@ public class UI : MonoBehaviour {
         blur.ForEach(b => b.enabled = false);
         winMessage.SetActive(false);
         loseMessage.SetActive(false);
+    }
 
+    public void Update() {
         statuesCounter.SetActive(StatuesCounter.instance);
         poisonCounter.SetActive(Poison.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
@@ -120,10 +122,8 @@ public class UI : MonoBehaviour {
         statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
-        ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun.continuousRun);
-    }
+        ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
-    public void Update() {
         battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 
         if (Hero.instance != null) {
