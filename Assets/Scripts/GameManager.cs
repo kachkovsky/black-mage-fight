@@ -35,9 +35,9 @@ public class GameManager : MonoBehaviour {
         this.TryPlay(winSound);
         UI.instance.Win();
         gameState.CurrentRun.levelsCompleted++;
-//        if (gameState.CurrentRun.continuousRun) {
-//            gameState.CurrentRun.triesLeft++;
-//        } 
+        if (gameState.CurrentRun.continuousRun) {
+            gameState.CurrentRun.triesLeft++;
+        } 
         Save();
     }
 
@@ -46,9 +46,6 @@ public class GameManager : MonoBehaviour {
         ++losses;
         this.TryPlay(loseSound);
         UI.instance.Lose();
-        if (gameState.CurrentRun.continuousRun) {
-            gameState.CurrentRun.triesLeft--;
-        }
         Save();
     }
 
@@ -154,6 +151,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RunLevel(GameObject level, bool restarted = false) {
+        if (gameState.CurrentRun.continuousRun) {
+            if (gameState.CurrentRun.triesLeft <= 0) {
+                FailGame();
+                return;
+            }
+            gameState.CurrentRun.triesLeft--;
+        }
         lastLevel = level;
         Clear();
         currentLevel = Instantiate(level);
