@@ -34,12 +34,13 @@ public class UI : MonoBehaviour {
     public GameObject winMessage;
 
 
-    public GameObject volumes;
+    public SoundControls volumes;
 
     public List<Blur> blur;
 
     void Awake() {
         instance = this;
+        volumes.Init();
     }
 
     void Start() {
@@ -89,12 +90,12 @@ public class UI : MonoBehaviour {
         profileName.SetActive(false);
         warning.Hide();
         soloWarning.Hide();
-        volumes.SetActive(false);
+        volumes.gameObject.SetActive(false);
     }
 
     public void Volumes() {
         CloseAll();
-        volumes.SetActive(true);
+        volumes.gameObject.SetActive(true);
     }
 
     public void Win() {

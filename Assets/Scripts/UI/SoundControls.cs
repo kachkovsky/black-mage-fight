@@ -13,27 +13,40 @@ public class SoundControls : MonoBehaviour
     public Slider soundsSlider;
     public Slider musicSlider;
 
+    public AudioSource sampleSound;
+
     float soundsVolume;
     float musicVolume;
 
-    void Awake() {
+    bool inited;
+
+    public void Init() {
+        Debug.LogFormat("Init");
         mixer.GetFloat("SoundsVolume", out soundsVolume);
         mixer.GetFloat("MusicVolume", out musicVolume);
         soundsSlider.value = PlayerPrefs.GetFloat("SoundsVolume", 1f);
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
+        musicSlider.value = PlayerPrefs.GetFloat("SCMusicVolume", 1f);
 
         soundsToggle.isOn = PlayerPrefs.GetInt("Sounds", 1) == 1;
-        musicToggle.isOn = PlayerPrefs.GetInt("Music", 1) == 1;
-        Refresh();
+        musicToggle.isOn = PlayerPrefs.GetInt("SCMusic", 1) == 1;
+
+        inited = true;
+        TimeManager.Wait(0).Then(() => {
+            Refresh();
+        });
     }
 
     public void Refresh() {
+        Debug.LogFormat("Refresh");
+        if (!inited) {
+            return;
+        }
         mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume + Mathf.Log(soundsSlider.value) * 10 : -80);
         mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume + Mathf.Log(musicSlider.value) * 10 : -80);
         PlayerPrefs.SetFloat("SoundsVolume", soundsSlider.value);
-        PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
+        PlayerPrefs.SetFloat("SCMusicVolume", musicSlider.value);
         PlayerPrefs.SetInt("Sounds", soundsToggle.isOn ? 1 : 0);
-        PlayerPrefs.SetInt("Music", musicToggle.isOn ? 1 : 0);
-        Hero.instance.moveSound.Play();
+        PlayerPrefs.SetInt("SCMusic", musicToggle.isOn ? 1 : 0);
+        sampleSound.Play();
     }
 }
