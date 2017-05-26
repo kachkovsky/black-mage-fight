@@ -63,9 +63,9 @@ public class Controls : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Space) && GameManager.instance.GameOver()) {
             if (GameManager.instance.Won()) {
-                GameManager.instance.UpdateState();
+                GameManager.instance.ConfirmWin();
             } else {
-                GameManager.instance.Restart();
+                GameManager.instance.ConfirmLose();
             }
         }
         if (Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0) {

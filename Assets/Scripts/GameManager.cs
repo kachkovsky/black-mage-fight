@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour {
     public AudioSource winSound;
 
     public Intermission ending;
+    public Intermission badEnding;
 
     public event Action<Unit, Cell, Cell, IntVector2> onHeroMove = (h, a, b, d) => { };
 
@@ -34,6 +35,10 @@ public class GameManager : MonoBehaviour {
         this.TryPlay(winSound);
         UI.instance.Win();
         gameState.CurrentRun.levelsCompleted++;
+//        if (gameState.CurrentRun.continuousRun) {
+//            gameState.CurrentRun.triesLeft++;
+//        } 
+        Save();
     }
 
     public void Lose() {
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour {
         if (gameState.CurrentRun.continuousRun) {
             gameState.CurrentRun.triesLeft--;
         }
+        Save();
     }
 
     public bool GameOver() {
@@ -68,6 +74,22 @@ public class GameManager : MonoBehaviour {
 
         } else {
             gameState = new GameState();
+        }
+    }
+
+    public void ConfirmWin() {
+        UpdateState();
+    }
+
+    public void ConfirmLose() {
+        if (gameState.CurrentRun.continuousRun) {
+            if (gameState.CurrentRun.triesLeft > 0) {
+                Restart();
+            } else {
+                FailGame();
+            }
+        } else {
+            Restart();
         }
     }
 
@@ -99,6 +121,13 @@ public class GameManager : MonoBehaviour {
         ending.Show().Then(() => {
             gameState.CurrentProfile.completedRuns.Add(run);
             gameState.CurrentProfile.currentRuns.Remove(run);
+            UpdateState();
+        });
+    }
+
+    void FailGame() {
+        badEnding.Show().Then(() => {
+            gameState.CurrentProfile.currentRuns.Remove(gameState.CurrentRun);
             UpdateState();
         });
     }
