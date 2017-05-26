@@ -28,11 +28,12 @@ public class SoundControls : MonoBehaviour
     }
 
     public void Refresh() {
-        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume * soundsSlider.value : -80);
-        mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume * musicSlider.value : -80);
+        mixer.SetFloat("SoundsVolume", soundsToggle.isOn ? soundsVolume + Mathf.Log(soundsSlider.value) * 10 : -80);
+        mixer.SetFloat("MusicVolume", musicToggle.isOn ? musicVolume + Mathf.Log(musicSlider.value) * 10 : -80);
         PlayerPrefs.SetFloat("SoundsVolume", soundsSlider.value);
         PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
         PlayerPrefs.SetInt("Sounds", soundsToggle.isOn ? 1 : 0);
         PlayerPrefs.SetInt("Music", musicToggle.isOn ? 1 : 0);
+        Hero.instance.moveSound.Play();
     }
 }
