@@ -116,8 +116,8 @@ public class UI : MonoBehaviour {
         secondPoisonCounter.SetActive(Poison.secondInstance);
         bombCreationCounter.SetActive(BombSetter.instance);
         statuesCreationCounter.SetActive(StatueSetter.instance);
-        fireExtinguisherCounter.SetActive(false);
-        evilEyesCreationCounter.SetActive(false);
+        fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
+        evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
     }
 
     public void Update() {
@@ -143,9 +143,17 @@ public class UI : MonoBehaviour {
             var counter = StatueSetter.instance.GetComponent<PeriodicCounter>();
             text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
         }    
+        if (EvilEyesSetter.instance) {
+            var text = evilEyesCreationCounter.GetComponentInChildren<Text>();
+            var counter = EvilEyesSetter.instance.periodicCounter;
+            text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
+        }   
         if (StatuesCounter.instance) {
             statuesCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", StatuesCounter.instance.counter.value, StatuesCounter.instance.max);
-        }    
+        }      
+        if (FireExtinguisherCounter.instance) {
+            fireExtinguisherCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", FireExtinguisherCounter.instance.counter.value, FireExtinguisherCounter.instance.counter.maxValue);
+        }   
     }
 
     public IPromise Confirm(string text) {
