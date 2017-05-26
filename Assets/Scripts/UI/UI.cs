@@ -157,7 +157,7 @@ public class UI : MonoBehaviour {
         if (FireExtinguisherCounter.instance) {
             fireExtinguisherCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", FireExtinguisherCounter.instance.counter.value, FireExtinguisherCounter.instance.counter.maxValue);
         }      
-        if (GameManager.instance.gameState.CurrentRun.continuousRun) {
+        if (GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun) {
             ankhCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}</b>", GameManager.instance.gameState.CurrentRun.triesLeft);
         }   
     }
