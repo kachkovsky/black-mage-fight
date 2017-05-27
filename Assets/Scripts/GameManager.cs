@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour {
         Save();
     }
 
-    bool LevelIsRunning() {
+    public bool LevelIsRunning() {
         return Hero.instance != null && BlackMage.instance != null;
     }
 

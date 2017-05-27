@@ -24,6 +24,9 @@ public class Unit : Figure
 
     public virtual void Hit(int damage, bool silent = false) {
         health -= damage;
+        if (health < 0) {
+            health = 0;
+        }
 
         if (!silent) {
             this.TryPlay(damage >= injuredDamage ? injuredSound : hitSound);

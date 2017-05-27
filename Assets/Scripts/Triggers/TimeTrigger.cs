@@ -7,8 +7,10 @@ public class TimeTrigger : Trigger
     float lastRun;
 
     void Update() {
-        if (lastRun + runEvery < TimeManager.Time()) {
-            Run();
+        if (GameManager.instance.LevelIsRunning()) {
+            if (lastRun + runEvery < TimeManager.Time()) {
+                Run();
+            }
         }
     }
 
