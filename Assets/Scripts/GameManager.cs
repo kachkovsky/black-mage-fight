@@ -107,11 +107,11 @@ public class GameManager : MonoBehaviour {
     }
 
     void ContinueGame(GameRun run) {
-        if (run.levelsCompleted == GameLevels.instance.difficulties[run.difficulty].levels.Count) {
+        if (run.levelsCompleted == GameLevels.instance.commonLevels.Count) {
             FinishGame(run);
             return;
         }
-        RunLevel(GameLevels.instance.difficulties[run.difficulty].levels[run.levelsCompleted]);
+        RunLevel(GameLevels.instance.commonLevels[run.levelsCompleted].gameObject);
     }
 
     void FinishGame(GameRun run) {
@@ -180,6 +180,8 @@ public class GameManager : MonoBehaviour {
         });
 
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run());
+        BlackMage.instance.maxHealth += 5 * (gameState.CurrentRun.difficulty-4);
+        BlackMage.instance.health += 5 * (gameState.CurrentRun.difficulty-4);
 
         var intro = currentLevel.GetComponentsInChildren<Intermission>().FirstOrDefault(i => !i.ending);
         if (intro != null)

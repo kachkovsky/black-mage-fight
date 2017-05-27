@@ -7,6 +7,8 @@ using System;
 public class GameLevels : MonoBehaviour {
     public List<Difficulty> difficulties;
 
+    public List<Level> commonLevels;
+
     public static GameLevels instance;
 
     void Awake() {
