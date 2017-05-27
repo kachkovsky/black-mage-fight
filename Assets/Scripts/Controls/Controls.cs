@@ -81,6 +81,14 @@ public class Controls : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.L)) {
                 GameManager.instance.Lose();
             }
+            if (Input.GetKeyDown(KeyCode.LeftBracket)) {
+                GameManager.instance.gameState.CurrentRun.levelsCompleted--;
+                GameManager.instance.UpdateState();
+            }
+            if (Input.GetKeyDown(KeyCode.RightBracket)) {
+                GameManager.instance.gameState.CurrentRun.levelsCompleted++;
+                GameManager.instance.UpdateState();
+            }
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             UI.instance.Escape();

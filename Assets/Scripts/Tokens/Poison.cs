@@ -34,6 +34,9 @@ public class Poison : Token
             return;
         }
         ++spent;
+        if (spent > timeout) {
+            spent = timeout;
+        }
         if (spent >= timeout) {
             hero.Hit(damage);
             if (dropOnDamage) {
