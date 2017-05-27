@@ -9,6 +9,8 @@ public class GameLevels : MonoBehaviour {
 
     public List<Level> commonLevels;
 
+    public GameObject commonObjects;
+
     public static GameLevels instance;
 
     void Awake() {

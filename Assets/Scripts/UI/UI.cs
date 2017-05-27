@@ -26,6 +26,7 @@ public class UI : MonoBehaviour {
     public GameObject statuesCreationCounter;
     public GameObject fireExtinguisherCounter;
     public GameObject ankhCounter;
+    public GameObject timeCounter;
 
     public GameObject floatMessage;
     public Text floatMessageText;
@@ -122,6 +123,7 @@ public class UI : MonoBehaviour {
         statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
+        timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
         battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
@@ -159,7 +161,10 @@ public class UI : MonoBehaviour {
         }      
         if (GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun) {
             ankhCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}</b>", GameManager.instance.gameState.CurrentRun.triesLeft);
-        }   
+        }     
+        if (TimeCounter.instance) {
+            timeCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", TimeCounter.instance.counter.maxValue-TimeCounter.instance.counter.value, TimeCounter.instance.counter.maxValue);
+        }  
     }
 
     public IPromise Confirm(string text) {

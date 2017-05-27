@@ -165,6 +165,9 @@ public class GameManager : MonoBehaviour {
         Clear();
         currentLevel = Instantiate(level);
         currentLevel.SetActive(true);
+        var commonObjects = Instantiate(GameLevels.instance.commonObjects);
+        commonObjects.transform.SetParent(currentLevel.transform);
+        commonObjects.SetActive(true);
         Controls.instance.activeUnit = Hero.instance;
         UI.instance.CloseAll();
         TimeManager.Wait(0).Then(() => {
