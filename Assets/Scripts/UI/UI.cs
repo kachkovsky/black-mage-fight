@@ -46,11 +46,6 @@ public class UI : MonoBehaviour {
 
     void Start() {
         CloseAll();
-#if UNITY_EDITOR
-        //intro.SetActive(true);
-#else
-        intro.SetActive(true);
-#endif
     }
 
     public void ChooseProfile() {

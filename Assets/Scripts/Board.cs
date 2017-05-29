@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Linq;
 using System;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
@@ -87,12 +89,17 @@ public class Board : MonoBehaviour {
     public void Restore() {
         FindObjectsOfType<Cell>().ForEach(c => {
             c.figures = FindObjectsOfType<Figure>().Where(f => f.Position == c && f.gameObject.activeInHierarchy).ToList();
+
+            #if UNITY_EDITOR
             if (!EditorApplication.isPlaying) {
                 EditorUtility.SetDirty(c);
             }
+            #endif
         });
+        #if UNITY_EDITOR
         if (!EditorApplication.isPlaying) {
             UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();
         }
+        #endif
     }
 }

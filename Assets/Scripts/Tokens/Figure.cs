@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using UnityEngine.Events;
 using System;
 using RSG;
@@ -88,7 +90,9 @@ public class Figure : Token
     [ContextMenu("Place")]
     public void Place() {
         position.MoveHere(this);
+#if UNITY_EDITOR
         EditorUtility.SetDirty(this);
+#endif
     }
 
     public void Blink(Func<Figure, bool> occupies = null) {

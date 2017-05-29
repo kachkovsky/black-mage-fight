@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
-using UnityEditor;
 using UnityEngine.Events;
 
 public class EvilEye : Figure
