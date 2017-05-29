@@ -6,6 +6,27 @@ using RSG;
 
 public class ChargingHero : Hero
 {
+    public Trail trailSample;
+
+    IPromise PlayMoveAnimation(Cell from, Cell to) {
+        Vector3 move = (to.transform.position - from.transform.position);
+        int steps = 2 * from.Distance(to);
+        Vector3 step = move / steps;
+
+        for (int i = 1; i < steps; i++) {
+            var j = i;
+            TimeManager.Wait(0.05f * i / steps).Then(() => {
+                var trail = Instantiate(trailSample);
+                trail.gameObject.SetActive(true);
+                trail.transform.position = from.transform.position + j * step + Vector3.back;
+                trail.ChangeAlpha(1f * j / steps); 
+                Destroy(trail.gameObject, 0.1f * j / steps);
+            });
+        }
+
+        return Promise.Resolved();
+    }
+
     public override IPromise<bool> MoveTo(IntVector2 direction) {
         var cell = Position;
         var next = cell;
@@ -27,6 +48,7 @@ public class ChargingHero : Hero
             var oldPosition = Position;
             cell.MoveHere(this);
             moveSound.Play();
+            PlayMoveAnimation(oldPosition, Position);
             GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
             return Promise<bool>.Resolved(true);
         } else {

@@ -37,7 +37,6 @@ public class SoundControls : MonoBehaviour
     }
 
     public void Refresh() {
-        Debug.LogFormat("Refresh");
         if (!inited) {
             return;
         }
