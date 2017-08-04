@@ -10,6 +10,8 @@ public class Counter : Token
 
     public UnityEvent onMax;
     public UnityEvent onIncrement;
+    public UnityEvent onZero;
+    public UnityEvent onDecrement;
 
     public void Increment() {
         if (value == maxValue) {
@@ -27,6 +29,10 @@ public class Counter : Token
             return;
         }
         value -= 1;
+        onDecrement.Invoke();
+        if (value == 0) {
+            onZero.Invoke();
+        }
     }
 
     public void Drop() {
@@ -35,5 +41,10 @@ public class Counter : Token
 
     public void ShowCounter() {
         UI.instance.ShowMessage(string.Format("{0}/{1}", value, maxValue));
+    }
+
+    public void UpdateText(Text text) {
+        var format = "{0}";
+        text.text = string.Format(format, value);
     }
 }
