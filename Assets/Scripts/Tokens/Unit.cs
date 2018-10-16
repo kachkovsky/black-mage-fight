@@ -46,9 +46,12 @@ public class Unit : Figure
             health = 0;
         }
 
-        if (!silent) {
-            this.TryPlay(damage >= injuredDamage ? injuredSound : hitSound);
-        }
+		if (damage > 0) {
+
+			if (!silent) {
+				this.TryPlay(damage >= injuredDamage ? injuredSound : hitSound);
+			}
+		}
     }
 
     public void Heal(int heal) {
