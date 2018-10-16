@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour {
 
     public static GameManager instance;
 
+    public GameObject startLevel;
+
     public GameState gameState;
 
     GameObject lastLevel;
@@ -132,6 +134,9 @@ public class GameManager : MonoBehaviour {
     void Start() {
         Load();
         UpdateState();
+        if (startLevel != null) {
+            startLevel.GetComponent<Level>().Run();
+        }
     }
     
     public void Clear() {

@@ -7,20 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using RSG;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : Singletone<TimeManager>
 {
-    public static TimeManager instance;
-
-    PromiseTimer promiseTimer = new PromiseTimer();
+	PromiseTimer promiseTimer = new PromiseTimer();
 
     float lastUpdateTime = 0;
 
     public static float Time() {
         return UnityEngine.Time.time;
-    }
-
-    public void Awake() {
-        instance = this;
     }
 
     public void Update() {

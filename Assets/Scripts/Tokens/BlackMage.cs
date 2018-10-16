@@ -14,8 +14,13 @@ public class BlackMage : Unit
         instance = this;
     }
 
-    public void Hit() {
-        Hit(hitDamage, true);
+	public void Hit() {
+		Hit(hitDamage, true);
+
+		if (Invulnerable) {
+			return;
+		}
+
         if (health > 5) {
             hitSound.time = 0.25f;
             hitSound.Play();

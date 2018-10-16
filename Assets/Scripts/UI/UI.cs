@@ -121,7 +121,7 @@ public class UI : MonoBehaviour {
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
-        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
+        //battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 
         if (Hero.instance != null) {
             heroHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Hero.instance.health, Hero.instance.maxHealth);

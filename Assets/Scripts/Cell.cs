@@ -50,8 +50,10 @@ public class Cell : MonoBehaviour {
         var figuresAtMoveTime = figures.Where(x => true).ToList();
         f.SetPosition(this); 
         figuresAtMoveTime.ForEach(f2 => {
-            f2.Collide(f);
-            f.Collide(f2);
+			if (f2.gameObject.activeSelf) {
+	            f2.Collide(f);
+	            f.Collide(f2);
+			}
         });
     }
 

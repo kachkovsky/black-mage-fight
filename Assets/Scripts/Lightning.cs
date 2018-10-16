@@ -19,7 +19,7 @@ public class Lightning : MonoBehaviour {
     void Awake() {
         lines = GetComponentsInChildren<LineRenderer>().ToList();  
         for (int i = 0; i < lines.Count; i++) {
-            lines[i].numPositions = n+1;
+            lines[i].positionCount = n+1;
             List<Vector3> positions = new List<Vector3>();
             for (int j = 0; j <= n; j++) {
                 Vector3 p = from + (to-from)*j/n;

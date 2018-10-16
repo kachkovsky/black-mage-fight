@@ -113,9 +113,11 @@ public class HeroWithShotgun : Hero
             f.gameObject.SetActive(false);
             Destroy(f.gameObject);
         }
-        var onHit = f.GetComponent<OnShotgunHit>();
-        if (onHit != null) {
-            onHit.Run();
-        }
+		if (f.gameObject.activeSelf) {
+			var onHit = f.GetComponent<OnShotgunHit>();
+			if (onHit != null) {
+				onHit.Run();
+			}
+		}
     }
 }

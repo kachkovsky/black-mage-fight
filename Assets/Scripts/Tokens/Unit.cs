@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine.Events;
 
 public class Unit : Figure
 {
@@ -12,6 +15,16 @@ public class Unit : Figure
     public int health;
     public int maxHealth;
 
+	public List<Buff> buffs;
+
+	public UnityEvent onHitInvulnerable;
+
+	public bool Invulnerable {
+		get {
+			return buffs.Any(b => b is Invulnerability);
+		}
+	}
+
     public bool Dead {
         get {
             return health <= 0;
@@ -23,6 +36,11 @@ public class Unit : Figure
     }
 
     public virtual void Hit(int damage, bool silent = false) {
+		if (Invulnerable) {
+			onHitInvulnerable.Invoke();
+			return;
+		}
+
         health -= damage;
         if (health < 0) {
             health = 0;
