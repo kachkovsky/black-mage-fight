@@ -16,6 +16,7 @@ public class UI : MonoBehaviour {
     public GameObject profileName;
     public AudioSource battleMusic;
 
+	[Space]
     public GameObject heroHealth;
     public GameObject blackMageHealth;
     public GameObject statuesCounter;
@@ -27,7 +28,10 @@ public class UI : MonoBehaviour {
     public GameObject fireExtinguisherCounter;
     public GameObject ankhCounter;
     public GameObject timeCounter;
+	public GameObject keysUI;
+	public List<KeyImage> keyImages;
 
+	[Space]
     public GameObject floatMessage;
     public Text floatMessageText;
 
@@ -46,6 +50,8 @@ public class UI : MonoBehaviour {
 
     void Start() {
         CloseAll();
+
+		keysUI.SetActive(false);
     }
 
     public void ChooseProfile() {
@@ -120,6 +126,9 @@ public class UI : MonoBehaviour {
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
+
+
+		keysUI.SetActive(KeyCounter.instance);
 
         //battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 

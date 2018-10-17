@@ -27,6 +27,10 @@ public class Figure : Token
     public virtual void AfterEnterCell() {
     }
 
+	public bool Marked(Mark mark) {
+		return GetComponents<Marker>().Any(m => m.mark == mark);
+	}
+
     public void SetPosition(Cell cell) {
         if (position != null) {
             BeforeLeaveCell();
