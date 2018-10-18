@@ -13,7 +13,11 @@ public class Figure : Token
     [SerializeField]
     private Cell position;
 
-    public FigureEvent onCollide;
+	public FigureEvent onCollide;
+	public IntVector2Event onPushed;
+
+	public UnityEvent beforeMove;
+	public UnityEvent afterMove;
 
     public AudioSource swapSound;
 
@@ -22,9 +26,11 @@ public class Figure : Token
     }
 
     public virtual void BeforeLeaveCell() {
+		beforeMove.Invoke();
     }
 
     public virtual void AfterEnterCell() {
+		afterMove.Invoke();
     }
 
 	public bool Marked(Mark mark) {
@@ -87,6 +93,7 @@ public class Figure : Token
         if (cell == null) {
             return Promise.v(false);
         }
+		cell.figures.ForEach(f => f.onPushed.Invoke(direction));
         cell.MoveHere(this);
         return Promise.v(true);
     }

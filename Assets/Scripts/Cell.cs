@@ -57,8 +57,8 @@ public class Cell : MonoBehaviour {
         });
     }
 
-    public Cell ToDirection(IntVector2 direction) {
-        return Board.instance.GetCell(x + direction.x, y + direction.y);
+	public Cell ToDirection(IntVector2 direction, int distance = 1) {
+		return Board.instance.GetCell(x + direction.x * distance, y + direction.y * distance);
     }
 
     public Cell Right() {

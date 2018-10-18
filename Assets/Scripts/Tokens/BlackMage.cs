@@ -14,19 +14,19 @@ public class BlackMage : Unit
         instance = this;
     }
 
+	public override void Hit(int damage, bool silent = false) {
+		base.Hit(damage, silent);
+
+		if (health > 5) {
+			hitSound.time = 0.25f;
+			hitSound.Play();
+		} else if (health > 0) {
+			this.TryPlay(hitSoundLowHP);
+		}
+	}
+
 	public void Hit() {
 		Hit(hitDamage, true);
-
-		if (Invulnerable) {
-			return;
-		}
-
-        if (health > 5) {
-            hitSound.time = 0.25f;
-            hitSound.Play();
-        } else if (health > 0) {
-            this.TryPlay(hitSoundLowHP);
-        }
     }
 
     public void ResetDamageTokens() {
