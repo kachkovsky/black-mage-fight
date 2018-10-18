@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using System.Linq;
+using RSG;
 
 public class Letter : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Letter : MonoBehaviour
 	public LetterChecker checker;
 
 	public UnityEvent afterSuccess;
+
+	public Promise success;
 
 	void Awake() {
 		figure = GetComponent<Figure>();
@@ -24,7 +27,14 @@ public class Letter : MonoBehaviour
 		checker.Change().Then(() => Controls.instance.Unlock(this)).Done();
 	}
 
-	public void Success() {
-		TimeManager.Wait(0).Then(() => afterSuccess.Invoke()).Done();
+	public IPromise Success() {
+		if (success == null) {
+			success = new Promise();
+			TimeManager.Wait(0).Then(() => afterSuccess.Invoke()).Then(() => {
+				success.Resolve();
+				success = null;
+			}).Done();
+		}
+		return success;
 	}
 }
