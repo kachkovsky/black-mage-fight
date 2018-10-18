@@ -15,7 +15,7 @@ public class BlackMage : Unit
     }
 
 	public override void Hit(int damage, bool silent = false) {
-		base.Hit(damage, silent);
+		base.Hit(damage, true);
 
 		if (health > 5) {
 			hitSound.time = 0.25f;
