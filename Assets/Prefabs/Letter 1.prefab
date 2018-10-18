@@ -260,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figure: {fileID: 114825462482249208}
+  ignoreWithMark:
+  - {fileID: 114543220808466862, guid: 17486c9836d204b029999ed987a6e26a, type: 2}
 --- !u!114 &114825462482249208
 MonoBehaviour:
   m_ObjectHideFlags: 1
