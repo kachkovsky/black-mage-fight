@@ -12,28 +12,44 @@ public class LetterChecker : MonoBehaviour
 
 	Promise check;
 
-	void CheckPosition(int x, int y) {
+	List<Letter> CheckPosition(int x, int y, int index) {
 		List<Letter> result = new List<Letter>();
-		for (int i = 0; i < letterMarks.Count; i++) {
-			if (!Board.instance.Inside(x, y + i)) {
-				return;
-			}
-			var letter = Board.instance.cells[x, y + i].figures.FirstOrDefault(f => f.Marked(letterMarks[i]));
-			if (letter == null) {
-				return;
-			}
-			result.Add(letter.GetComponent<Letter>());
+		if (!Board.instance.Inside(x, y)) {
+			return result;
 		}
-		onSuccess.Invoke();
-		result.ForEach(l => l.Success());
+		var letterFigure = Board.instance.cells[x, y].figures.FirstOrDefault(f => f.Marked(letterMarks[index]));
+		if (letterFigure == null) {
+			return result;
+		}
+		var letter = letterFigure.GetComponent<Letter>();
+		if (index == letterMarks.Count - 1) {
+			result.Add(letter);
+			return result;
+		}
+		result.AddRange(CheckPosition(x + 1, y, index + 1));
+		result.AddRange(CheckPosition(x, y + 1, index + 1));
+		result.AddRange(CheckPosition(x - 1, y, index + 1));
+		result.AddRange(CheckPosition(x, y - 1, index + 1));
+		if (result.Count == 0) {
+			result.Clear();
+		} else {
+			result.Add(letter);
+		}
+		return result;
+	}
+
+	List<Letter> CheckPosition(int x, int y) {
+		return CheckPosition(x, y, 0);
 	}
 
 	public void Check() {
+		var result = new List<Letter>();
 		for (int i = 0; i < Board.instance.cells.GetLength(0); i++) {
 			for (int j = 0; j < Board.instance.cells.GetLength(1); j++) {
-				CheckPosition(i, j);
+				result.AddRange(CheckPosition(i, j));
 			}
 		}
+		result.ForEach(l => l.Success());
 	}
 
 	public IPromise Change() {

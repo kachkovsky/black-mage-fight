@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 114738776878812840}
   - component: {fileID: 114707448098305816}
   - component: {fileID: 114315729768868516}
+  - component: {fileID: 114293487014420070}
   m_Layer: 0
   m_Name: Letter 1
   m_TagString: Untagged
@@ -127,6 +128,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114293487014420070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346649807742094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6a95d1c5dfb504882ad72bf35f24f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  damage: 1
 --- !u!114 &114315729768868516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,6 +225,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114836192947097100}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 114293487014420070}
         m_MethodName: Run
         m_Mode: 1
         m_Arguments:
