@@ -8,11 +8,11 @@
 Shader "SpriteRenderer/Recolor" {
 Properties {
     _MainTex ("Base (RGB) Trans (A)", 2D) = "white" {}
-	_Red ("Red", Vector) = (1,0.5,0.5,0.5)
-	_Green ("Green", Vector) = (0.5,1,0.5,0.5)
-	_Blue ("Blue", Vector) = (0.5,0.5,1,0.5)
-	_Alpha ("Alpha", Vector) = (0.5,0.5,0.5,1)
-	_Const ("Const", Vector) = (0.5,0.5,0.5,0.5)
+	_Red ("Red", Vector) = (1,0,0,0)
+	_Green ("Green", Vector) = (0,1,0,0)
+	_Blue ("Blue", Vector) = (0,0,1,0)
+	_Alpha ("Alpha", Vector) = (0,0,0,1)
+	_Const ("Const", Vector) = (0,0,0,0)
 }
 
 SubShader {
@@ -77,17 +77,7 @@ SubShader {
 				fixed4 _blue = _Blue;
 				fixed4 _alpha = _Alpha;
 
-//				_const = fixed4(0.5,0.5,0.5,0.5);
-//	            _red = fixed4(1,0.5,0.5,0.5);
-//	            _green = fixed4(0.5,1,0.5,0.5);
-//	            _blue = fixed4(0.5,0.5,1,0.5);
-	            //_alpha = fixed4(0.5,0.5,0.5,1);
-
-				fixed4 c = ((_const-0.5) + d.r * (_red-0.5) + d.g * (_green-0.5) + d.b * (_blue-0.5) + d.a * (_alpha-0.5)) * 2;
-
-				//c = (fixed4(0,0,0,0)) + d.r * (fixed4(1,0,0,0)) + d.g * (fixed4(0,1,0,0)) + d.b * (fixed4(0,0,1,0)) + d.a * (fixed4(0,0,0,1));
-				//c = ((fixed4(0,0,0,0)) + d.r * (fixed4(0.5,0,0,0)) + d.g * (fixed4(0,0.5,0,0)) + d.b * (fixed4(0,0,0.5,0)) + d.a * (fixed4(0,0,0,0.5))) * 2;
-				//c = ((fixed4(0.5,0.5,0.5,0.5)-0.5) + d.r * (fixed4(1,0.5,0.5,0.5)-0.5) + d.g * (fixed4(0.5,1,0.5,0.5)-0.5) + d.b * (fixed4(0.5,0.5,1,0.5)-0.5) + d.a * (fixed4(0.5,0.5,0.5,1)-0.5)) * 2;
+				fixed4 c = _const + d.r * _red + d.g * _green + d.b * _blue + d.a * _alpha;
 
 		        c.a *= d.a;
 		        c.rgb *= c.a;

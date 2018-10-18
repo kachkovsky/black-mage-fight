@@ -17,8 +17,9 @@ public class AnimationsManager : MonoBehaviour
         instance = this;
     }
 
-    public void RunAnimation(Func<IPromise> animation) {
+	public IPromise RunAnimation(Func<IPromise> animation) {
         currentAnimations = currentAnimations.Then(animation);
+		return currentAnimations;
     }
 
     public static IPromise Move(Transform t, Vector3 a, Vector3 b, float v) {

@@ -14,6 +14,8 @@ public class Letter : MonoBehaviour
 
 	public UnityEvent afterSuccess;
 
+	public GameObject activeImage;
+
 	public Promise success;
 
 	void Awake() {
@@ -30,10 +32,17 @@ public class Letter : MonoBehaviour
 	public IPromise Success() {
 		if (success == null) {
 			success = new Promise();
-			TimeManager.Wait(0).Then(() => afterSuccess.Invoke()).Then(() => {
-				success.Resolve();
-				success = null;
-			}).Done();
+			TimeManager
+				.Wait(0)
+				.Then(() => activeImage.SetActive(true))
+				.Then(() => TimeManager.Wait(0.1f))
+				.Then(() => activeImage.SetActive(false))
+				.Then(() => afterSuccess.Invoke())
+				.Then(() => {
+					success.Resolve();
+					success = null;
+				})
+				.Done();
 		}
 		return success;
 	}
