@@ -6,10 +6,12 @@ using System.Linq;
 
 public class Letter : MonoBehaviour
 {
-	public List<Mark> letterMarks;
-
 	public Figure figure;
 	public Marker marker;
+
+	public LetterChecker checker;
+
+	public UnityEvent afterSuccess;
 
 	void Awake() {
 		figure = GetComponent<Figure>();
@@ -17,18 +19,12 @@ public class Letter : MonoBehaviour
 		marker = GetComponent<Marker>();
 	}
 
-	bool Check() {
-		int x0 = figure.Position.x;
-		int y0 = figure.Position.y - letterMarks.IndexOf(marker.mark);
-		for (int i = 0; i < letterMarks.Count; i++) {
-			if (!Board.instance.cells[x0, y0 + i].figures.Any(f => f.Marked(letterMarks[i]))) {
-				return false;
-			}
-		}
-		return true;
+	void AfterMove() {
+		Controls.instance.Lock(this);
+		checker.Change().Then(() => Controls.instance.Unlock(this)).Done();
 	}
 
-	void AfterMove() {
-
+	public void Success() {
+		TimeManager.Wait(0).Then(() => afterSuccess.Invoke()).Done();
 	}
 }

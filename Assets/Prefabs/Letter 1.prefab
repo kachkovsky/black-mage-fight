@@ -40,6 +40,8 @@ GameObject:
   - component: {fileID: 114871028014253920}
   - component: {fileID: 114836192947097100}
   - component: {fileID: 114738776878812840}
+  - component: {fileID: 114707448098305816}
+  - component: {fileID: 114315729768868516}
   m_Layer: 0
   m_Name: Letter 1
   m_TagString: Untagged
@@ -125,6 +127,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114315729768868516
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346649807742094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114397957682072240, guid: 640f0bdf99e8ac34f81bc009dbd405ca, type: 2}
 --- !u!114 &114374403293634356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -179,6 +193,36 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "\u041F"
+--- !u!114 &114707448098305816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346649807742094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30f679909c7c3f419cbecb7c4444b96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  figure: {fileID: 0}
+  marker: {fileID: 0}
+  checker: {fileID: 0}
+  afterSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114836192947097100}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114738776878812840
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,6 +267,16 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: IntVector2Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  beforeMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
 --- !u!114 &114836192947097100
 MonoBehaviour:

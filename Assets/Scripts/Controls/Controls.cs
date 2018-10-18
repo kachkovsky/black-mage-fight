@@ -2,6 +2,7 @@
 using System.Collections;
 using RSG;
 using System;
+using System.Collections.Generic;
 
 public class Controls : MonoBehaviour {
     public static Controls instance;
@@ -16,6 +17,20 @@ public class Controls : MonoBehaviour {
     public Button down;
     public Button left;
     public Button right;
+
+	public List<MonoBehaviour> lockers;
+
+	public void Lock(MonoBehaviour locker) {
+		lockers.Add(locker);
+	}
+
+	public void Unlock(MonoBehaviour locker) {
+		lockers.Remove(locker);
+	}
+
+	public bool Locked() {
+		return lockers.Count > 0;
+	}
 
     void Awake() {
         instance = this;
@@ -50,6 +65,10 @@ public class Controls : MonoBehaviour {
         if (activeUnit == null) {
             return;
         }
+		if (Locked()) {
+			Debug.LogFormat("Locked");
+			return;
+		}
         Command(() => activeUnit.MoveTo(direction).Untyped());
     }
 
