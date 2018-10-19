@@ -39,4 +39,8 @@ public struct IntVector2
     public Vector2 xy() {
         return new Vector2(x, y);
     }
+
+	public override string ToString() {
+		return string.Format("({0}, {1})", x, y);
+	}
 }

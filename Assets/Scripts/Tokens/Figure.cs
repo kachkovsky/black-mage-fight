@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine.Events;
 using System;
 using RSG;
+using System.Collections.Generic;
 
 public class Figure : Token
 {
@@ -35,6 +36,10 @@ public class Figure : Token
 
 	public bool Marked(Mark mark) {
 		return GetComponents<Marker>().Any(m => m.mark == mark);
+	}
+
+	public bool Marked(List<Mark> marks) {
+		return marks.Any(Marked);
 	}
 
     public void SetPosition(Cell cell) {
@@ -112,7 +117,7 @@ public class Figure : Token
     }
 
     public void Blink(Func<Figure, bool> occupies = null) {
-        //Debug.LogFormat("Blink {0}", transform.Path());
+        Debug.LogFormat("Blink {0}", transform.Path());
         Board.instance.RandomEmptyCell(occupies).MoveHere(this);
     }
 

@@ -18,6 +18,7 @@ public class Blink : Effect
     }
 
     public override void Run() {
+		Debug.LogFormat("Blink.Run");
         if (locator != null) {
             locator.LocateHere(target);
         } else {
