@@ -121,7 +121,6 @@ public class Figure : Token
     }
 
     public void Blink(Func<Figure, bool> occupies = null) {
-        Debug.LogFormat("Blink {0}", transform.Path());
         Board.instance.RandomEmptyCell(occupies).MoveHere(this);
     }
 

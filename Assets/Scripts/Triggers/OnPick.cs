@@ -5,6 +5,12 @@ public class OnPick : Trigger
 {
     public Figure figure;
 
+	public void Awake() {
+		if (figure == null) {
+			figure = GetComponent<Figure>();
+		}
+	}
+
     void Start() {
         figure.onCollide.AddListener(OnCollide);
     }

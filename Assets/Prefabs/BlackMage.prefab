@@ -183,6 +183,7 @@ GameObject:
   - component: {fileID: 8278088}
   - component: {fileID: 114904461197370792}
   - component: {fileID: 114946835779714424}
+  - component: {fileID: 114759959371787276}
   m_Layer: 0
   m_Name: BlackMage
   m_TagString: Untagged
@@ -661,6 +662,21 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onPushed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: IntVector2Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  beforeMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
   hitSound: {fileID: 8278088}
   injuredSound: {fileID: 0}
@@ -1344,6 +1360,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114759959371787276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 687f10fc7a40e4a6494436e6c4b975a1, type: 2}
 --- !u!114 &114904461197370792
 MonoBehaviour:
   m_ObjectHideFlags: 1

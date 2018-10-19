@@ -10,6 +10,12 @@ public class Blink : Effect
 	public List<Spawner> ignoreSpawnedBy;
 	public List<Mark> ignoreWithMark;
 
+	public void Awake() {
+		if (target == null) {
+			target = GetComponent<Figure>();
+		}
+	}
+
     bool Occupies(Figure f) {
 		var result = !ignoreSpawnedBy.Any(spawner => spawner.spawnedObjects.Contains(f.gameObject)) &&
 		                   !f.GetComponents<Marker>().Any(marker => ignoreWithMark.Contains(marker.mark));
@@ -18,7 +24,6 @@ public class Blink : Effect
     }
 
     public override void Run() {
-		Debug.LogFormat("Blink.Run");
         if (locator != null) {
             locator.LocateHere(target);
         } else {
