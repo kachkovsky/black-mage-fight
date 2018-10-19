@@ -92,6 +92,10 @@ public class Figure : Token
     }
 
     public virtual IPromise<bool> MoveTo(IntVector2 direction) {
+		if (EventManager.instance.BeforeFigureMove(this, direction).cancelEvent) {
+			return Promise.v(false);
+		}
+
         See(direction);
         if (Swap(direction)) {
             return Promise<bool>.Resolved(true);

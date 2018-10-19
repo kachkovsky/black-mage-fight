@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void RunLevel(GameObject level, bool restarted = false) {
+		Intermission.active = false;
         if (gameState.CurrentRun.continuousRun) {
             if (gameState.CurrentRun.triesLeft <= 0) {
                 FailGame();
