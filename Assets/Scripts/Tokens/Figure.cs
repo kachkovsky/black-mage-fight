@@ -51,18 +51,20 @@ public class Figure : Token
 
     bool Swap(IntVector2 direction) {
         var cell = Position.ToDirection(direction);
-        while (cell != null && !cell.figures.Any(f => f is Swapper)) {
+		for (int i = 0; i < 100 && cell != null && !cell.figures.Any(f => f is Swapper); i++) {
             cell = cell.ToDirection(direction);
         }
         if (cell != null) {
-            var s = cell.figures.First(f => f is Swapper);
-            var x = Position;
-            cell.MoveHere(this);
-            x.MoveHere(s);
-            if (swapSound != null) {
-                swapSound.Play();
-            }
-            return true;
+            var s = cell.figures.FirstOrDefault(f => f is Swapper);
+			if (s != null) {
+				var x = Position;
+				cell.MoveHere(this);
+				x.MoveHere(s);
+				if (swapSound != null) {
+					swapSound.Play();
+				}
+				return true;
+			}
         }
         return false;
     }
@@ -72,12 +74,15 @@ public class Figure : Token
 
     public void See(IntVector2 direction) {
         var cell = Position.ToDirection(direction);
-        while (cell != null && !cell.figures.Any(f => f is EvilEye)) {
+		for (int i = 0; i < 100 && cell != null && !cell.figures.Any(f => f is EvilEye); i++) {
             cell = cell.ToDirection(direction);
         }
         if (cell != null) {
-            //cell.figures.First().GetComponent<OnSee>().Run();
-            cell.figures.First().OnSee(this);
+			//cell.figures.First().GetComponent<OnSee>().Run();
+			var figure = cell.figures.FirstOrDefault();
+			if (figure != null) {
+				figure.OnSee(this);
+			}
         }
     }
 
@@ -87,7 +92,7 @@ public class Figure : Token
             return Promise<bool>.Resolved(true);
         }
         var cell = Position.ToDirection(direction);
-        while (cell != null && cell.figures.Any(f => f is Ice)) {
+		for (int i = 0; i < 100 && cell != null && cell.figures.Any(f => f is Ice); i++) {
             cell = cell.ToDirection(direction);
         }
         if (cell == null) {
