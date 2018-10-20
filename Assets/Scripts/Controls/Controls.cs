@@ -76,6 +76,12 @@ public class Controls : MonoBehaviour {
         GameManager.instance.Restart();
     }
 
+	public void Start() {
+		#if UNITY_EDITOR
+		Cheats.on = true;
+		#endif 
+	}
+
     void Update() {
         if (Input.GetKeyDown(KeyCode.R) && Input.GetKey(KeyCode.LeftShift)) {
             GameManager.instance.DropSaveFile();
@@ -99,7 +105,10 @@ public class Controls : MonoBehaviour {
             }
             if (Input.GetKeyDown(KeyCode.L)) {
                 GameManager.instance.Lose();
-            }
+			}
+			if (Input.GetKeyDown(KeyCode.R)) {
+				GameManager.instance.Restart();
+			}
             if (Input.GetKeyDown(KeyCode.LeftBracket)) {
                 GameManager.instance.gameState.CurrentRun.levelsCompleted--;
                 GameManager.instance.UpdateState();

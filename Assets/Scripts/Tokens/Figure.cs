@@ -137,7 +137,7 @@ public class Figure : Token
         }
         var trajectoryPosition = Position.figures.FirstOrDefault(f => f is TrajectoryPosition) as TrajectoryPosition;
         if (trajectoryPosition != null) {
-            trajectoryPosition.trajectory.positions.cyclicNext(trajectoryPosition).position.MoveHere(this);
+			trajectoryPosition.trajectory.positions.CyclicNext(trajectoryPosition).position.MoveHere(this);
             return;
         }
         Blink();

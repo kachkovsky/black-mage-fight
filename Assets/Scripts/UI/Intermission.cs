@@ -36,7 +36,7 @@ public class Intermission : MonoBehaviour
             show.Resolve();
         }
         currentFrame.SetActive(false);
-        currentFrame = frames.cyclicNext(currentFrame);
+		currentFrame = frames.CyclicNext(currentFrame);
         currentFrame.SetActive(true);
     }
 

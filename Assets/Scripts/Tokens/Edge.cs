@@ -33,7 +33,7 @@ public class Edge : Token
 
     [ContextMenu("Place")]
     public void Place() {
-        transform.position = (position.a.transform.position + position.b.transform.position) / 2;
+		transform.position = ((position.a.transform.position + position.b.transform.position) / 2).Change(z: transform.position.z);
         transform.eulerAngles = Vector3.forward * (position.b.transform.position - position.a.transform.position).xy().Direction();
     }
 
