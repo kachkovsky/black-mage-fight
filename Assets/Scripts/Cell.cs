@@ -47,8 +47,16 @@ public class Cell : MonoBehaviour {
 
     public void MoveHere(Figure f) {
         f.transform.position = transform.position;
-        var figuresAtMoveTime = figures.Where(x => true).ToList();
-        f.SetPosition(this); 
+		var figuresAtMoveTime = figures.ShallowClone();
+		var from = f.Position;
+        f.SetPosition(this);
+		var leavingFiguresAtMoveTime = from.figures.ShallowClone();
+		leavingFiguresAtMoveTime.ForEach(f2 => {
+			if (f2.gameObject.activeSelf) {
+	            f2.Uncollide(f);
+	            f.Uncollide(f2);
+			}
+        });
         figuresAtMoveTime.ForEach(f2 => {
 			if (f2.gameObject.activeSelf) {
 	            f2.Collide(f);

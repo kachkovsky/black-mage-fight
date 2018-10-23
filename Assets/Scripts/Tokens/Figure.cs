@@ -15,6 +15,7 @@ public class Figure : Token
     private Cell position;
 
 	public FigureEvent onCollide;
+	public FigureEvent onUncollide;
 	public IntVector2Event onPushed;
 
 	public UnityEvent beforeMove;
@@ -146,6 +147,10 @@ public class Figure : Token
     public virtual void Collide(Figure other) {
         onCollide.Invoke(other);
     }
+
+	public virtual void Uncollide(Figure other) {
+		onUncollide.Invoke(other); 
+	}
 
     public virtual bool Occupies() {
         return true;

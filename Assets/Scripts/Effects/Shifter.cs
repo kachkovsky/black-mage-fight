@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 public class Shifter : MonoBehaviour
 {
-	public List<Mark> blocks;
+	public List<Mark> blocks;	
+	public List<Mark> ignores;
 	bool shifting = false;
 
 	public void Start() {
@@ -35,7 +36,7 @@ public class Shifter : MonoBehaviour
 		var to = figure.Position.ToDirection(direction);
 		Board.instance.cellsList.Where(cell => Aligned(cell, from, to)).ForEach(cell => {
 			cell.figures.ForEach(f => {
-				if (!f.Marked(blocks)) {
+				if (!f.Marked(blocks) && !f.Marked(ignores)) {
 					toShift.Add(f);
 					//Debug.LogFormat("Shifting {0} to {1}", f, direction);
 				}

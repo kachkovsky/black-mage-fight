@@ -8,15 +8,22 @@ using UnityEditor;
 using System.Collections.Generic;
 
 [ExecuteInEditMode]
-public class Board : MonoBehaviour {
+public class Board : Singletone<Board> {
     public int n = 8;
-
-    public static Board instance;
 
     public GameObject sample;
 
     public GameObject[] rows;
-    public Cell[,] cells;
+    Cell[,] _cells;
+
+	public Cell[,] cells {
+		get {
+			if (_cells == null) {
+				UpdateCells();
+			}
+			return _cells;
+		}
+	}
 
     public List<Cell> cellsList;
 
@@ -28,13 +35,16 @@ public class Board : MonoBehaviour {
     public static IntVector2 right = new IntVector2(0, 1);
 
     void Awake() {
-        instance = this;
-        cells = new Cell[n,n];
-        cellsList = FindObjectsOfType<Cell>().ToList();
-        cellsList.ForEach(cell => {
+		UpdateCells();
+    }
+
+	void UpdateCells() {
+        _cells = new Cell[n,n];
+		cellsList = GetComponentsInChildren<Cell>().ToList();
+		cellsList.ForEach(cell => {
             cells[cell.x, cell.y] = cell;
         });
-    }
+	}
 
     public bool Inside(int x, int y) {
         return 0 <= x && x < n && 0 <= y && y < n;
@@ -64,7 +74,7 @@ public class Board : MonoBehaviour {
     public void Generate() {
         transform.Children().ForEach(c => DestroyImmediate(c.gameObject));
         rows = new GameObject[n];
-        cells = new Cell[n,n];
+        _cells = new Cell[n,n];
         for (int i = 0; i < n; i++) {
             var row = new GameObject(string.Format("Row {0}", i));
             row.transform.SetParent(transform, worldPositionStays: false);
