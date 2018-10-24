@@ -148,6 +148,9 @@ public class GameManager : MonoBehaviour {
             currentLevel.SetActive(false);
             Destroy(currentLevel);
         }
+		if (Board.instance) {
+			Board.instance.OnDestroy();
+		}
     }
 
     public void ResetPositions() {
