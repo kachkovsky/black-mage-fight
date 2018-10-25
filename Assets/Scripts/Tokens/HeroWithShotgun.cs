@@ -3,6 +3,7 @@ using System.Collections;
 using System.Linq;
 using System;
 using RSG;
+using System.Collections.Generic;
 
 public class HeroWithShotgun : Hero
 {
@@ -12,6 +13,8 @@ public class HeroWithShotgun : Hero
     public GameObject bulletSample;
     public GameObject explosionSample;
     public GameObject lineSample;
+
+	public List<Mark> ignore;
 
     IPromise PlayBulletFlyAnimation(Cell from, Cell to) {
         Vector3 move = (to.transform.position - from.transform.position);
@@ -44,12 +47,16 @@ public class HeroWithShotgun : Hero
         });
     }
 
+	public bool IsTarget(Figure f) {
+		return !f.Marked(ignore);
+	}
+
     public override IPromise<bool> MoveTo(IntVector2 direction) {
         var cell = Position;
         var next = cell;
         for (int i = 0; i < 100; i++) {
             next = cell.ToDirection(direction);
-            if (next != null && next.Figures.Count() == 0) {
+			if (next != null && !next.Figures.Any(IsTarget)) {
                 cell = next;
             }
         }

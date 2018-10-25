@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 114046245785806084}
   - component: {fileID: 114211028210842760}
   - component: {fileID: 114938986715855940}
+  - component: {fileID: 114323560140383410}
   m_Layer: 0
   m_Name: FireExtinguisher
   m_TagString: Untagged
@@ -120,6 +121,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onPushed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: IntVector2Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  beforeMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
 --- !u!114 &114211028210842760
 MonoBehaviour:
@@ -136,6 +156,19 @@ MonoBehaviour:
   locator: {fileID: 0}
   ignoreSpawnedBy:
   - {fileID: 0}
+  ignoreWithMark: []
+--- !u!114 &114323560140383410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1745432721559734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 35e0af6d10e99d249b9c6812c5e92ad2, type: 2}
 --- !u!114 &114570951566771324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,6 +183,7 @@ MonoBehaviour:
   target: {fileID: 114046245785806084}
   locator: {fileID: 0}
   ignoreSpawnedBy: []
+  ignoreWithMark: []
 --- !u!114 &114654306166382422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,8 +231,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   figure: {fileID: 114046245785806084}
 --- !u!114 &114705252335524480
 MonoBehaviour:
@@ -225,8 +259,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114938986715855940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,6 +283,7 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -264,14 +299,22 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 27a81b87061401a429182d616e7a0985, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

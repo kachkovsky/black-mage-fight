@@ -303,6 +303,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onPushed:
     m_PersistentCalls:
       m_Calls: []
@@ -334,6 +338,7 @@ MonoBehaviour:
   - {fileID: 114543220808466862, guid: 687f10fc7a40e4a6494436e6c4b975a1, type: 2}
   - {fileID: 114543220808466862, guid: 9922e3d943c6b44148e414cdb799d09e, type: 2}
   - {fileID: 114543220808466862, guid: 10464b0a0864f4427aa3fa6103f1c71c, type: 2}
+  - {fileID: 114543220808466862, guid: 35e0af6d10e99d249b9c6812c5e92ad2, type: 2}
   figure: {fileID: 0}
   savedDirection:
     x: 0

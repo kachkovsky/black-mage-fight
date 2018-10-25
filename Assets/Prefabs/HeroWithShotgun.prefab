@@ -886,6 +886,8 @@ MonoBehaviour:
   bulletSample: {fileID: 1922609748351432}
   explosionSample: {fileID: 1065362569993302}
   lineSample: {fileID: 1393049856252512}
+  ignore:
+  - {fileID: 114543220808466862, guid: 2f5450809b7d3ba47b670cd55b8892a0, type: 2}
 --- !u!120 &120168716340207324
 LineRenderer:
   m_ObjectHideFlags: 1
