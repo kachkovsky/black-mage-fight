@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 11460428}
   - component: {fileID: 114545031318468114}
   - component: {fileID: 114214666494688516}
+  - component: {fileID: 114311392250358612}
   m_Layer: 0
   m_Name: Candle
   m_TagString: Untagged
@@ -40,7 +41,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100554}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -2.5, y: -0.5, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children:
@@ -86,7 +87,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 114214666494688516}
         m_MethodName: Run
         m_Mode: 1
@@ -97,8 +98,27 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onPushed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: IntVector2Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  beforeMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
 --- !u!212 &21280132
 SpriteRenderer:
@@ -167,6 +187,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 11460428}
+--- !u!114 &114311392250358612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 85c6981aa824a8146a66cab9e31551ab, type: 2}
 --- !u!114 &114545031318468114
 MonoBehaviour:
   m_ObjectHideFlags: 1

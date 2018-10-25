@@ -3,6 +3,7 @@ using System.Collections;
 using RSG;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Events;
 
 public class Controls : MonoBehaviour {
     public static Controls instance;
@@ -20,6 +21,8 @@ public class Controls : MonoBehaviour {
 
 	public List<MonoBehaviour> lockers;
 
+	public UnityEvent ready;
+
 	public void Lock(MonoBehaviour locker) {
 		lockers.Add(locker);
 	}
@@ -34,6 +37,7 @@ public class Controls : MonoBehaviour {
 
     void Awake() {
         instance = this;
+		Ready();
     }
 
     private void RefreshHovered() {
@@ -49,9 +53,32 @@ public class Controls : MonoBehaviour {
     }
 
     IPromise commands = Promise.Resolved();
+	Promise after;
 
-    void Command(Func<IPromise> command) {
-        commands = commands.Then(command);
+	void OnReady() {
+		ready.Invoke();
+	}
+
+	public void Ready() {
+		Command(Promise.Resolved);
+	}
+
+	void UpdateAfter(Promise newAfter) {
+		if (after != null && after.CurState == PromiseState.Pending) {
+			after.Reject(new Exception("Interrupted by new command"));
+		}
+		after = newAfter;
+		after.Then(() => OnReady()).Done();
+	}
+
+    public void Command(Func<IPromise> command) {
+		var ready = new Promise();
+		UpdateAfter(ready);
+		commands = commands.Then(command).Then(() => {
+			if (ready.CurState == PromiseState.Pending) {
+				ready.Resolve();
+			}
+		});
         commands.Done();
     }
 

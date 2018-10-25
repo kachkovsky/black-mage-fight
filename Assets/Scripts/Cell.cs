@@ -46,7 +46,7 @@ public class Cell : MonoBehaviour {
     }
 
     public void MoveHere(Figure f) {
-		Debug.LogFormat("Figure {0} moves to cell {1}", f, this);
+		//Debug.LogFormat("Figure {0} moves to cell {1}", f, this);
         f.transform.position = transform.position;
 		var figuresAtMoveTime = figures.ShallowClone();
 		var from = f.Position;

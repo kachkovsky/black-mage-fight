@@ -195,6 +195,8 @@ public class GameManager : MonoBehaviour {
         BlackMage.instance.maxHealth += 5 * (gameState.CurrentRun.difficulty-4);
         BlackMage.instance.health += 5 * (gameState.CurrentRun.difficulty-4);
 
+		Controls.instance.Ready();
+
         var intro = currentLevel.GetComponentsInChildren<Intermission>().FirstOrDefault(i => !i.ending);
         if (intro != null)
         {

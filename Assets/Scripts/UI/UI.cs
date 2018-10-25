@@ -130,7 +130,7 @@ public class UI : MonoBehaviour {
 
 		keysUI.SetActive(KeyCounter.instance);
 
-        //battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
+        battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 
         if (Hero.instance != null) {
             heroHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Hero.instance.health, Hero.instance.maxHealth);

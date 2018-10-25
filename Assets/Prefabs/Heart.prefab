@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 478108}
   - component: {fileID: 11455830}
   - component: {fileID: 114659317167105240}
+  - component: {fileID: 114920822498962580}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -73,6 +74,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: {fileID: 0}
   onCollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -160,3 +165,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark: {fileID: 114543220808466862, guid: 10464b0a0864f4427aa3fa6103f1c71c, type: 2}
+--- !u!114 &114920822498962580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e3460b821a1a9f499cc9883a1b555ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  locator: {fileID: 0}
+  ignoreSpawnedBy: []
+  ignoreWithMark: []
