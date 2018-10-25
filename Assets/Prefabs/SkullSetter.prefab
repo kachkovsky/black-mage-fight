@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 11485740}
   - component: {fileID: 11432470}
   - component: {fileID: 114500518015889430}
+  - component: {fileID: 114962259118922480}
   m_Layer: 0
   m_Name: SkullSetter
   m_TagString: Untagged
@@ -90,8 +91,8 @@ MonoBehaviour:
   effect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11432470}
-        m_MethodName: SetSkull
+      - m_Target: {fileID: 114962259118922480}
+        m_MethodName: Run
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -349,6 +350,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onPushed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: IntVector2Event, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  beforeMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  afterMove:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
   damage: 0
   step: 1
@@ -445,7 +465,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mark: {fileID: 114500518015889430}
+  mark: {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
+--- !u!114 &114962259118922480
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6b54e0780023d4fb4d196ab11638e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  times: 3
+  effect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11432470}
+        m_MethodName: SetSkull
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!212 &212418413504461598
 SpriteRenderer:
   m_ObjectHideFlags: 1

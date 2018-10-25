@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 114904461197370792}
   - component: {fileID: 114946835779714424}
   - component: {fileID: 114759959371787276}
+  - component: {fileID: 114361991026746344}
   m_Layer: 0
   m_Name: BlackMage
   m_TagString: Untagged
@@ -662,6 +663,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onPushed:
     m_PersistentCalls:
       m_Calls: []
@@ -682,8 +687,8 @@ MonoBehaviour:
   injuredSound: {fileID: 0}
   healSound: {fileID: 0}
   injuredDamage: 2
-  health: 20
-  maxHealth: 20
+  health: 40
+  maxHealth: 40
   buffs: []
   onHitInvulnerable:
     m_PersistentCalls:
@@ -1360,6 +1365,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114361991026746344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51bcdf189e7d3846b6c8bff72ecd5db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11440544}
 --- !u!114 &114759959371787276
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1408,6 +1425,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114361991026746344}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   figure: {fileID: 11440544}
@@ -1425,4 +1453,5 @@ MonoBehaviour:
   target: {fileID: 11440544}
   locator: {fileID: 0}
   ignoreSpawnedBy: []
-  ignoreWithMark: []
+  ignoreWithMark:
+  - {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
