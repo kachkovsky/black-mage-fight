@@ -8,6 +8,15 @@ public class ChargingHero : Hero
 {
     public Trail trailSample;
 
+	public Spawner crateSpawner;
+
+	protected override void Awake() {
+		base.Awake();
+		if (crateSpawner == null) {
+			crateSpawner = FindObjectOfType<Spawner>();
+		}
+	}
+
     IPromise PlayMoveAnimation(Cell from, Cell to) {
         Vector3 move = (to.transform.position - from.transform.position);
         int steps = 2 * from.Distance(to);
@@ -40,8 +49,8 @@ public class ChargingHero : Hero
             ChargeHit(next.figures[0]);
         } else {
             if (cell != Position) {
-                FindObjectOfType<Spawner>().Spawn();
-                Position.MoveHere(FindObjectOfType<Spawner>().spawnedObjects.Last().GetComponent<Crate>());
+                crateSpawner.Spawn();
+				Position.MoveHere(crateSpawner.spawnedObjects.Last().GetComponent<Crate>());
             }
         }
         if (cell != Position || next != null) {
