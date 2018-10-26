@@ -18,6 +18,8 @@ public class HeartStopper : Token
     }
 
     void OnDestroy() {
-        GameManager.instance.onHeroMove -= HeroMoved; 
+		if (GameManager.instance) {
+			GameManager.instance.onHeroMove -= HeroMoved;
+		}
     }
 }

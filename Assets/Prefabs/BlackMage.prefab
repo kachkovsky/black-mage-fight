@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 114946835779714424}
   - component: {fileID: 114759959371787276}
   - component: {fileID: 114361991026746344}
+  - component: {fileID: 114934841756225316}
   m_Layer: 0
   m_Name: BlackMage
   m_TagString: Untagged
@@ -1436,9 +1437,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 114934841756225316}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   figure: {fileID: 11440544}
+--- !u!114 &114934841756225316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4acd9d89c66418b8feef6c2ed72385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 714e4b5d40fbf401e847c7f6f54d69bf, type: 2}
+  target: {fileID: 0}
 --- !u!114 &114946835779714424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1455,3 +1480,4 @@ MonoBehaviour:
   ignoreSpawnedBy: []
   ignoreWithMark:
   - {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
+  - {fileID: 114543220808466862, guid: 714e4b5d40fbf401e847c7f6f54d69bf, type: 2}

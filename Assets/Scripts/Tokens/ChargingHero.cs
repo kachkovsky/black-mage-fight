@@ -3,10 +3,13 @@ using System.Collections;
 using System.Linq;
 using System;
 using RSG;
+using System.Collections.Generic;
 
 public class ChargingHero : Hero
 {
     public Trail trailSample;
+
+	public List<Mark> meleeOnly;
 
 	public Spawner crateSpawner;
 
@@ -39,14 +42,16 @@ public class ChargingHero : Hero
     public override IPromise<bool> MoveTo(IntVector2 direction) {
         var cell = Position;
         var next = cell;
+		int distance = 0;
         for (int i = 0; i < 100; i++) {
             next = cell.ToDirection(direction);
             if (next != null && next.figures.Count == 0) {
                 cell = next;
+				distance = i+1;
             }
         }
-        if (next != null) {
-            ChargeHit(next.figures[0]);
+        if (next != null && ChargeHit(next.figures[0], distance)) {
+			;
         } else {
             if (cell != Position) {
                 crateSpawner.Spawn();
@@ -65,18 +70,11 @@ public class ChargingHero : Hero
         }
     }
 
-    void ChargeHit(Figure f) {
-        if (f is BlackMage) {
-            var bm = f as BlackMage;
-            bm.Hit();
-            bm.Relocate();
-        }
-        if (f is Crate) {
-            f.gameObject.SetActive(false);
-            Destroy(f.gameObject);
-        }
-        if (f is Heart) {
-            (f as Heart).Collide(Hero.instance);
-        }
+    bool ChargeHit(Figure f, int distance) {
+		if (distance <= 0 || !f.Marked(meleeOnly)) {
+			f.Collide(this);
+			return true;
+		}
+		return false;
     }
 }

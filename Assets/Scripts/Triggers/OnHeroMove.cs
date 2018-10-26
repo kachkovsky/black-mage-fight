@@ -20,6 +20,8 @@ public class OnHeroMove : MonoBehaviour
     }
 
     void OnDestroy() {
-        GameManager.instance.onHeroMove -= HeroMoved;
+		if (GameManager.instance != null) {
+			GameManager.instance.onHeroMove -= HeroMoved;
+		}
     }
 }

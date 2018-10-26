@@ -5,8 +5,7 @@ using UnityStandardAssets.ImageEffects;
 using System.Collections.Generic;
 using RSG;
 
-public class UI : MonoBehaviour {
-    public static UI instance;
+public class UI : Singletone<UI> {
     public MenuPanel menu;
     public GameObject customLevel;
     public DifficultySelectionPanel difficultySelector;
@@ -44,7 +43,6 @@ public class UI : MonoBehaviour {
     public List<Blur> blur;
 
     void Awake() {
-        instance = this;
         volumes.Init();
     }
 

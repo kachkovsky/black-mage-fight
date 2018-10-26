@@ -5,11 +5,9 @@ using System.Linq;
 using System;
 using RSG;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : Singletone<GameManager> {
     const string GAMESTATE_FILE = "gamestate.dat";
     const int MAX_HISTORY = 1000;
-
-    public static GameManager instance;
 
     public GameObject startLevel;
 
@@ -63,7 +61,6 @@ public class GameManager : MonoBehaviour {
     }
 
     void Awake() {
-        instance = this;
         ending.Hide();
     }
 
@@ -186,7 +183,7 @@ public class GameManager : MonoBehaviour {
         Board.instance.Restore();
 
         FindObjectsOfType<Figure>().ForEach(f => {
-            if (f.Position == null) {
+			if (f.Position == null || !f.Position.gameObject.activeInHierarchy) {
                 f.Blink();
             }
         });
@@ -220,7 +217,8 @@ public class GameManager : MonoBehaviour {
         FileManager.SaveToFile(gameState, GAMESTATE_FILE);
     }
 
-    void OnDestroy() {
+    public override void OnDestroy() {
+		base.OnDestroy();
         Save();
     }
 

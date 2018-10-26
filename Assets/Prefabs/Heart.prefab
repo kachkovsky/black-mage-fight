@@ -97,7 +97,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
-  heal: 3
+  heal: 5
 --- !u!212 &21234984
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -179,4 +179,6 @@ MonoBehaviour:
   target: {fileID: 0}
   locator: {fileID: 0}
   ignoreSpawnedBy: []
-  ignoreWithMark: []
+  ignoreWithMark:
+  - {fileID: 114543220808466862, guid: 714e4b5d40fbf401e847c7f6f54d69bf, type: 2}
+  - {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
