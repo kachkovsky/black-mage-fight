@@ -50,8 +50,7 @@ public class ChargingHero : Hero
 				distance = i + 1;
 			}
 		}
-		if (next != null && ChargeHit(next.figures[0], distance)) {
-			// do nothing
+		if (next != null && !ChargeHit(next.figures[0], distance)) {
 		} else {
 			if (cell != Position) {
 				crateSpawner.Spawn();

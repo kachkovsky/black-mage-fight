@@ -25,7 +25,16 @@ public class Board : Singletone<Board> {
 		}
 	}
 
-    public List<Cell> cellsList;
+	public List<Cell> _cellsList;
+
+	public List<Cell> cellsList {
+		get {
+			if (_cellsList == null || _cellsList.Count == 0) {
+				UpdateCells();
+			}
+			return _cellsList;
+		}
+	}
 
     public bool toroid = false;
 
@@ -40,7 +49,7 @@ public class Board : Singletone<Board> {
 
 	void UpdateCells() {
         _cells = new Cell[n,n];
-		cellsList = GetComponentsInChildren<Cell>().ToList();
+		_cellsList = GetComponentsInChildren<Cell>().ToList();
 		cellsList.ForEach(cell => {
             cells[cell.x, cell.y] = cell;
         });

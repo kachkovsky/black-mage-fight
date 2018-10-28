@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 114615731200359092}
   - component: {fileID: 114264154280711326}
   - component: {fileID: 114009098559587106}
+  - component: {fileID: 114756364594963842}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Untagged
@@ -831,6 +832,18 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+--- !u!114 &114756364594963842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488281625543214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 2326dc2df4b2fde4987723cc70f9a448, type: 2}
 --- !u!114 &114792498914036438
 MonoBehaviour:
   m_ObjectHideFlags: 1

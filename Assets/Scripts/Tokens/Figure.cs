@@ -121,7 +121,12 @@ public class Figure : Token
 #endif
     }
 
-    public void Blink(Func<Figure, bool> occupies = null) {
+	[ContextMenu("Blink")]
+	public void Blink() {
+		Blink(null);
+	}
+
+    public void Blink(Func<Figure, bool> occupies) {
         Board.instance.RandomEmptyCell(occupies).MoveHere(this);
     }
 
