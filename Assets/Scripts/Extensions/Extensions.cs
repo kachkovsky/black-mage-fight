@@ -18,9 +18,13 @@ public static class Extensions
 		}
 	}
 
-    public static double sqr(double x) {
+	public static double sqr(this System.Object any, double x) {
         return x * x;
     }
+
+	public static int sqr(this System.Object any, int x) {
+		return x * x;
+	}
 
     public static void swap<T>(this List<T> list, int x, int y) {
         T buf = list[x];

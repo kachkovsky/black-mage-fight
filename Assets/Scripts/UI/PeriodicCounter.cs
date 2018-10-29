@@ -8,7 +8,10 @@ public class PeriodicCounter : MonoBehaviour
 
     public int Value() {
         var phase = periodic.phase % periodic.period;
-        var value = periodic.runPhases.ExtMin(x => x > phase ? x - phase : x + periodic.period - phase);
+		var value = Mathf.Min(
+			periodic.runPhases.ExtMin(x => x > phase ? x - phase : x + periodic.period - phase),
+			periodic.multipleRunPhases.ExtMin(x => x.phase > phase ? x.phase - phase : x.phase + periodic.period - phase)
+		);
         return value;
     }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -31,6 +32,10 @@ public class Cell : MonoBehaviour {
     public int Distance(Cell other) {
         return Mathf.Abs(x - other.x) + Mathf.Abs(y - other.y);
     }
+
+	public int SquareEuclideanDistance(Cell other) {
+		return this.sqr(x - other.x) + this.sqr(y - other.y);
+	}
 
     void Awake() {
         Init();
