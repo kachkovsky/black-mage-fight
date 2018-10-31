@@ -26,6 +26,7 @@ public class PlayerUnit : Unit
     }
 
     public void CheckCollisions(Cell oldPosition) {
+		return;
         foreach (Edge e in FindObjectsOfType<Edge>()) {
             if (e.position.a == oldPosition && e.position.b == Position) {
                 e.Pick(this);

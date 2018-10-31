@@ -11,7 +11,7 @@ public class SkullSetter : Token
 
     public void SetSkull() {
         var target = Board.instance.RandomEmptyCell();
-        var skull = FindObjectsOfType<Skull>().FirstOrDefault(s => s.Position == target);
+		var skull = target.figures.FirstOrDefault(f => f is Skull) as Skull;
         if (skull != null) {
             skull.Increment();
         } else {

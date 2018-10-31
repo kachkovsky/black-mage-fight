@@ -136,11 +136,11 @@ public class Figure : Token
             blink.Run();
             return;
         }
-        var locators = FindObjectsOfType<Locator>().ToList();
-        if (locators.Count > 0) {
-            locators.Rnd().LocateHere(this);
-            return;
-        }
+//        var locators = FindObjectsOfType<Locator>().ToList();
+//        if (locators.Count > 0) {
+//            locators.Rnd().LocateHere(this);
+//            return;
+//        }
         var trajectoryPosition = Position.figures.FirstOrDefault(f => f is TrajectoryPosition) as TrajectoryPosition;
         if (trajectoryPosition != null) {
 			trajectoryPosition.trajectory.positions.CyclicNext(trajectoryPosition).position.MoveHere(this);

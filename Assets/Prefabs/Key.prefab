@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114086852744021284}
   - component: {fileID: 114501606100105568}
   - component: {fileID: 114938393764835246}
+  - component: {fileID: 114046308711624934}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -75,6 +76,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114046308711624934
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786269863214054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df4acd9d89c66418b8feef6c2ed72385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
+  target: {fileID: 114073209765735048}
 --- !u!114 &114073209765735048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -213,9 +227,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 114073209765735048}
   locator: {fileID: 0}
-  ignoreSpawnedBy:
-  - {fileID: 0}
-  ignoreWithMark: []
+  ignoreSpawnedBy: []
+  ignoreWithMark:
+  - {fileID: 114543220808466862, guid: 714e4b5d40fbf401e847c7f6f54d69bf, type: 2}
+  - {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
 --- !u!114 &114938393764835246
 MonoBehaviour:
   m_ObjectHideFlags: 1
