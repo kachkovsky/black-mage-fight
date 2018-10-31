@@ -17,6 +17,6 @@ public class Locator : Figure
             return;
         }
         Position.MoveHere(figure);
-        Blink();
+		Relocate();
     }
 }

@@ -23,6 +23,8 @@ public class Figure : Token
 
     public AudioSource swapSound;
 
+	public Blink blink;
+
     public Cell Position {
         get { return position; }
     }
@@ -54,6 +56,10 @@ public class Figure : Token
             AfterEnterCell();
         }
     }
+
+	public void Awake() {
+		blink = GetComponent<Blink>();
+	}
 
     bool Swap(IntVector2 direction) {
         var cell = Position.ToDirection(direction);
@@ -131,7 +137,6 @@ public class Figure : Token
     }
 
     public void Relocate() {
-        var blink = GetComponent<Blink>();
         if (blink != null) {
             blink.Run();
             return;

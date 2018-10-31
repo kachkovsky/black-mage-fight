@@ -63,6 +63,7 @@ GameObject:
   - component: {fileID: 114570359914021568}
   - component: {fileID: 114987397879907150}
   - component: {fileID: 114257289321600352}
+  - component: {fileID: 114798099636658526}
   m_Layer: 0
   m_Name: EvilEye
   m_TagString: Untagged
@@ -196,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4994087960171988}
   - component: {fileID: 114380873332762636}
+  - component: {fileID: 114593049668897932}
   m_Layer: 0
   m_Name: EvilEyeLocator
   m_TagString: Untagged
@@ -492,6 +494,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
   damage: 10
 --- !u!114 &114258138501857536
 MonoBehaviour:
@@ -584,6 +587,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
 --- !u!114 &114394344871768724
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -695,6 +699,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   periodicCounter: {fileID: 0}
+--- !u!114 &114593049668897932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979317084912258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 4b7c29930c78de945a401e708528856e, type: 2}
 --- !u!114 &114634146887719260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -765,6 +781,18 @@ MonoBehaviour:
   spawner: {fileID: 114809180299708326}
   maxValue: 12
   tiltColor: {r: 1, g: 0, b: 0, a: 1}
+--- !u!114 &114798099636658526
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1319433411588540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 4b7c29930c78de945a401e708528856e, type: 2}
 --- !u!114 &114802878627118268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -820,6 +848,7 @@ MonoBehaviour:
   period: 4
   phase: 0
   runPhases: 00000000
+  multipleRunPhases: []
   tick:
     m_PersistentCalls:
       m_Calls: []
