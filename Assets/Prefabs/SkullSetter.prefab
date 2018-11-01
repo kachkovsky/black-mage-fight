@@ -107,6 +107,7 @@ MonoBehaviour:
   period: 1
   phase: 0
   runPhases: 00000000
+  multipleRunPhases: []
   tick:
     m_PersistentCalls:
       m_Calls: []
@@ -370,6 +371,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
   damage: 0
   step: 1
   text: {fileID: 102778584628091958}

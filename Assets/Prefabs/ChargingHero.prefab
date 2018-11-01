@@ -688,6 +688,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
   hitSound: {fileID: 82852171219144634}
   injuredSound: {fileID: 82960859926548044}
   healSound: {fileID: 82545007774405486}
@@ -763,6 +764,7 @@ MonoBehaviour:
   period: 2
   phase: 0
   runPhases: 00000000
+  multipleRunPhases: []
   tick:
     m_PersistentCalls:
       m_Calls: []
@@ -832,6 +834,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
 --- !u!114 &114756364594963842
 MonoBehaviour:
   m_ObjectHideFlags: 1
