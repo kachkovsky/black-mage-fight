@@ -40,6 +40,7 @@ public class ChargingHero : Hero
 	}
 
 	public override IPromise<bool> MoveTo(IntVector2 direction) {
+		See(direction);
 		var cell = Position;
 		var next = cell;
 		int distance = 0;
@@ -50,12 +51,13 @@ public class ChargingHero : Hero
 				distance = i + 1;
 			}
 		}
-		if (next != null && !ChargeHit(next.figures[0], distance)) {
-		} else {
-			if (cell != Position) {
-				crateSpawner.Spawn();
-				Position.MoveHere(crateSpawner.spawnedObjects.Last().GetComponent<Crate>());
-			}
+		bool chargeHitted = false;
+		if (next != null) {
+			chargeHitted |= ChargeHit(next.figures[0], distance, direction);
+		} 
+		if (!chargeHitted && cell != Position) {
+			crateSpawner.Spawn();
+			Position.MoveHere(crateSpawner.spawnedObjects.Last().GetComponent<Crate>());
 		}
 		if (cell != Position || next != null) {
 			var oldPosition = Position;
@@ -69,7 +71,7 @@ public class ChargingHero : Hero
 		}
 	}
 
-	bool ChargeHit(Figure f, int distance) {
+	bool ChargeHit(Figure f, int distance, IntVector2 direction) {
 		if (distance <= 0 || !f.Marked(meleeOnly)) {
 			f.Collide(this);
 			return true;

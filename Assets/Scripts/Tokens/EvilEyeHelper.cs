@@ -14,7 +14,7 @@ public class EvilEyeHelper : Token
     void See(Cell cell, IntVector2 direction) {
         cell = cell.ToDirection(direction);
         List<Cell> path = new List<Cell>();
-		for (int i = 0; i < 100 && cell != null && !cell.figures.Any(f => f is EvilEye); i++) {
+		for (int i = 0; i < 100 && cell != null && !cell.figures.Any(f => f is EvilEye && f.gameObject.activeSelf); i++) {
             path.Add(cell);
             cell = cell.ToDirection(direction);
         }
