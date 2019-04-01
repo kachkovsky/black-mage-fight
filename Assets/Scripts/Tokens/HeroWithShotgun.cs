@@ -61,14 +61,21 @@ public class HeroWithShotgun : Hero
             }
         }
         return Promise.Do(() => {
-            if (next != null) {
-                shotgunSound.Play();
-                return PlayBulletFlyAnimation(Position, next).Then(() => {
-                    ShotgunHit(next.figures[0]);
-                });
-            } else {
+			if (next == null) {
                 return Promise.Resolved();
-            }
+			}
+			var target = next.figures[0];
+			if (target == null || !target.gameObject.activeSelf) {
+				return Promise.Resolved();
+			}
+			var onHit = target.GetComponentInChildren<OnShotgunHit>();
+			if (onHit == null) {
+				return Promise.Resolved();
+			}
+            shotgunSound.Play();
+            return PlayBulletFlyAnimation(Position, next).Then(() => {
+                onHit.Run();
+            });
         }).Then(() => {
             cell = Position.ToDirection(direction);
             if (cell != null) { 
@@ -81,50 +88,5 @@ public class HeroWithShotgun : Hero
                 GameManager.instance.HeroMoved(this, oldPosition, Position, direction);
             }
         }).Return(true);
-    }
-
-    void Explosion(Cell cell) {
-        if (cell == null) {
-            return;
-        }
-        if (cell.Figures.Count > 0) {
-            ShotgunHit(cell.Figures.First());
-        }
-    }
-
-    void ShotgunHit(Figure f) {
-        if (f is BlackMage) {
-            var bm = f as BlackMage;
-            bm.Hit();
-            bm.Relocate();
-        }
-        if (f is Hero) {
-            (f as Hero).Hit(10);
-        }
-        if (f is Barrel) {
-            var cell = f.Position;
-            f.gameObject.SetActive(false);
-            Destroy(f.gameObject);
-            PlayExplosionAnimation(cell);
-            this.TryPlay(explosionSound);
-            Explosion(cell.ToDirection(new IntVector2(1, 0)));
-            Explosion(cell.ToDirection(new IntVector2(-1, 0)));
-            Explosion(cell.ToDirection(new IntVector2(0, 1)));
-            Explosion(cell.ToDirection(new IntVector2(0, -1)));
-            Explosion(cell.ToDirection(new IntVector2(1, 1)));
-            Explosion(cell.ToDirection(new IntVector2(-1, 1)));
-            Explosion(cell.ToDirection(new IntVector2(1, -1)));
-            Explosion(cell.ToDirection(new IntVector2(-1, -1)));
-        }
-        if (f is Crate) {
-            f.gameObject.SetActive(false);
-            Destroy(f.gameObject);
-        }
-		if (f.gameObject.activeSelf) {
-			var onHit = f.GetComponent<OnShotgunHit>();
-			if (onHit != null) {
-				onHit.Run();
-			}
-		}
     }
 }

@@ -35,7 +35,7 @@ public class Explosive : MonoBehaviour
         }
         if (cell.Figures.Count > 0) {
             cell.Figures.ForEach(f => {
-                var onExplode = f.GetComponent<OnExplode>();
+                var onExplode = f.GetComponentInChildren<OnExplode>();
                 if (onExplode) {
                     onExplode.run.Invoke();
                 }

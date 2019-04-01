@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114501606100105568}
   - component: {fileID: 114938393764835246}
   - component: {fileID: 114046308711624934}
+  - component: {fileID: 114658330036668064}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -88,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark: {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
+  marks: []
   target: {fileID: 114073209765735048}
 --- !u!114 &114073209765735048
 MonoBehaviour:
@@ -125,6 +127,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
 --- !u!114 &114086852744021284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -214,6 +217,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1786269863214054}
+--- !u!114 &114658330036668064
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786269863214054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 2f5450809b7d3ba47b670cd55b8892a0, type: 2}
 --- !u!114 &114887783926488556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -243,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark: {fileID: 114543220808466862, guid: 714e4b5d40fbf401e847c7f6f54d69bf, type: 2}
+  marks: []
   target: {fileID: 114073209765735048}
 --- !u!212 &212722161965142286
 SpriteRenderer:
