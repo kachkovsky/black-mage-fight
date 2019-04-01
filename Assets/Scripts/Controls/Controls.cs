@@ -144,6 +144,20 @@ public class Controls : MonoBehaviour {
                 GameManager.instance.gameState.CurrentRun.levelsCompleted++;
                 GameManager.instance.UpdateState();
             }
+
+
+			if (Input.GetKeyDown(KeyCode.Minus)) {
+				if (GameManager.instance.gameState.CurrentRun.difficulty > 0) {
+					GameManager.instance.gameState.CurrentRun.difficulty--;
+					GameManager.instance.UpdateState();
+				}
+            }
+			if (Input.GetKeyDown(KeyCode.Equals)) {
+				if (GameManager.instance.gameState.CurrentRun.difficulty < GameLevels.instance.difficulties.Count-1) {
+					GameManager.instance.gameState.CurrentRun.difficulty++;
+					GameManager.instance.UpdateState();
+				}
+            }
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             UI.instance.Escape();
