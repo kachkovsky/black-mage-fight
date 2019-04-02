@@ -23,6 +23,7 @@ public class UI : Singletone<UI> {
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
     public GameObject bombCreationCounter;
+    public GameObject doorCreationCounter;
     public GameObject evilEyesCreationCounter;
     public GameObject statuesCreationCounter;
     public GameObject fireExtinguisherCounter;
@@ -123,6 +124,7 @@ public class UI : Singletone<UI> {
 		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
         bombCreationCounter.SetActive(BombSetter.instance);
+		doorCreationCounter.SetActive(DoorSpawner.instance);
         statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
@@ -140,9 +142,16 @@ public class UI : Singletone<UI> {
         if (BlackMage.instance != null) {
             blackMageHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BlackMage.instance.health, BlackMage.instance.maxHealth);
         }
+		if (DoorSpawner.instance) {
+			doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+				"<b>{0}/{1}</b>",
+				DoorSpawner.instance.periodicCounter.Value(),
+				DoorSpawner.instance.periodicCounter.MaxValue()
+			);
+		}
         if (BombSetter.instance) {
             bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
-        }        
+        }       
         if (Poison.instance) {
             poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.timeout-Poison.instance.spent, Poison.instance.timeout);
         }     

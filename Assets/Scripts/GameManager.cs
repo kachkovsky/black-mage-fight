@@ -34,6 +34,7 @@ public class GameManager : Singletone<GameManager> {
         ++wins;
         this.TryPlay(winSound);
         UI.instance.Win();
+		Debug.LogFormat("Win");
         gameState.CurrentRun.levelsCompleted++;
         if (gameState.CurrentRun.continuousRun) {
             gameState.CurrentRun.triesLeft++;

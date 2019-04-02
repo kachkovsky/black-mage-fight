@@ -138,10 +138,12 @@ public class Controls : MonoBehaviour {
 			}
             if (Input.GetKeyDown(KeyCode.LeftBracket)) {
                 GameManager.instance.gameState.CurrentRun.levelsCompleted--;
+				Debug.LogFormat("Level changed -");
                 GameManager.instance.UpdateState();
             }
             if (Input.GetKeyDown(KeyCode.RightBracket)) {
                 GameManager.instance.gameState.CurrentRun.levelsCompleted++;
+				Debug.LogFormat("Level changed +");
                 GameManager.instance.UpdateState();
             }
 
