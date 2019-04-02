@@ -17,6 +17,10 @@ public class TimeManager : Singletone<TimeManager>
         return UnityEngine.Time.time;
     }
 
+	public static float PausableTime() {
+		return UnityEngine.Time.time;
+	}
+
     public void Update() {
         promiseTimer.Update(Time() - lastUpdateTime);
         lastUpdateTime = Time();

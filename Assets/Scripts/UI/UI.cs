@@ -26,7 +26,9 @@ public class UI : Singletone<UI> {
     public GameObject statuesCreationCounter;
     public GameObject fireExtinguisherCounter;
     public GameObject ankhCounter;
-    public GameObject timeCounter;
+	public GameObject timeCounter;
+    public GameObject turnCounter;
+    public GameObject totalTimeCounter;
 	public GameObject keysUI;
 	public List<KeyImage> keyImages;
 
@@ -166,7 +168,13 @@ public class UI : Singletone<UI> {
         }     
         if (TimeCounter.instance) {
             timeCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", TimeCounter.instance.counter.maxValue-TimeCounter.instance.counter.value, TimeCounter.instance.counter.maxValue);
-        }  
+        }
+		if (TurnCounter.instance) {
+			turnCounter.GetComponentInChildren<Text>().text = "<b>{0}</b>".i(TurnCounter.instance.counter.value);
+		}
+		if (TotalTimeCounter.instance) {
+			totalTimeCounter.GetComponentInChildren<Text>().text = "<b>{0}</b>".i(TotalTimeCounter.instance.counter.value);
+		}
     }
 
     public IPromise Confirm(string text) {
