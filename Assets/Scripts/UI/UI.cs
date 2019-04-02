@@ -18,6 +18,7 @@ public class UI : Singletone<UI> {
 	[Space]
     public GameObject heroHealth;
     public GameObject blackMageHealth;
+    public GameObject heartstopperPeriod;
     public GameObject statuesCounter;
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
@@ -119,6 +120,7 @@ public class UI : Singletone<UI> {
     public void Update() {
         statuesCounter.SetActive(StatuesCounter.instance);
         poisonCounter.SetActive(Poison.instance);
+		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
         bombCreationCounter.SetActive(BombSetter.instance);
         statuesCreationCounter.SetActive(StatueSetter.instance);
@@ -146,6 +148,11 @@ public class UI : Singletone<UI> {
         }     
         if (Poison.secondInstance) {
             secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.timeout-Poison.secondInstance.spent, Poison.secondInstance.timeout);
+        }
+		if (HeartStopperPeriodic.instance) {
+			var text = heartstopperPeriod.GetComponentInChildren<Text>();
+			var counter = HeartStopperPeriodic.instance.periodicCounter;
+			text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
         }
         if (StatueSetter.instance) {
             var text = statuesCreationCounter.GetComponentInChildren<Text>();

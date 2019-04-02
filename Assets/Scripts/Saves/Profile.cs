@@ -7,6 +7,7 @@ using System.Text;
 public class Profile
 {
     public string name = "";
+	public bool skipIntros = false;
 
     public List<GameRun> completedRuns = new List<GameRun>();
     public List<GameRun> currentRuns = new List<GameRun>();

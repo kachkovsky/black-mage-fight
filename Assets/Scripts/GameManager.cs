@@ -197,7 +197,7 @@ public class GameManager : Singletone<GameManager> {
         var intro = currentLevel.GetComponentsInChildren<Intermission>().FirstOrDefault(i => !i.ending);
         if (intro != null)
         {
-            if (restarted) {
+			if (restarted || gameState.CurrentProfile.skipIntros) {
                 intro.Hide();
             } else {
                 intro.Show();

@@ -145,7 +145,6 @@ public class Controls : MonoBehaviour {
                 GameManager.instance.UpdateState();
             }
 
-
 			if (Input.GetKeyDown(KeyCode.Minus)) {
 				if (GameManager.instance.gameState.CurrentRun.difficulty > 0) {
 					GameManager.instance.gameState.CurrentRun.difficulty--;
@@ -158,6 +157,10 @@ public class Controls : MonoBehaviour {
 					GameManager.instance.UpdateState();
 				}
             }
+
+			if (Input.GetKeyDown(KeyCode.S)) {
+				GameManager.instance.gameState.CurrentProfile.skipIntros ^= true;
+			}
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             UI.instance.Escape();
