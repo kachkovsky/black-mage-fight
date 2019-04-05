@@ -26,7 +26,7 @@ public class Skull : Figure
     }
 
 	void UpdateScale() {
-		var scale = 0.3f + 0.1f * step;
+		var scale = 0.3f + 0.1f * Mathf.Clamp(step, 0, 8);
 		transform.localScale = new Vector3(scale, scale, 1);
 	}
 
