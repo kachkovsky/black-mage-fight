@@ -7,6 +7,7 @@ public class ExistByCondition : MonoBehaviour
 
     public void Awake() {
         if (!condition.Satisfied()) {
+			gameObject.SetActive(false);
             Destroy(gameObject);
         }
     }
