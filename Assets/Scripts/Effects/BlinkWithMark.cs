@@ -7,7 +7,14 @@ public class BlinkWithMark : Effect
 {
 	public List<Mark> marks;
 
+	public bool cashList = true;
+
+	IEnumerable<Figure> cashedList = null;
+
 	public override void Run() {
-		FindObjectsOfType<Figure>().Where(f => f.Marked(marks)).ForEach(f => f.Relocate());
+		if (!cashList || cashedList == null) {
+			cashedList = FindObjectsOfType<Figure>().Where(f => f.Marked(marks));
+		}
+		cashedList.ForEach(f => f.Relocate());
 	}
 }

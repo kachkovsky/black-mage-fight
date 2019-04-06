@@ -319,7 +319,7 @@ public static class Extensions
 
     public static void TryPlay(this MonoBehaviour go, AudioSource audioSource) {
         if (audioSource != null) {
-			Debug.LogFormat("Playing {0}", audioSource);
+			//Debug.LogFormat("Playing {0}", audioSource);
             audioSource.Play();
         }
     }

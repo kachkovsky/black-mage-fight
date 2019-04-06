@@ -15,7 +15,7 @@ public class DestroyMarkedAtPosition : Effect
 	}
 
 	public override void Run() {
-		Debug.LogFormat("DestroyMarkedAtPosition");
+		//Debug.LogFormat("DestroyMarkedAtPosition");
 		target.Position.figures.ForEach(f => {
 			if (f.Marked(mark) || f.Marked(marks)) {
 				Debug.LogFormat("Kill");
