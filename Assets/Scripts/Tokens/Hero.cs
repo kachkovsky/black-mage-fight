@@ -7,7 +7,7 @@ public class Hero : PlayerUnit
 {
     public static Hero instance;
 
-    protected override void Awake() {
+    public override void Awake() {
         base.Awake();
         instance = this;
         Debug.LogFormat("Hero instance: {0}", transform.Path());

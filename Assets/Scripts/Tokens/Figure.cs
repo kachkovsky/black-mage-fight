@@ -57,7 +57,7 @@ public class Figure : Token
         }
     }
 
-	public void Awake() {
+	public virtual void Awake() {
 		blink = GetComponent<Blink>();
 	}
 

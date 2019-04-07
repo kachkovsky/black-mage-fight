@@ -7,7 +7,7 @@ public class Gambochka : PlayerUnit
 {
     public static Gambochka instance;
 
-    protected override void Awake() {
+    public override void Awake() {
         base.Awake();
         instance = this;
     }

@@ -9,6 +9,6 @@ public class ChangePeriod : MonoBehaviour {
     public int deltaPeriod;
 
     public void Start() {
-        periodic.period += deltaPeriod;
+        periodic.Period += deltaPeriod;
     }
 }

@@ -1,32 +1,32 @@
-using System.Collections;
-using System;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
-using UnityEngine;
-using System.Collections.Generic;
-using System.Linq;
-using RSG;
+//using System.Collections;
+//using System;
+//using System.Runtime.Serialization.Formatters.Binary;
+//using System.IO;
+//using UnityEngine;
+//using System.Collections.Generic;
+//using System.Linq;
+//using RSG;
 
-public class TimeManager : Singletone<TimeManager>
-{
-	PromiseTimer promiseTimer = new PromiseTimer();
+//public class TimeManager : Singletone<TimeManager>
+//{
+//	PromiseTimer promiseTimer = new PromiseTimer();
 
-    float lastUpdateTime = 0;
+//    float lastUpdateTime = 0;
 
-    public static float Time() {
-        return UnityEngine.Time.time;
-    }
+//    public static float Time() {
+//        return UnityEngine.Time.time;
+//    }
 
-	public static float PausableTime() {
-		return UnityEngine.Time.time;
-	}
+//	public static float PausableTime() {
+//		return UnityEngine.Time.time;
+//	}
 
-    public void Update() {
-        promiseTimer.Update(Time() - lastUpdateTime);
-        lastUpdateTime = Time();
-    }
+//    public void Update() {
+//        promiseTimer.Update(Time() - lastUpdateTime);
+//        lastUpdateTime = Time();
+//    }
 
-    public static IPromise Wait(float seconds) {
-        return instance.promiseTimer.WaitFor(seconds);
-    }
-}
+//    public static IPromise Wait(float seconds) {
+//        return instance.promiseTimer.WaitFor(seconds);
+//    }
+//}

@@ -13,7 +13,7 @@ public class ChargingHero : Hero
 
 	public Spawner crateSpawner;
 
-	protected override void Awake() {
+	public override void Awake() {
 		base.Awake();
 		if (crateSpawner == null) {
 			crateSpawner = FindObjectOfType<Spawner>();

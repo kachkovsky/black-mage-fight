@@ -12,6 +12,17 @@ public class Periodic : Trigger
     public int phase = 0;
 	public List<int> runPhases = new List<int>();
 
+	public IntValueProvider periodProvider;
+
+	public int Period {
+		get {
+			return periodProvider ? periodProvider.Value : period;
+		}
+		set {
+			period = value;
+		}
+	}
+
 	[Serializable]
 	public class MultipleRun {
 		public int phase = 0;
@@ -31,10 +42,10 @@ public class Periodic : Trigger
 
     public void Tick() {
         phase += 1;
-        if (runPhases.Contains(phase % period)) {
+        if (runPhases.Contains(phase % Period)) {
             Run();
         } 
-		var multipleRun = multipleRunPhases.FirstOrDefault(r => r.phase == phase % period);
+		var multipleRun = multipleRunPhases.FirstOrDefault(r => r.phase == phase % Period);
 		if (multipleRun != null) {
 			for (int i = 0; i < multipleRun.times; i++) {
 				Run();

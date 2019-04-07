@@ -10,7 +10,8 @@ public class BlackMage : Unit
 
     public int hitDamage = 1;
 
-    void Awake() {
+    public override void Awake() {
+		base.Awake();
         instance = this;
     }
 

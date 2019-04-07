@@ -8,7 +8,8 @@ public class PlayerUnit : Unit
 
     SpriteRenderer spriteRenderer;
 
-    protected virtual void Awake() {
+	public override void Awake() {
+		base.Awake();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 

@@ -7,10 +7,18 @@ public class DamageEffect : Effect
 
     public int damage = 1;
 
+	public IntValueProvider damageProvider;
+
+	public int Damage {
+		get {
+			return damageProvider != null ? damageProvider.Value : damage;
+		}
+	}
+
     public override void Run() {
         if (target == null) {
             target = Hero.instance;
         }
-        target.Hit(damage);
+		target.Hit(Damage);
     }
 }
