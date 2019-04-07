@@ -2,13 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class DoorSpawner : MonoBehaviour
+public class DoorSpawner : SpawnerMarker<DoorSpawner>
 {
-    public static DoorSpawner instance;
-	public PeriodicCounter periodicCounter;
-
-    public void Awake() {
-        instance = this;
-        periodicCounter = GetComponentInChildren<PeriodicCounter>();
-    }
 }

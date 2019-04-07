@@ -23,6 +23,7 @@ public class UI : Singletone<UI> {
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
     public GameObject bombCreationCounter;
+	public GameObject fireCreationCounter;
     public GameObject doorCreationCounter;
     public GameObject evilEyesCreationCounter;
     public GameObject statuesCreationCounter;
@@ -125,6 +126,7 @@ public class UI : Singletone<UI> {
         secondPoisonCounter.SetActive(Poison.secondInstance);
         bombCreationCounter.SetActive(BombSetter.instance);
 		doorCreationCounter.SetActive(DoorSpawner.instance);
+		fireCreationCounter.SetActive(FireSpawner.instance);
         statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
@@ -147,6 +149,13 @@ public class UI : Singletone<UI> {
 				"<b>{0}/{1}</b>",
 				DoorSpawner.instance.periodicCounter.Value(),
 				DoorSpawner.instance.periodicCounter.MaxValue()
+			);
+		}
+		if (FireSpawner.instance) {
+			fireCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+				"<b>{0}/{1}</b>",
+				FireSpawner.instance.periodicCounter.Value(),
+				FireSpawner.instance.periodicCounter.MaxValue()
 			);
 		}
         if (BombSetter.instance) {
