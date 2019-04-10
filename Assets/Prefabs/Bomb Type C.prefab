@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4800574913832690}
-  - component: {fileID: 114179465630941674}
   - component: {fileID: 114664587446997618}
   - component: {fileID: 114444701251069028}
   - component: {fileID: 114135239516107230}
@@ -64,6 +63,7 @@ GameObject:
   - component: {fileID: 114488298942703786}
   - component: {fileID: 114128734732164182}
   - component: {fileID: 114787917902712184}
+  - component: {fileID: 114054880721862186}
   m_Layer: 0
   m_Name: Bomb Type C
   m_TagString: Untagged
@@ -174,6 +174,34 @@ Transform:
   m_Father: {fileID: 4800574913832690}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114054880721862186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1202587826455854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b8dc8e18af54d2998fcd0b3e4e629f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114651593687959012}
+        m_MethodName: Decrement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  trigger: {fileID: 0}
 --- !u!114 &114119467918317920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,36 +269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mark: {fileID: 114543220808466862, guid: 2b3f80a2cdac16e48ad6ca0ee4dddcc8, type: 2}
---- !u!114 &114179465630941674
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1202587826455854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3590925dee05e9844b8eee5dcbe2ad4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  run:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 114651593687959012}
-        m_MethodName: Decrement
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: MoveEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  heroRun:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: HeroEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114444701251069028
 MonoBehaviour:
   m_ObjectHideFlags: 1
