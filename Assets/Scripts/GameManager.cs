@@ -29,6 +29,8 @@ public class GameManager : Singletone<GameManager> {
     public int wins;
     public int losses;
 
+	public bool levelIsRunning;
+
     public void Win() {
         Destroy(BlackMage.instance.gameObject);
         ++wins;
@@ -36,6 +38,7 @@ public class GameManager : Singletone<GameManager> {
         UI.instance.Win();
 		Debug.LogFormat("Win");
         gameState.CurrentRun.levelsCompleted++;
+		levelIsRunning = false;
         if (gameState.CurrentRun.continuousRun) {
             gameState.CurrentRun.triesLeft++;
         } 
@@ -45,6 +48,7 @@ public class GameManager : Singletone<GameManager> {
     public void Lose() {
         Destroy(Hero.instance.gameObject);
         ++losses;
+		levelIsRunning = false;
         this.TryPlay(loseSound);
         UI.instance.Lose();
         Save();
@@ -207,7 +211,9 @@ public class GameManager : Singletone<GameManager> {
             } else {
                 intro.Show();
             }
-        } 
+        }
+
+		levelIsRunning = true;
     }
 
     public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
@@ -242,8 +248,16 @@ public class GameManager : Singletone<GameManager> {
     void Update() {
         if (LevelIsRunning()) {
             if (BlackMage.instance.Dead) {
+				if (!levelIsRunning) {
+					Debug.LogError("levelIsRunning == false");
+					return;
+				}
                 Win();
             } else if (Hero.instance.Dead) {
+				if (!levelIsRunning) {
+					Debug.LogError("levelIsRunning == false");
+					return;
+				}
                 Debug.LogFormat("Destroying hero: {0}", Hero.instance.transform.Path());
                 Lose();
             }

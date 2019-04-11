@@ -24,7 +24,6 @@ public class EvilEyeHelper : Token
     }
 
     public void Run() {
-        Debug.LogFormat("helper");
         Board.instance.cellsList.ForEach(cell => cell.RestoreColor());
         See(Hero.instance.Position, new IntVector2(1, 0));
         See(Hero.instance.Position, new IntVector2(-1, 0));
