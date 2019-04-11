@@ -8,6 +8,6 @@ public class SpawnerMarker<T> : OptionalSingletone<T> where T : MonoBehaviour
 
 	public override void Awake() {
 		base.Awake();
-		periodicCounter = GetComponent<PeriodicCounter>();
+		periodicCounter = GetComponentInChildren<PeriodicCounter>();
 	}
 }
