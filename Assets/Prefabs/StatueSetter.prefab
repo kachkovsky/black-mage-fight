@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114721113269861142}
   - component: {fileID: 114591292720801460}
   - component: {fileID: 114830776318367136}
+  - component: {fileID: 114865104924523590}
   m_Layer: 0
   m_Name: Statue
   m_TagString: Untagged
@@ -538,6 +539,7 @@ MonoBehaviour:
   period: 3
   phase: 0
   runPhases: 00000000
+  periodProvider: {fileID: 0}
   multipleRunPhases: []
   tick:
     m_PersistentCalls:
@@ -557,6 +559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counter: {fileID: 114014300077430678}
   value: 6
+  valueProvider: {fileID: 0}
 --- !u!114 &114591292720801460
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -697,6 +700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   damage: 2
+  damageProvider: {fileID: 0}
 --- !u!114 &114721113269861142
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -723,19 +727,8 @@ MonoBehaviour:
   effect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114721113269861142}
+      - m_Target: {fileID: 114348352447570282}
         m_MethodName: Run
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 114014300077430678}
-        m_MethodName: Decrement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -748,6 +741,33 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   figure: {fileID: 0}
+--- !u!114 &114865104924523590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1590579381846166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1337049f5d8409d9f526f7bb7e65a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  run:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114348352447570282}
+        m_MethodName: Run
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114925444916975548
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -53,7 +53,7 @@ public class Explosive : MonoBehaviour
         if (!gameObject.activeSelf) {
             return;
         }
-        this.TryPlay(explosionSound);
+		this.TryPlay(SoundManager.instance.explosion);
         var cell = figure.Position;
         gameObject.SetActive(false);
         Destroy(gameObject);
