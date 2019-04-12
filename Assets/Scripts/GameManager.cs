@@ -17,7 +17,8 @@ public class GameManager : Singletone<GameManager> {
     GameObject currentLevel;
 
     public AudioSource loseSound;
-    public AudioSource winSound;
+
+	public AudioSource winSound;
 
     public Intermission ending;
     public Intermission badEnding;
@@ -216,9 +217,14 @@ public class GameManager : Singletone<GameManager> {
 		levelIsRunning = true;
     }
 
-    public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
+	public void HeroMoved(Unit hero, Cell from, Cell to, IntVector2 direction) {
         onHeroMove(hero, from, to, direction);
     }
+
+	internal void BeforeHeroMove() {
+		Hero.instance.recentDamage = 0;
+		BlackMage.instance.recentDamage = 0;
+	}
 
     public void Restart() {
         RunLevel(lastLevel, restarted: true);

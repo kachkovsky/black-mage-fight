@@ -15,6 +15,8 @@ public class Unit : Figure
     public int health;
     public int maxHealth;
 
+	public int recentDamage = 0;
+
 	public List<Buff> buffs;
 
 	public UnityEvent onHitInvulnerable;
@@ -42,6 +44,7 @@ public class Unit : Figure
 		}
 
         health -= damage;
+		recentDamage += damage;
         if (health < 0) {
             health = 0;
         }
@@ -56,6 +59,7 @@ public class Unit : Figure
 
     public void Heal(int heal) {
         health += heal;
+		recentDamage -= heal;
         health = Mathf.Clamp(health, 0, maxHealth);
         this.TryPlay(healSound);
     }

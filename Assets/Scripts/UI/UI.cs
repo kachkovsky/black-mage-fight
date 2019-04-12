@@ -140,12 +140,6 @@ public class UI : Singletone<UI> {
 
         battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 
-        if (Hero.instance != null) {
-            heroHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Hero.instance.health, Hero.instance.maxHealth);
-        }
-        if (BlackMage.instance != null) {
-            blackMageHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BlackMage.instance.health, BlackMage.instance.maxHealth);
-        }
 		if (DoorSpawner.instance) {
 			if (DoorSpawner.instance.periodicCounter.Multiple()) {
 				doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(

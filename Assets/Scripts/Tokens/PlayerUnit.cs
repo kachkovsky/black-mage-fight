@@ -16,6 +16,8 @@ public class PlayerUnit : Unit
     public override IPromise<bool> MoveTo(IntVector2 direction) {
         var oldPosition = Position;
 
+		GameManager.instance.BeforeHeroMove();
+
         return base.MoveTo(direction).Then(moved => {
             if (moved) {
                 moveSound.Play();

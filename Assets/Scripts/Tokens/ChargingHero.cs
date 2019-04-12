@@ -40,6 +40,7 @@ public class ChargingHero : Hero
 	}
 
 	public override IPromise<bool> MoveTo(IntVector2 direction) {
+		GameManager.instance.BeforeHeroMove();
 		See(direction);
 		var cell = Position;
 		var next = cell;

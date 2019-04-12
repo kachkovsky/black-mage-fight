@@ -52,6 +52,8 @@ public class HeroWithShotgun : Hero
 	}
 
     public override IPromise<bool> MoveTo(IntVector2 direction) {
+		GameManager.instance.BeforeHeroMove();
+
         var cell = Position;
         var next = cell;
         for (int i = 0; i < 100; i++) {
