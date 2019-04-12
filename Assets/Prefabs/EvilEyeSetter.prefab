@@ -252,6 +252,7 @@ GameObject:
   - component: {fileID: 4994087960171988}
   - component: {fileID: 114380873332762636}
   - component: {fileID: 114593049668897932}
+  - component: {fileID: 114057497546824350}
   m_Layer: 0
   m_Name: EvilEyeLocator
   m_TagString: Untagged
@@ -466,6 +467,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   condition: {fileID: 114091295748804146}
+--- !u!114 &114057497546824350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1979317084912258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18de84418c212ce4c86f47c272ffd8d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: 2f5450809b7d3ba47b670cd55b8892a0, type: 2}
 --- !u!114 &114083275573991440
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -618,6 +631,7 @@ MonoBehaviour:
   swapSound: {fileID: 0}
   blink: {fileID: 0}
   damage: 3
+  damageProvider: {fileID: 0}
 --- !u!114 &114293285814342284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1032,6 +1046,7 @@ MonoBehaviour:
   period: 4
   phase: 0
   runPhases: 00000000
+  periodProvider: {fileID: 0}
   multipleRunPhases: []
   tick:
     m_PersistentCalls:

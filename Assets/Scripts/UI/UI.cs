@@ -147,11 +147,18 @@ public class UI : Singletone<UI> {
             blackMageHealth.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BlackMage.instance.health, BlackMage.instance.maxHealth);
         }
 		if (DoorSpawner.instance) {
-			doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
-				"<b>{0}/{1}</b>",
-				DoorSpawner.instance.periodicCounter.Value(),
-				DoorSpawner.instance.periodicCounter.MaxValue()
-			);
+			if (DoorSpawner.instance.periodicCounter.Multiple()) {
+				doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+					"<b>{0}</b>",
+					DoorSpawner.instance.periodicCounter.Value()
+				);
+			} else {
+				doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+					"<b>{0}/{1}</b>",
+					DoorSpawner.instance.periodicCounter.Value(),
+					DoorSpawner.instance.periodicCounter.MaxValue()
+				);
+			}
 		}
 		if (FireSpawner.instance) {
 			fireCreationCounter.GetComponentInChildren<Text>().text = string.Format(
