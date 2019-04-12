@@ -24,7 +24,8 @@ public class UI : Singletone<UI> {
     public GameObject secondPoisonCounter;
     public GameObject bombCreationCounter;
 	public GameObject fireCreationCounter;
-    public GameObject doorCreationCounter;
+	public GameObject doorCreationCounter;
+    public GameObject monsterCreationCounter;
     public GameObject evilEyesCreationCounter;
     public GameObject statuesCreationCounter;
     public GameObject fireExtinguisherCounter;
@@ -130,6 +131,7 @@ public class UI : Singletone<UI> {
         statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
+		monsterCreationCounter.SetActive(MonsterSetter.instance);
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
@@ -156,6 +158,13 @@ public class UI : Singletone<UI> {
 				"<b>{0}/{1}</b>",
 				FireSpawner.instance.periodicCounter.Value(),
 				FireSpawner.instance.periodicCounter.MaxValue()
+			);
+		}
+		if (MonsterSetter.instance) {
+			monsterCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+				"<b>{0}/{1}</b>",
+				MonsterSetter.instance.periodicCounter.Value(),
+				MonsterSetter.instance.periodicCounter.MaxValue()
 			);
 		}
         if (BombSetter.instance) {
