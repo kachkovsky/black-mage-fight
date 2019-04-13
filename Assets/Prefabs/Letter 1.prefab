@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 114707448098305816}
   - component: {fileID: 114315729768868516}
   - component: {fileID: 114293487014420070}
+  - component: {fileID: 114169470815782332}
   m_Layer: 0
   m_Name: Letter 1
   m_TagString: Untagged
@@ -142,6 +143,23 @@ Transform:
   m_Father: {fileID: 4988964535123272}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114169470815782332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1346649807742094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de08adf374e44c3495b679a8909bf7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 1, g: 0.5441177, b: 0.5441177, a: 1}
+  - {r: 0.9531441, g: 1, b: 0.5147059, a: 1}
+  - {r: 0.46044624, g: 1, b: 0.44117647, a: 1}
+  - {r: 0.677282, g: 0.45588237, b: 1, a: 0.991}
+  toPaint: {fileID: 212109117662240238}
 --- !u!114 &114178681248380958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -171,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   damage: 1
+  damageProvider: {fileID: 0}
 --- !u!114 &114315729768868516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,6 +328,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  onUncollide:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: FigureEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   onPushed:
     m_PersistentCalls:
       m_Calls:
@@ -336,6 +359,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   swapSound: {fileID: 0}
+  blink: {fileID: 0}
 --- !u!114 &114836192947097100
 MonoBehaviour:
   m_ObjectHideFlags: 1
