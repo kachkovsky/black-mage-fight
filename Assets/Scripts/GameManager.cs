@@ -33,7 +33,8 @@ public class GameManager : Singletone<GameManager> {
 	public bool levelIsRunning;
 
     public void Win() {
-        Destroy(BlackMage.instance.gameObject);
+		BlackMage.instance.health = 0;
+		BlackMage.instance.gameObject.SetActive(false);
         ++wins;
         this.TryPlay(winSound);
         UI.instance.Win();
@@ -47,7 +48,8 @@ public class GameManager : Singletone<GameManager> {
     }
 
     public void Lose() {
-        Destroy(Hero.instance.gameObject);
+		Hero.instance.health = 0;
+		Hero.instance.gameObject.SetActive(false);
         ++losses;
 		levelIsRunning = false;
         this.TryPlay(loseSound);
@@ -240,7 +242,11 @@ public class GameManager : Singletone<GameManager> {
     }
 
     public bool LevelIsRunning() {
-        return Hero.instance != null && BlackMage.instance != null;
+		return
+			Hero.instance != null &&
+			Hero.instance.gameObject.activeSelf &&
+			BlackMage.instance != null &&
+			BlackMage.instance.gameObject.activeSelf;
     }
 
     public bool Won() {
