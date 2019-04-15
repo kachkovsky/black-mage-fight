@@ -18,16 +18,22 @@ public class Explosive : MonoBehaviour
         figure = GetComponent<Figure>();
     }
 
-    IPromise PlayExplosionAnimation(Cell from) {
-        var explosion = Instantiate(explosionSample);
+	IPromise PlayExplosionAnimation(Cell from) {
+		var explosion = Instantiate(explosionSample);
 		explosion.transform.localScale = Vector3.one * Mathf.Sqrt(squareRadius) * explosionSpriteRadius;
-        explosion.SetActive(true);
-        explosion.transform.position = from.transform.position;
+		explosion.SetActive(true);
+		explosion.transform.position = from.transform.position;
+		ExplosionArea().ForEach(cell => {
+			cell.ChangeColor(Color.red);
+		});
 
-        return TimeManager.Wait(0.1f).Then(() => {
-            Destroy(explosion);
-        });
-    }
+		return TimeManager.Wait(0.1f).Then(() => {
+			Destroy(explosion);
+			ExplosionArea().ForEach(cell => {
+				cell.RestoreColor();
+			});
+		});
+	}
 
     void Explosion(Cell cell) {
         if (cell == null) {
