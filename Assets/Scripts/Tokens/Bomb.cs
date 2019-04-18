@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class Bomb : Figure
@@ -9,6 +9,10 @@ public class Bomb : Figure
     public int timer = 10;
 
     public int damage = 1;
+
+	public bool randomized = false;
+
+	public List<int> steps = new List<int>() { 1 };
 
     void Start() {
         UpdateText();
@@ -22,9 +26,9 @@ public class Bomb : Figure
         if (gameObject.activeSelf == false) {
             return;
         }
-        timer -= 1;
+		timer -= steps.Rnd();
         UpdateText();
-        if (timer == 0) {
+        if (timer <= 0) {
             Hero.instance.Hit(damage);
             Destroy(gameObject);
         }

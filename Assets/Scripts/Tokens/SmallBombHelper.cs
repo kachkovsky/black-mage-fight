@@ -23,9 +23,10 @@ public class SmallBombHelper : MonoBehaviour
 
 	public void Start() {
 		counter.onDecrement.AddListener(OnCounterDecrement);
+		UpdateSprites();
 	}
 
-	public void OnCounterDecrement() {
+	public void UpdateSprites() {
 		var danger = (counter.value == 1);
 		sprite.gameObject.SetActive(!danger);
 		dangerSprite.gameObject.SetActive(danger);
@@ -35,5 +36,9 @@ public class SmallBombHelper : MonoBehaviour
 		//		cell.ChangeColor(Color.yellow);
 		//	});
 		//}
+	}
+
+	public void OnCounterDecrement() {
+		UpdateSprites();
 	}
 }

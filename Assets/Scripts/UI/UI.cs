@@ -23,6 +23,9 @@ public class UI : Singletone<UI> {
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
     public GameObject bombCreationCounter;
+	public GameObject bombTimerIcons;
+	public GameObject bombOneTimerIcon;	
+	public GameObject bombRandomTimerIcon;
 	public GameObject fireCreationCounter;
 	public GameObject doorCreationCounter;
     public GameObject monsterCreationCounter;
@@ -120,12 +123,27 @@ public class UI : Singletone<UI> {
         loseMessage.SetActive(false);
     }
 
+	public bool RandomBombs() {
+		var bomb = BombSetter.instance.GetComponent<Spawner>().sample.GetComponent<Bomb>();
+		if (bomb && bomb.steps.Count > 1) {
+			return true;
+		}
+		return false;
+	}
+
     public void Update() {
         statuesCounter.SetActive(StatuesCounter.instance);
         poisonCounter.SetActive(Poison.instance);
 		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
+
         bombCreationCounter.SetActive(BombSetter.instance);
+		bombTimerIcons.SetActive(BombSetter.instance);
+		if (BombSetter.instance) {
+			bombRandomTimerIcon.SetActive(RandomBombs());
+			bombOneTimerIcon.SetActive(!RandomBombs());
+		}
+
 		doorCreationCounter.SetActive(DoorSpawner.instance);
 		fireCreationCounter.SetActive(FireSpawner.instance);
         statuesCreationCounter.SetActive(StatueSetter.instance);
