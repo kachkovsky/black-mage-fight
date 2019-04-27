@@ -11,10 +11,13 @@ public class GameLevels : MonoBehaviour {
 
     public GameObject commonObjects;
 
+	public Transform commonLevelsFolder;
+
     public static GameLevels instance;
 
     void Awake() {
         instance = this;
+		commonLevels = commonLevelsFolder.Children().Select(c => c.GetComponent<Level>()).ToList();
         transform.Children().ForEach(c => c.gameObject.SetActive(false));
     }
 }
