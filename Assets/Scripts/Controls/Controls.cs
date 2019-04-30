@@ -128,7 +128,11 @@ public class Controls : MonoBehaviour {
         }
         if (Cheats.on) {
             if (Input.GetKeyDown(KeyCode.W)) {
-                GameManager.instance.Win();
+				if (Input.GetKey(KeyCode.A)) {
+					BlackMage.instance.health = 1;
+				} else {
+					GameManager.instance.Win();
+				}
             }
             if (Input.GetKeyDown(KeyCode.L)) {
                 GameManager.instance.Lose();

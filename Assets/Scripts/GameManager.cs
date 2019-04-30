@@ -202,6 +202,9 @@ public class GameManager : Singletone<GameManager> {
 		if (BlackMage.instance.GetComponent<HealthScale>() == null) {
 			BlackMage.instance.maxHealth += 5 * (gameState.CurrentRun.difficulty - 4);
 			BlackMage.instance.health += 5 * (gameState.CurrentRun.difficulty - 4);
+			if (BlackMage.instance.health < 1) {
+				BlackMage.instance.health = BlackMage.instance.maxHealth = 1;
+			}
 		}
 
 		Controls.instance.Ready();

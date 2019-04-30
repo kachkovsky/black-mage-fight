@@ -6,12 +6,23 @@ public class CheckDifficulty : Condition
 {
     public int difficulty = 0;
     public List<int> diffuculties;
+	public bool atLeast;
+	public bool atMost;
 
     public override bool Satisfied() {
+		if (GameManager.instance.gameState.CurrentRun == null) {
+			return false;
+		}
         if (diffuculties.Count > 0) {
-            return GameManager.instance.gameState.CurrentRun != null && diffuculties.Contains(GameManager.instance.gameState.CurrentRun.difficulty);
+            return diffuculties.Contains(GameManager.instance.gameState.CurrentRun.difficulty);
         }
-        return GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.difficulty == difficulty;
+		if (atLeast) {
+			return GameManager.instance.gameState.CurrentRun.difficulty >= difficulty;
+		}
+		if (atMost) {
+			return GameManager.instance.gameState.CurrentRun.difficulty <= difficulty;
+		}
+        return GameManager.instance.gameState.CurrentRun.difficulty == difficulty;
     }
 }
 

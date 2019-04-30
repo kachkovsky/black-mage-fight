@@ -30,7 +30,9 @@ public class UI : Singletone<UI> {
 	public GameObject doorCreationCounter;
     public GameObject monsterCreationCounter;
     public GameObject evilEyesCreationCounter;
+    public GameObject evilEyesDamage;
     public GameObject statuesCreationCounter;
+	public GameObject statuesDamage;
     public GameObject fireExtinguisherCounter;
     public GameObject ankhCounter;
 	public GameObject timeCounter;
@@ -133,6 +135,9 @@ public class UI : Singletone<UI> {
 
     public void Update() {
         statuesCounter.SetActive(StatuesCounter.instance);
+        statuesCreationCounter.SetActive(StatueSetter.instance);
+		statuesDamage.SetActive(StatueSetter.instance);
+
         poisonCounter.SetActive(Poison.instance);
 		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
@@ -146,9 +151,11 @@ public class UI : Singletone<UI> {
 
 		doorCreationCounter.SetActive(DoorSpawner.instance);
 		fireCreationCounter.SetActive(FireSpawner.instance);
-        statuesCreationCounter.SetActive(StatueSetter.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
+
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
+		evilEyesDamage.SetActive(EvilEyesSetter.instance);
+
 		monsterCreationCounter.SetActive(MonsterSetter.instance);
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
@@ -204,12 +211,16 @@ public class UI : Singletone<UI> {
             var text = statuesCreationCounter.GetComponentInChildren<Text>();
             var counter = StatueSetter.instance.GetComponent<PeriodicCounter>();
             text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
-        }    
-        if (EvilEyesSetter.instance) {
-            var text = evilEyesCreationCounter.GetComponentInChildren<Text>();
-            var counter = EvilEyesSetter.instance.periodicCounter;
-            text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
-        }   
+			var damageText = statuesDamage.GetComponentInChildren<Text>();
+			damageText.text = string.Format("<b>{0}</b>", StatueSetter.instance.GetComponent<DamageEffect>().Damage);
+        }
+		if (EvilEyesSetter.instance) {
+			var text = evilEyesCreationCounter.GetComponentInChildren<Text>();
+			var counter = EvilEyesSetter.instance.periodicCounter;
+			text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
+			var damageText = evilEyesDamage.GetComponentInChildren<Text>();
+			damageText.text = string.Format("<b>{0}</b>", EvilEyesSetter.instance.GetComponent<Spawner>().sample.GetComponent<EvilEye>().Damage);
+		}
         if (StatuesCounter.instance) {
             statuesCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", StatuesCounter.instance.counter.value, StatuesCounter.instance.max);
         }      
