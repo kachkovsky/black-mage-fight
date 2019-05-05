@@ -197,10 +197,10 @@ public class UI : Singletone<UI> {
             bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
         }       
         if (Poison.instance) {
-            poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.timeout-Poison.instance.spent, Poison.instance.timeout);
+            poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.Timeout-Poison.instance.spent, Poison.instance.Timeout);
         }     
         if (Poison.secondInstance) {
-            secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.timeout-Poison.secondInstance.spent, Poison.secondInstance.timeout);
+            secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.Timeout-Poison.secondInstance.spent, Poison.secondInstance.Timeout);
         }
 		if (HeartStopperPeriodic.instance) {
 			var text = heartstopperPeriod.GetComponentInChildren<Text>();
@@ -225,13 +225,13 @@ public class UI : Singletone<UI> {
             statuesCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", StatuesCounter.instance.counter.value, StatuesCounter.instance.max);
         }      
         if (FireExtinguisherCounter.instance) {
-            fireExtinguisherCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", FireExtinguisherCounter.instance.counter.value, FireExtinguisherCounter.instance.counter.maxValue);
+            fireExtinguisherCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", FireExtinguisherCounter.instance.counter.value, FireExtinguisherCounter.instance.counter.MaxValue);
         }      
         if (GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun) {
             ankhCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}</b>", GameManager.instance.gameState.CurrentRun.triesLeft);
         }     
         if (TimeCounter.instance) {
-            timeCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", TimeCounter.instance.counter.maxValue-TimeCounter.instance.counter.value, TimeCounter.instance.counter.maxValue);
+            timeCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", TimeCounter.instance.counter.MaxValue-TimeCounter.instance.counter.value, TimeCounter.instance.counter.MaxValue);
         }
 		if (TurnCounter.instance) {
 			turnCounter.GetComponentInChildren<Text>().text = "<b>{0}</b>".i(TurnCounter.instance.counter.value);

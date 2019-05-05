@@ -7,6 +7,13 @@ public class Counter : Token
 {
     public int value = 0;
     public int maxValue = 0;
+	public IntValueProvider maxValueProvider;
+
+	public int MaxValue {
+		get {
+			return maxValueProvider == null ? maxValue : maxValueProvider.Value;
+		}
+	}
 
     public UnityEvent onMax;
     public UnityEvent onIncrement;
@@ -14,12 +21,12 @@ public class Counter : Token
     public UnityEvent onDecrement;
 
     public void Increment() {
-        if (value == maxValue) {
+        if (value == MaxValue) {
             return;
         }
         value += 1;
         onIncrement.Invoke();
-        if (value == maxValue) {
+        if (value == MaxValue) {
             onMax.Invoke();
         }
     }
@@ -40,7 +47,7 @@ public class Counter : Token
     }
 
     public void ShowCounter() {
-        UI.instance.ShowMessage(string.Format("{0}/{1}", value, maxValue));
+        UI.instance.ShowMessage(string.Format("{0}/{1}", value, MaxValue));
     }
 
     public void UpdateText(Text text) {
