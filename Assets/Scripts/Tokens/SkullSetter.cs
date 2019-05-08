@@ -5,6 +5,8 @@ using System.Linq;
 
 public class SkullSetter : Token
 {
+	public static SkullSetter instance;
+
     public GameObject skullPrefab;
 
     public Periodic periodic;
@@ -20,7 +22,11 @@ public class SkullSetter : Token
         }
     }
 
-    void Update() {
+	public void Awake() {
+		instance = this;
+	}
+
+    public void Update() {
         if (Input.GetKeyDown(KeyCode.V)) {
             SetSkull();
         }

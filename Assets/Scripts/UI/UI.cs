@@ -20,8 +20,10 @@ public class UI : Singletone<UI> {
     public GameObject blackMageHealth;
     public GameObject heartstopperPeriod;
     public GameObject statuesCounter;
+
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
+	public GameObject poisonDamage;
 
     public GameObject bombCreationCounter;
 	public GameObject bombTimerIcons;
@@ -40,7 +42,8 @@ public class UI : Singletone<UI> {
     public GameObject ankhCounter;
 	public GameObject timeCounter;
     public GameObject turnCounter;
-    public GameObject totalTimeCounter;
+	public GameObject totalTimeCounter;
+    public GameObject skullSpawnSpeed;
 	public GameObject keysUI;
 	public List<KeyImage> keyImages;
 
@@ -141,7 +144,10 @@ public class UI : Singletone<UI> {
         statuesCreationCounter.SetActive(StatueSetter.instance);
 		statuesDamage.SetActive(StatueSetter.instance);
 
+		skullSpawnSpeed.SetActive(SkullSetter.instance);
+
         poisonCounter.SetActive(Poison.instance);
+		poisonDamage.SetActive(Poison.instance);
 		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
 
@@ -164,6 +170,10 @@ public class UI : Singletone<UI> {
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
+		if (SkullSetter.instance) {
+			var text = skullSpawnSpeed.GetComponentInChildren<Text>();
+			text.text = string.Format("x{0}", SkullSetter.instance.GetComponent<MultipleTimes>().times);
+		}
 
 		keysUI.SetActive(KeyCounter.instance);
 
@@ -204,6 +214,8 @@ public class UI : Singletone<UI> {
         }       
         if (Poison.instance) {
             poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.Timeout-Poison.instance.spent, Poison.instance.Timeout);
+			var text = poisonDamage.GetComponentInChildren<Text>();
+			text.text = string.Format("<b>{0}</b>", Poison.instance.damage);
         }     
         if (Poison.secondInstance) {
             secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.Timeout-Poison.secondInstance.spent, Poison.secondInstance.Timeout);
