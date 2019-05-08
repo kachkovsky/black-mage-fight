@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 114938393764835246}
   - component: {fileID: 114046308711624934}
   - component: {fileID: 114658330036668064}
+  - component: {fileID: 114068523949142096}
   m_Layer: 0
   m_Name: Key
   m_TagString: Untagged
@@ -203,6 +204,18 @@ MonoBehaviour:
   mark: {fileID: 114543220808466862, guid: 873616cd63461654587fec5f1d7e4420, type: 2}
   marks: []
   target: {fileID: 114073209765735048}
+--- !u!114 &114068523949142096
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1786269863214054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d8b59449742b42f589bdaa705dd9f3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mark: {fileID: 114543220808466862, guid: f2d1ccc08900a4343ba9202bea3cc26e, type: 2}
 --- !u!114 &114073209765735048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -293,7 +306,7 @@ MonoBehaviour:
   effect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114068523949142096}
         m_MethodName: Increment
         m_Mode: 1
         m_Arguments:

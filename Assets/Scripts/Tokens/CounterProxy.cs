@@ -10,4 +10,8 @@ public class CounterProxy : MonoBehaviour
 	public void Decrement() {
 		Counter.counters[mark].Decrement();
 	}
+
+	public void Increment() {
+		Counter.counters[mark].Increment();
+	}
 }
