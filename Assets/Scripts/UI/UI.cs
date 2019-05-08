@@ -22,10 +22,13 @@ public class UI : Singletone<UI> {
     public GameObject statuesCounter;
     public GameObject poisonCounter;
     public GameObject secondPoisonCounter;
+
     public GameObject bombCreationCounter;
 	public GameObject bombTimerIcons;
-	public GameObject bombOneTimerIcon;	
+	public GameObject bombOneTimerIcon;
 	public GameObject bombRandomTimerIcon;
+	public GameObject bombDamage;
+
 	public GameObject fireCreationCounter;
 	public GameObject doorCreationCounter;
     public GameObject monsterCreationCounter;
@@ -144,6 +147,7 @@ public class UI : Singletone<UI> {
 
         bombCreationCounter.SetActive(BombSetter.instance);
 		bombTimerIcons.SetActive(BombSetter.instance);
+		bombDamage.SetActive(BombSetter.instance);
 		if (BombSetter.instance) {
 			bombRandomTimerIcon.SetActive(RandomBombs());
 			bombOneTimerIcon.SetActive(!RandomBombs());
@@ -195,6 +199,8 @@ public class UI : Singletone<UI> {
 		}
         if (BombSetter.instance) {
             bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
+			var text = bombDamage.GetComponentInChildren<Text>();
+			text.text = string.Format("<b>{0}</b>", Hero.instance.GetComponent<DamageUnit>().Damage);
         }       
         if (Poison.instance) {
             poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.Timeout-Poison.instance.spent, Poison.instance.Timeout);
@@ -205,7 +211,11 @@ public class UI : Singletone<UI> {
 		if (HeartStopperPeriodic.instance) {
 			var text = heartstopperPeriod.GetComponentInChildren<Text>();
 			var counter = HeartStopperPeriodic.instance.periodicCounter;
-			text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
+			if (counter != null) {
+				text.text = string.Format("<b>{0}/{1}</b>", counter.Value(), counter.MaxValue());
+			} else {
+				text.text = "";
+			}
         }
         if (StatueSetter.instance) {
             var text = statuesCreationCounter.GetComponentInChildren<Text>();

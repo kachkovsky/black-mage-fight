@@ -5,10 +5,11 @@ GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
+  serializedVersion: 5
   m_Component:
-  - 4: {fileID: 474978}
-  - 114: {fileID: 11429510}
+  - component: {fileID: 474978}
+  - component: {fileID: 11429510}
+  - component: {fileID: 114281248838821330}
   m_Layer: 0
   m_Name: HeartStopper
   m_TagString: Untagged
@@ -28,6 +29,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11429510
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -39,6 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 006fcf5670a96254fa98db39db93a7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -50,3 +53,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 119272}
   m_IsPrefabParent: 1
+--- !u!114 &114281248838821330
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1847f745faa9f43bdb299ecbfa9a6537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  periodicCounter: {fileID: 0}
