@@ -8,4 +8,6 @@ using RSG;
 public class SoundManager : Singletone<SoundManager>
 {
 	public AudioSource explosion;
+	public AudioSource doorOpenSound;
+	public AudioSource doorCrackSound;
 }
