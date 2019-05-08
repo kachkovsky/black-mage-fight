@@ -7,6 +7,6 @@ using System;
 public class Level : MonoBehaviour {
     [ContextMenu("Run")] 
     public void Run() {
-        GameManager.instance.RunLevel(gameObject);
+        GameManager.instance.RunLevel(this);
     }
 }

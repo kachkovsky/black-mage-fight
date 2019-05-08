@@ -13,8 +13,8 @@ public class GameManager : Singletone<GameManager> {
 
     public GameState gameState;
 
-    GameObject lastLevel;
-    GameObject currentLevel;
+    public Level lastLevel;
+    public Level currentLevel;
 
     public AudioSource loseSound;
 
@@ -118,7 +118,7 @@ public class GameManager : Singletone<GameManager> {
             FinishGame(run);
             return;
         }
-        RunLevel(GameLevels.instance.commonLevels[run.levelsCompleted].gameObject);
+        RunLevel(GameLevels.instance.commonLevels[run.levelsCompleted]);
     }
 
     void FinishGame(GameRun run) {
@@ -150,8 +150,8 @@ public class GameManager : Singletone<GameManager> {
             Destroy(x.gameObject);
         });
         if (currentLevel != null) {
-            currentLevel.SetActive(false);
-            Destroy(currentLevel);
+            currentLevel.gameObject.SetActive(false);
+			Destroy(currentLevel.gameObject);
         }
 		if (Board.instance) {
 			Board.instance.OnDestroy();
@@ -163,7 +163,7 @@ public class GameManager : Singletone<GameManager> {
         FindObjectsOfType<Figure>().ForEach(f => f.Blink());
     }
 
-    public void RunLevel(GameObject level, bool restarted = false) {
+    public void RunLevel(Level level, bool restarted = false) {
 		Intermission.active = false;
         if (gameState.CurrentRun.continuousRun) {
             if (gameState.CurrentRun.triesLeft <= 0) {
@@ -178,7 +178,8 @@ public class GameManager : Singletone<GameManager> {
         lastLevel = level;
         Clear();
         currentLevel = Instantiate(level);
-        currentLevel.SetActive(true);
+		currentLevel.name = level.name;
+        currentLevel.gameObject.SetActive(true);
         var commonObjects = Instantiate(GameLevels.instance.commonObjects);
         commonObjects.transform.SetParent(currentLevel.transform);
         commonObjects.SetActive(true);
