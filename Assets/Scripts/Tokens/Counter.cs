@@ -5,9 +5,13 @@ using UnityEngine.Events;
 
 public class Counter : Token
 {
+	public static Map<Mark, Counter> counters = new Map<Mark, Counter>();
+
     public int value = 0;
     public int maxValue = 0;
 	public IntValueProvider maxValueProvider;
+
+	public Mark mark;
 
 	public int MaxValue {
 		get {
@@ -54,4 +58,10 @@ public class Counter : Token
         var format = "{0}";
         text.text = string.Format(format, value);
     }
+
+	public void Awake() {
+		if (mark) {
+			counters[mark] = this;
+		}
+	}
 }

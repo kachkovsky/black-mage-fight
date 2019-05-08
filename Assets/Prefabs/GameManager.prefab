@@ -903,6 +903,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1371000313329226
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4615558856820064}
+  m_Layer: 0
+  m_Name: UndestroyableSounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1374460913445176
 GameObject:
   m_ObjectHideFlags: 1
@@ -1029,6 +1044,21 @@ GameObject:
   - component: {fileID: 114763105976646138}
   m_Layer: 0
   m_Name: Cell 0 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1394912699024838
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4841438529902466}
+  m_Layer: 0
+  m_Name: Sounds Library
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2913,9 +2943,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4144571574862986}
-  - {fileID: 4814137907490138}
-  - {fileID: 4896924202272914}
+  - {fileID: 4615558856820064}
+  - {fileID: 4841438529902466}
   m_Father: {fileID: 491198}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3036,7 +3065,7 @@ Transform:
   m_LocalPosition: {x: -0.49999994, y: -2.5, z: 0}
   m_LocalScale: {x: 0.90000004, y: 0.90000004, z: 0.9}
   m_Children: []
-  m_Father: {fileID: 4095930978021638}
+  m_Father: {fileID: 4841438529902466}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4148193725393072
@@ -4110,6 +4139,19 @@ Transform:
   m_Father: {fileID: 4530191797784814}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4615558856820064
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1371000313329226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4095930978021638}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4616740638181426
 Transform:
   m_ObjectHideFlags: 1
@@ -4391,7 +4433,7 @@ Transform:
   m_LocalPosition: {x: -0.49999994, y: -2.5, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
-  m_Father: {fileID: 4095930978021638}
+  m_Father: {fileID: 4841438529902466}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4833251963365856
@@ -4445,6 +4487,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4677435065813540}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4841438529902466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1394912699024838}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4144571574862986}
+  - {fileID: 4814137907490138}
+  - {fileID: 4896924202272914}
+  m_Father: {fileID: 4095930978021638}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4851026791870102
 Transform:
@@ -4529,7 +4587,7 @@ Transform:
   m_LocalPosition: {x: -0.49999994, y: -2.5, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
-  m_Father: {fileID: 4095930978021638}
+  m_Father: {fileID: 4841438529902466}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4898004332266180
@@ -8638,6 +8696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09bb4f963110142d191cdeea449b8510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  undestroyableSounds: {fileID: 4615558856820064}
   explosion: {fileID: 82832575562702908}
   doorOpenSound: {fileID: 82539895550427514}
   doorCrackSound: {fileID: 82278782405234238}
