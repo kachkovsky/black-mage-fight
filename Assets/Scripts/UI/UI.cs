@@ -32,7 +32,11 @@ public class UI : Singletone<UI> {
 	public GameObject bombDamage;
 
 	public GameObject fireCreationCounter;
+	public GameObject fireDamage;
+
 	public GameObject doorCreationCounter;
+	public GameObject doorDamage;
+
     public GameObject monsterCreationCounter;
     public GameObject evilEyesCreationCounter;
     public GameObject evilEyesDamage;
@@ -160,7 +164,10 @@ public class UI : Singletone<UI> {
 		}
 
 		doorCreationCounter.SetActive(DoorSpawner.instance);
+		doorDamage.SetActive(DoorSpawner.instance);
+
 		fireCreationCounter.SetActive(FireSpawner.instance);
+		fireDamage.SetActive(FireSpawner.instance);
         fireExtinguisherCounter.SetActive(FireExtinguisherCounter.instance);
 
         evilEyesCreationCounter.SetActive(EvilEyesSetter.instance);
@@ -192,6 +199,8 @@ public class UI : Singletone<UI> {
 					DoorSpawner.instance.periodicCounter.MaxValue()
 				);
 			}
+			var text = doorDamage.GetComponentInChildren<Text>();
+			text.text = string.Format("<b>{0}</b>", DoorSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().damage);
 		}
 		if (FireSpawner.instance) {
 			fireCreationCounter.GetComponentInChildren<Text>().text = string.Format(
@@ -199,6 +208,8 @@ public class UI : Singletone<UI> {
 				FireSpawner.instance.periodicCounter.Value(),
 				FireSpawner.instance.periodicCounter.MaxValue()
 			);
+			var text = fireDamage.GetComponentInChildren<Text>();
+			text.text = string.Format("<b>{0}</b>", FireSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().damage);
 		}
 		if (MonsterSetter.instance) {
 			monsterCreationCounter.GetComponentInChildren<Text>().text = string.Format(

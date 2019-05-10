@@ -9,16 +9,16 @@ public class KeyImage : MonoBehaviour
 
 	public Counter counter;
 
-	public Image keyImage;
-	public Image inactivekeyImage;
+	public GameObject keyImage;
+	public GameObject inactivekeyImage;
 
 	public void Update() {
 		if (counter) {
-			keyImage.enabled = counter.value == 1;
-			inactivekeyImage.enabled = counter.value == 0;
+			keyImage.SetActive(counter.value == 1);
+			inactivekeyImage.SetActive(counter.value == 0);
 		} else {
-			keyImage.enabled = false;
-			inactivekeyImage.enabled = false;
+			keyImage.SetActive(false);
+			inactivekeyImage.SetActive(false);
 		}
 	}
 }

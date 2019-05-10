@@ -13,6 +13,9 @@ public class KeyCounter : MonoBehaviour
 
 	public void Awake() {
 		instance = this;
-		UI.instance.keyImages.First(ki => ki.keyToken == keyToken).counter = counter;
+		var keyImage = UI.instance.keyImages.FirstOrDefault(ki => ki.keyToken == keyToken);
+		if (keyImage) {
+			keyImage.counter = counter;
+		}
 	}
 }
