@@ -200,7 +200,7 @@ public class UI : Singletone<UI> {
 				);
 			}
 			var text = doorDamage.GetComponentInChildren<Text>();
-			text.text = string.Format("<b>{0}</b>", DoorSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().damage);
+			text.text = string.Format("<b>{0}</b>", DoorSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().Damage);
 		}
 		if (FireSpawner.instance) {
 			fireCreationCounter.GetComponentInChildren<Text>().text = string.Format(
