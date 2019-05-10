@@ -209,7 +209,7 @@ public class UI : Singletone<UI> {
 				FireSpawner.instance.periodicCounter.MaxValue()
 			);
 			var text = fireDamage.GetComponentInChildren<Text>();
-			text.text = string.Format("<b>{0}</b>", FireSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().damage);
+			text.text = string.Format("<b>{0}</b>", FireSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().Damage);
 		}
 		if (MonsterSetter.instance) {
 			monsterCreationCounter.GetComponentInChildren<Text>().text = string.Format(
