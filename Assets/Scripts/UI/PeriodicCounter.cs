@@ -5,6 +5,11 @@ using UnityEngine.UI;
 public class PeriodicCounter : MonoBehaviour
 {
     public Periodic periodic;
+	public MultipleTimes multiple;
+
+	public void Awake() {
+		multiple = GetComponent<MultipleTimes>();
+	}
 
 	public bool Multiple() {
 		return periodic.multipleRunPhases.Count > 1;
@@ -20,7 +25,27 @@ public class PeriodicCounter : MonoBehaviour
     }
 
     public int MaxValue() {
-        return periodic.Period;
+		var phase = (periodic.phase + Value()) % periodic.Period;
+		return Mathf.Min(
+			periodic.runPhases.ExtMin(x => x > phase ? x - phase : x + periodic.Period - phase),
+			periodic.multipleRunPhases.ExtMin(x => x.phase > phase ? x.phase - phase : x.phase + periodic.Period - phase)
+		);
     }
+
+	public int Delta() {
+		if (multiple) {
+			return multiple.times;
+		}
+		return 1;
+	}
+
+	public string Format() {
+		return string.Format(
+			"<b>{0}/{1}{2}</b>",
+			Value(),
+			MaxValue(),
+			Delta() > 1 ? string.Format("x{0}", Delta()) : ""
+		);
+	}
 
 }

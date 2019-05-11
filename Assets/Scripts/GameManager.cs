@@ -197,7 +197,7 @@ public class GameManager : Singletone<GameManager> {
             }
         });
 
-		FindObjectsOfType<ExistByCondition>().ForEach(e => e.Awake()); // remove non-existant onlevelStart triggers first
+		ExistByCondition.AwakeAll();
         FindObjectsOfType<OnLevelStart>().ForEach(t => t.Run()); // then run existent onlevelstart triggers
 
 		if (BlackMage.instance.GetComponent<HealthScale>() == null) {

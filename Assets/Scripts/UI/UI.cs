@@ -35,6 +35,7 @@ public class UI : Singletone<UI> {
 	public GameObject fireDamage;
 
 	public GameObject doorCreationCounter;
+	public GameObject doorCreationCounter2;
 	public GameObject doorDamage;
 
     public GameObject monsterCreationCounter;
@@ -164,6 +165,7 @@ public class UI : Singletone<UI> {
 		}
 
 		doorCreationCounter.SetActive(DoorSpawner.instance);
+		doorCreationCounter2.SetActive(DoorSpawner.instance && DoorSpawner.instance.periodicCounters.Count >= 2);
 		doorDamage.SetActive(DoorSpawner.instance);
 
 		fireCreationCounter.SetActive(FireSpawner.instance);
@@ -193,11 +195,12 @@ public class UI : Singletone<UI> {
 					DoorSpawner.instance.periodicCounter.Value()
 				);
 			} else {
-				doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
-					"<b>{0}/{1}</b>",
-					DoorSpawner.instance.periodicCounter.Value(),
-					DoorSpawner.instance.periodicCounter.MaxValue()
-				);
+				doorCreationCounter.GetComponentInChildren<Text>().text =
+					DoorSpawner.instance.periodicCounter.Format();
+			}
+			if (DoorSpawner.instance.periodicCounters.Count >= 2) {
+				doorCreationCounter2.GetComponentInChildren<Text>().text =
+					DoorSpawner.instance.periodicCounters[1].Format();
 			}
 			var text = doorDamage.GetComponentInChildren<Text>();
 			text.text = string.Format("<b>{0}</b>", DoorSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().Damage);
