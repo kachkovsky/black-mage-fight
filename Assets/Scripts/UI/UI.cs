@@ -35,6 +35,7 @@ public class UI : Singletone<UI> {
 	public GameObject fireDamage;
 
 	public GameObject doorCreationCounter;
+	public PeriodicUI doorCreationPeriodic;
 	public GameObject doorCreationCounter2;
 	public GameObject doorDamage;
 
@@ -189,19 +190,20 @@ public class UI : Singletone<UI> {
         battleMusic.mute = menu.gameObject.activeSelf || Intermission.active || customLevel.activeSelf || GameManager.instance.GameOver() || GameManager.instance.gameState.CurrentRun == null;
 
 		if (DoorSpawner.instance) {
-			if (DoorSpawner.instance.periodicCounter.Multiple()) {
-				doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
-					"<b>{0}</b>",
-					DoorSpawner.instance.periodicCounter.Value()
-				);
-			} else {
-				doorCreationCounter.GetComponentInChildren<Text>().text =
-					DoorSpawner.instance.periodicCounter.Format();
-			}
-			if (DoorSpawner.instance.periodicCounters.Count >= 2) {
-				doorCreationCounter2.GetComponentInChildren<Text>().text =
-					DoorSpawner.instance.periodicCounters[1].Format();
-			}
+			doorCreationPeriodic.UpdatePeriodic(DoorSpawner.instance.periodicCounter);
+			//if (DoorSpawner.instance.periodicCounter.Multiple()) {
+			//	doorCreationCounter.GetComponentInChildren<Text>().text = string.Format(
+			//		"<b>{0}</b>",
+			//		DoorSpawner.instance.periodicCounter.Value()
+			//	);
+			//} else {
+			//	doorCreationCounter.GetComponentInChildren<Text>().text =
+			//		DoorSpawner.instance.periodicCounter.Format();
+			//}
+			//if (DoorSpawner.instance.periodicCounters.Count >= 2) {
+			//	doorCreationCounter2.GetComponentInChildren<Text>().text =
+			//		DoorSpawner.instance.periodicCounters[1].Format();
+			//}
 			var text = doorDamage.GetComponentInChildren<Text>();
 			text.text = string.Format("<b>{0}</b>", DoorSpawner.instance.GetComponent<Spawner>().sample.GetComponentInChildren<DamageEffect>().Damage);
 		}
