@@ -39,6 +39,7 @@ Transform:
   - {fileID: 4069120965580172}
   - {fileID: 4301945149395144}
   - {fileID: 4095930978021638}
+  - {fileID: 4714918820942908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -69,6 +70,8 @@ MonoBehaviour:
       completedRuns: []
       currentRuns: []
     currentProfileIndex: 0
+  lastLevel: {fileID: 0}
+  currentLevel: {fileID: 0}
   loseSound: {fileID: 82529207675082304}
   winSound: {fileID: 82934438965951126}
   ending: {fileID: 114568897350003792}
@@ -621,6 +624,22 @@ GameObject:
   - component: {fileID: 114880961977879064}
   m_Layer: 5
   m_Name: Text (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1258896065692476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4714918820942908}
+  - component: {fileID: 114133764762127920}
+  m_Layer: 0
+  m_Name: Marks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4290,6 +4309,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4073979667214348}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4714918820942908
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258896065692476}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491198}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4718732648463364
 Transform:
@@ -8685,6 +8717,18 @@ MonoBehaviour:
   y: 2
   figures: []
   meshRenderer: {fileID: 23779754787343678}
+--- !u!114 &114133764762127920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1258896065692476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baec443e00a3e4d96aadea5bb048ac9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monster: {fileID: 114543220808466862, guid: 9922e3d943c6b44148e414cdb799d09e, type: 2}
 --- !u!114 &114134707093084326
 MonoBehaviour:
   m_ObjectHideFlags: 1

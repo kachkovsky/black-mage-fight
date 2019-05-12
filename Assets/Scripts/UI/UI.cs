@@ -40,6 +40,9 @@ public class UI : Singletone<UI> {
 	public GameObject doorDamage;
 
     public GameObject monsterCreationCounter;
+	public GameObject monsterDamage;
+	public GameObject monsterCount;
+
     public GameObject evilEyesCreationCounter;
     public GameObject evilEyesDamage;
     public GameObject statuesCreationCounter;
@@ -177,6 +180,8 @@ public class UI : Singletone<UI> {
 		evilEyesDamage.SetActive(EvilEyesSetter.instance);
 
 		monsterCreationCounter.SetActive(MonsterSetter.instance);
+		monsterCount.SetActive(TokenCounter.cnt[Marks.Monster] > 0);
+		monsterDamage.SetActive(MonsterSetter.instance || TokenCounter.cnt[Marks.Monster] > 0);
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
 
@@ -222,6 +227,18 @@ public class UI : Singletone<UI> {
 				MonsterSetter.instance.periodicCounter.Value(),
 				MonsterSetter.instance.periodicCounter.MaxValue()
 			);
+		}
+		if (monsterDamage.activeSelf) {
+			var text = monsterDamage.GetComponentInChildren<Text>();
+			var monster =
+			   	MonsterSetter.instance ?
+			   	MonsterSetter.instance.GetComponent<Spawner>().sample :
+				TokenCounter.list[Marks.Monster][0];
+			text.text = string.Format("<b>{0}</b>", monster.GetComponent<DamageEffect>().Damage);
+		}
+		if (monsterCount.activeSelf) {
+			monsterCount.GetComponentInChildren<Text>().text = 
+				string.Format("<b>{0}</b>", TokenCounter.cnt[Marks.Monster]);
 		}
         if (BombSetter.instance) {
             bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
