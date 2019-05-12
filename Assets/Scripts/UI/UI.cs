@@ -187,7 +187,7 @@ public class UI : Singletone<UI> {
 
 		if (SkullSetter.instance) {
 			var text = skullSpawnSpeed.GetComponentInChildren<Text>();
-			text.text = string.Format("x{0}", SkullSetter.instance.GetComponent<MultipleTimes>().times);
+			text.text = string.Format("x{0}", SkullSetter.instance.GetComponent<MultipleTimes>().Times);
 		}
 
 		keysUI.SetActive(KeyCounter.instance);

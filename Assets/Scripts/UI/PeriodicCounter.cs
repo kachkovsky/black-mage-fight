@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -34,7 +34,7 @@ public class PeriodicCounter : MonoBehaviour
 
 	public int Delta() {
 		if (multiple) {
-			return multiple.times;
+			return multiple.Times;
 		}
 		return 1;
 	}
