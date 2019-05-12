@@ -11,6 +11,6 @@ public class StatuesCounter : MonoBehaviour
     public void Awake() {
         instance = this;
         counter = GetComponent<Counter>();
-        max = GetComponent<CounterGreaterOrEqual>().value;
+        max = GetComponent<CounterGreaterOrEqual>().Value;
     }
 }

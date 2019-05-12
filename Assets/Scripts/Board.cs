@@ -106,15 +106,20 @@ public class Board : Singletone<Board> {
 
     [ContextMenu("Restore")]
     public void Restore() {
-        FindObjectsOfType<Cell>().ForEach(c => {
-            c.figures = FindObjectsOfType<Figure>().Where(f => f.Position == c && f.gameObject.activeInHierarchy).ToList();
+		var cells = FindObjectsOfType<Cell>();
+		var figures = FindObjectsOfType<Figure>();
+		cells.ForEach(c => c.figures.Clear());
+		figures.ForEach(f => {
+			if (f.gameObject.activeInHierarchy && f.Position) {
+				f.Position.figures.Add(f);
+			}
+		});
+#if UNITY_EDITOR
+		if (!EditorApplication.isPlaying) {
+			cells.ForEach(c => EditorUtility.SetDirty(c));
+		}
+#endif
 
-            #if UNITY_EDITOR
-            if (!EditorApplication.isPlaying) {
-                EditorUtility.SetDirty(c);
-            }
-            #endif
-        });
         #if UNITY_EDITOR
         if (!EditorApplication.isPlaying) {
             UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();

@@ -14,7 +14,7 @@ public class CounterGreaterOrEqual : Condition
 	}
 
     public override bool Satisfied() {
-        return counter.value >= value;
+        return counter.value >= Value;
     }
 }
 
