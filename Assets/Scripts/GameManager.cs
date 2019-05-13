@@ -190,6 +190,7 @@ public class GameManager : Singletone<GameManager> {
         });
 
         Board.instance.Restore();
+		Controls.instance.lockers.Clear();
 
         FindObjectsOfType<Figure>().ForEach(f => {
 			if (f.Position == null || !f.Position.gameObject.activeInHierarchy) {
