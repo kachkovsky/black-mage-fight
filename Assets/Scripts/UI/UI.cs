@@ -248,7 +248,7 @@ public class UI : Singletone<UI> {
         if (Poison.instance) {
             poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.Timeout-Poison.instance.spent, Poison.instance.Timeout);
 			var text = poisonDamage.GetComponentInChildren<Text>();
-			text.text = string.Format("<b>{0}</b>", Poison.instance.damage);
+			text.text = string.Format("<b>{0}</b>", Poison.instance.Damage);
         }     
         if (Poison.secondInstance) {
             secondPoisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.secondInstance.Timeout-Poison.secondInstance.spent, Poison.secondInstance.Timeout);

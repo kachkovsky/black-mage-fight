@@ -10,10 +10,16 @@ public class Poison : Token
     public int damage = 1;
     public int timeout = 10;
 	public IntValueProvider timeoutProvider;
+	public IntValueProvider damageProvider;
 
 	public int Timeout {
 		get {
 			return timeoutProvider != null ? timeoutProvider.Value : timeout;
+		}
+	}
+	public int Damage {
+		get {
+			return damageProvider != null ? damageProvider.Value : damage;
 		}
 	}
 
@@ -46,7 +52,7 @@ public class Poison : Token
             spent = Timeout;
         }
         if (spent >= Timeout) {
-            hero.Hit(damage);
+            hero.Hit(Damage);
             if (dropOnDamage) {
                 spent = 0;
             }
