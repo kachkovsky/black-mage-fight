@@ -243,7 +243,10 @@ public class UI : Singletone<UI> {
         if (BombSetter.instance) {
             bombCreationCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", BombSetter.instance.GetComponent<PeriodicCounter>().Value(), BombSetter.instance.GetComponent<PeriodicCounter>().MaxValue());
 			var text = bombDamage.GetComponentInChildren<Text>();
-			text.text = string.Format("<b>{0}</b>", Hero.instance.GetComponent<DamageUnit>().Damage);
+			var damageHero = Hero.instance.GetComponent<DamageUnit>();
+			var bomb = BombSetter.instance.GetComponent<Spawner>().sample.GetComponent<Bomb>();
+			var damage = damageHero ? damageHero.Damage : bomb.Damage;
+			text.text = string.Format("<b>{0}</b>", damage);
         }       
         if (Poison.instance) {
             poisonCounter.GetComponentInChildren<Text>().text = string.Format("<b>{0}/{1}</b>", Poison.instance.Timeout-Poison.instance.spent, Poison.instance.Timeout);

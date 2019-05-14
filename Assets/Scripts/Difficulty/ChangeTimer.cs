@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +9,6 @@ public class ChangeTimer : MonoBehaviour {
     public int deltaTimer;
 
     public void Start() {
-        bomb.timer += deltaTimer;
+        bomb.Timer += deltaTimer;
     }
 }

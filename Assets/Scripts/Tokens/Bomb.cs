@@ -10,26 +10,48 @@ public class Bomb : Figure
 
     public int damage = 1;
 
+	public IntValueProvider damageProvider;
+
+	public int Damage {
+		get {
+			return damageProvider ? damageProvider.Value : damage;
+		}
+	}
+
+	public IntValueProvider timerProvider;
+
+	public int Timer {
+		get {
+			return timer;
+		}
+		set {
+			timer = value;
+		}
+	}
+
 	public bool randomized = false;
 
 	public List<int> steps = new List<int>() { 1 };
 
     void Start() {
+		if (timerProvider) {
+			timer = timerProvider.Value;
+		}
         UpdateText();
     }
 
     void UpdateText() {
-        text.text = timer.ToString();
+        text.text = Timer.ToString();
     }
 
     public void Tick() {
         if (gameObject.activeSelf == false) {
             return;
         }
-		timer -= steps.Rnd();
+		Timer -= steps.Rnd();
         UpdateText();
-        if (timer <= 0) {
-            Hero.instance.Hit(damage);
+        if (Timer <= 0) {
+            Hero.instance.Hit(Damage);
             Destroy(gameObject);
         }
     }
