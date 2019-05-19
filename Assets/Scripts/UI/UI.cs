@@ -43,6 +43,8 @@ public class UI : Singletone<UI> {
 	public GameObject monsterDamage;
 	public GameObject monsterCount;
 
+	public GameObject barrelDamage;
+
     public GameObject evilEyesCreationCounter;
     public GameObject evilEyesDamage;
     public GameObject statuesCreationCounter;
@@ -160,6 +162,8 @@ public class UI : Singletone<UI> {
 		heartstopperPeriod.SetActive(HeartStopperPeriodic.instance);
         secondPoisonCounter.SetActive(Poison.secondInstance);
 
+		barrelDamage.SetActive(BarrelSetter.instance);
+
         bombCreationCounter.SetActive(BombSetter.instance);
 		bombTimerIcons.SetActive(BombSetter.instance);
 		bombDamage.SetActive(BombSetter.instance);
@@ -184,6 +188,12 @@ public class UI : Singletone<UI> {
 		monsterDamage.SetActive(MonsterSetter.instance || TokenCounter.cnt[Marks.Monster] > 0);
         timeCounter.SetActive(TimeCounter.instance);
         ankhCounter.SetActive(GameManager.instance.gameState.CurrentRun != null && GameManager.instance.gameState.CurrentRun.continuousRun);
+
+		if (BarrelSetter.instance) {
+			var text = barrelDamage.GetComponentInChildren<Text>();
+			var damageEffect = Hero.instance.GetComponentInChildren<DamageEffect>();
+			text.text = string.Format("<b>{0}</b>", damageEffect.Damage);
+		}
 
 		if (SkullSetter.instance) {
 			var text = skullSpawnSpeed.GetComponentInChildren<Text>();

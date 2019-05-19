@@ -72,9 +72,10 @@ public class Board : Singletone<Board> {
 
     public Cell RandomEmptyCell(Func<Figure, bool> occupies = null) {
         occupies = occupies ?? (f => f.Occupies());
-        var emptyCells = cellsList.Where(c => !c.figures.Any(occupies)).ToList();
-        if (emptyCells.Count > 0) {
-            return emptyCells.ToList().Rnd();
+        var emptyCells = cellsList.Where(c => !c.figures.Any(occupies));
+		var rndel = emptyCells.Rnd();
+		if (rndel != null) {
+			return rndel;
         }
         return cellsList.Rnd();
     }
