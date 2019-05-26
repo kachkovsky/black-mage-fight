@@ -91,7 +91,7 @@ public class Board : Singletone<Board> {
             row.transform.localPosition = new Vector3(0, -i, 0);
             rows[i] = row;
             for (int j = 0; j < n; j++) {
-                var cellObject = GameObject.Instantiate(sample);
+                var cellObject = Instantiate(sample);
                 cellObject.name = string.Format("Cell {0} {1}", i, j);
                 cellObject.transform.SetParent(row.transform, worldPositionStays: false);
                 cellObject.transform.localPosition = new Vector3(j, 0, 0);

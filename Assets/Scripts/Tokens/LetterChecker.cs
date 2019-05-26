@@ -10,6 +10,8 @@ public class LetterChecker : MonoBehaviour
 	public List<Mark> letterMarks;
 	public UnityEvent onSuccess;
 
+	public bool diagonal = false;
+
 	Promise check;
 
 	List<Letter> CheckPosition(int x, int y, int index) {
@@ -30,6 +32,12 @@ public class LetterChecker : MonoBehaviour
 		result.AddRange(CheckPosition(x, y + 1, index + 1));
 		result.AddRange(CheckPosition(x - 1, y, index + 1));
 		result.AddRange(CheckPosition(x, y - 1, index + 1));
+		if (diagonal) {
+			result.AddRange(CheckPosition(x + 1, y + 1, index + 1));
+			result.AddRange(CheckPosition(x - 1, y + 1, index + 1));
+			result.AddRange(CheckPosition(x + 1, y - 1, index + 1));
+			result.AddRange(CheckPosition(x - 1, y - 1, index + 1));
+		}
 		if (result.Count == 0) {
 			result.Clear();
 		} else {
@@ -55,7 +63,7 @@ public class LetterChecker : MonoBehaviour
 	public IPromise Change() {
 		if (check == null) {
 			check = new Promise();
-		}
+		}	
 		return check;
 	}
 
