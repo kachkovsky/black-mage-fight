@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Events;
+using System.Linq;
+using System.Collections.Generic;
 
 public class If : Effect
 {
@@ -12,7 +14,7 @@ public class If : Effect
 	public UnityEvent elseEvent;
 
     public override void Run() {
-		if (condition.Satisfied()) {
+		if (condition == null || condition.Satisfied()) {
 			if (then != null) {
 				then.Run();
 			}
@@ -22,6 +24,9 @@ public class If : Effect
 				else_.Run();
 			}
 			elseEvent.Invoke();
+			IEnumerable<int> list = new List<int>();
+			int minBits = list.MinBy(x => x & 7);
+
 		}
     }
 }
