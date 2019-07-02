@@ -24,9 +24,6 @@ public class If : Effect
 				else_.Run();
 			}
 			elseEvent.Invoke();
-			IEnumerable<int> list = new List<int>();
-			int minBits = list.MinBy(x => x & 7);
-
 		}
     }
 }
