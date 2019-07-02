@@ -255,7 +255,8 @@ public class UI : Singletone<UI> {
 			var text = bombDamage.GetComponentInChildren<Text>();
 			var damageHero = Hero.instance.GetComponent<DamageUnit>();
 			var bomb = BombSetter.instance.GetComponent<Spawner>().sample.GetComponent<Bomb>();
-			var damage = damageHero ? damageHero.Damage : bomb.Damage;
+			var explosionDamage = Hero.instance.GetComponent<DamageEffect>();
+			var damage = damageHero ? damageHero.Damage : bomb ? bomb.Damage : explosionDamage.Damage;
 			text.text = string.Format("<b>{0}</b>", damage);
         }       
         if (Poison.instance) {
