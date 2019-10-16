@@ -6,3 +6,4 @@ Builds/
 *.sln
 Build
 *.userprefs
+.vs
