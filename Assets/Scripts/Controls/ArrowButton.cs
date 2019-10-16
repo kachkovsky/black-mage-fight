@@ -3,20 +3,18 @@ using System.Collections;
 using System;
 
 public class ArrowButton : Button {
-
+    //min time for slow gamers 
     private const int DELAY_BETWEEN_PRESS_ACTIONS = 220;
+
     private static bool arrowPressed;
+    private static int oldTick = Int32.MaxValue;
 
     public IntVector2 direction;
-    private static int oldTick;
     private bool pressed;
-
-    private void ResetOldTick() {
-        oldTick = Int32.MaxValue;
-    }
 
     private bool IsNewTick(int tick) {
         if (tick < oldTick) {
+            //handle int overflow after 49 days
             if (tick > (Int32.MinValue + DELAY_BETWEEN_PRESS_ACTIONS)) {
                 oldTick = tick;
                 return true;
@@ -33,12 +31,10 @@ public class ArrowButton : Button {
     private void Awake() {
         arrowPressed = false;
         pressed = false;
-        ResetOldTick();
     }
 
     void Update() {
         if (Input.GetButtonUp(button)) {
-            ResetOldTick();
             if (pressed) {
                 arrowPressed = false;
             }
@@ -49,6 +45,7 @@ public class ArrowButton : Button {
                 if (pressed) {
                     CheckForPress();
                 } else {
+                    //else branch is faster for manual clicks(with release button)
                     pressed = true;
                     arrowPressed = true;
                     oldTick = Environment.TickCount;
